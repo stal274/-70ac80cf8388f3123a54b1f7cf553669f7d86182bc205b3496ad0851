@@ -32,15 +32,11 @@ public class AI : MonoBehaviour
         ButtonLeft.SetGameButton(LeftAction, LeftValue);
         ButtonRight.SetGameButton(RightAction, RightValue);
         {
-            if (Mathf.Abs(ButtonLeft.getResult(res) - final) < Mathf.Abs(ButtonRight.getResult(res) - final))
+            if (Mathf.Abs(ButtonLeft.getResult(res) - final) < Mathf.Abs(ButtonRight.getResult(res) - final)&&(ButtonLeft.getResult(res)<final))
             {
                 choise = "Left";
             }
-            else if (Mathf.Abs(ButtonLeft.getResult(res) - final) > Mathf.Abs(ButtonRight.getResult(res) - final))
-            {
-                choise = "Right";
-            }
-            else
+            else if (Mathf.Abs(ButtonLeft.getResult(res) - final) > Mathf.Abs(ButtonRight.getResult(res) - final)&& (ButtonRight.getResult(res)<final))
             {
                 choise = "Right";
             }
