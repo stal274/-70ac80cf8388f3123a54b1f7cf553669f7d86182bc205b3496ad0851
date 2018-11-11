@@ -15,8 +15,6 @@ public class MainButtons : MonoBehaviour
                 Application.Quit();
                 break;
             case "StartGame_Button":
-                /*MainAction.SetActive(false);
-                SettingAction.SetActive(true);*/
                 Application.LoadLevel(1);
                 break;
         }
