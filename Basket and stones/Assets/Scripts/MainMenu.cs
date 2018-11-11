@@ -17,6 +17,8 @@ public class MainButtons : MonoBehaviour
             case "StartGame_Button":
                 Application.LoadLevel(1);
                 break;
+            case "Settings_Button":
+                break;
         }
     }
 }
