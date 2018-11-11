@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsScript : MonoBehaviour {
+public class SettingsWindow : MonoBehaviour {
 
 	
 	void Start () {
@@ -12,5 +12,5 @@ public class SettingsScript : MonoBehaviour {
 	
 	void Update () {
 		
-	}
+	}	
 }
