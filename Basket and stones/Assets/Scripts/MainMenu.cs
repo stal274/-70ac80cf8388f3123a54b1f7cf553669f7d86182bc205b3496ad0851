@@ -6,7 +6,6 @@ public class MainButtons : MonoBehaviour
 {
     public GameObject SettingAction;
     public GameObject MainAction;
-
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)
