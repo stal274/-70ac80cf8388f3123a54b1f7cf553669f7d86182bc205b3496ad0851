@@ -15,7 +15,6 @@ public class PlayingGame : MonoBehaviour
     private int i, res, fin, BLAI, BRAI;
     
     
-   
     private void Start()
     {
         ButtonsValueGenerate();

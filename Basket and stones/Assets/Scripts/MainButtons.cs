@@ -2,11 +2,11 @@
 using UnityEngine;
 
 
-
 public class MainButtons : MonoBehaviour
 {
     public GameObject SettingAction;
     public GameObject MainAction;
+
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)
@@ -19,12 +19,6 @@ public class MainButtons : MonoBehaviour
                 SettingAction.SetActive(true);*/
                 Application.LoadLevel(1);
                 break;
-            
-
         }
     }
-    
-    
-
-
 }
