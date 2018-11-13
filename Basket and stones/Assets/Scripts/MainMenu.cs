@@ -11,15 +11,21 @@ public class MainMenu : MonoBehaviour
     {
         switch (gameObject.name)
         {
-            case "Exit_Button":
-                Application.Quit();
-                break;
             case "StartGame_Button":
                 SceneManager.LoadScene("TestGameScene");
+                break;
+            case "Shop_Button":
                 break;
             case "Settings_Button":
                 SettingsWindow.SetActive(true);
                 MainMenuWindow.SetActive(false);
+                break;
+            case "Achievements_Button":
+                break;
+            case "Study_Button":
+                break;
+            case "Exit_Button":
+                Application.Quit();
                 break;
             default:
                 break;
