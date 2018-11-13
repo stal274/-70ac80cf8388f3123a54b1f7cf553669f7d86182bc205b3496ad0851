@@ -1160,7 +1160,7 @@ GameObject:
   - component: {fileID: 996615025}
   - component: {fileID: 996615024}
   m_Layer: 5
-  m_Name: Achievments_Button
+  m_Name: Achievements_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
