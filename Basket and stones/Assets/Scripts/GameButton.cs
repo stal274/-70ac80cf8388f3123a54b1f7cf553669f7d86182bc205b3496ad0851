@@ -29,7 +29,6 @@ public class GameButton : MonoBehaviour
             case '+':
                 FinalResult = result + this.value;
                 break;
- 
         }
 
         return FinalResult;

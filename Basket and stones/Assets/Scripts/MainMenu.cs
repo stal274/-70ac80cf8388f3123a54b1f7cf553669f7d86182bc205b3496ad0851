@@ -1,26 +1,25 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject SettingAction;
-    public GameObject MainAction;
-    
+    public GameObject SettingsWindow;
+    public GameObject MainMenuWindow;
+
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)
         {
-            case "Exit":
-                
+            case "Exit_Button":
+                Application.Quit();
                 break;
             case "StartGame_Button":
                 SceneManager.LoadScene("TestGameScene");
                 break;
             case "Settings_Button":
-                SettingAction.SetActive(true);
-            MainAction.SetActive(false);
+                SettingsWindow.SetActive(true);
+                MainMenuWindow.SetActive(false);
                 break;
             default:
                 break;
