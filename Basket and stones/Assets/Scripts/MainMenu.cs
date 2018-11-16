@@ -27,6 +27,10 @@ public class MainMenu : MonoBehaviour
             case "Exit_Button":
                 Application.Quit();
                 break;
+            case "Exit_Settings_Button":
+                SettingsWindow.SetActive(false);
+                MainMenuWindow.SetActive(true);
+                break;
             default:
                 break;
         }
