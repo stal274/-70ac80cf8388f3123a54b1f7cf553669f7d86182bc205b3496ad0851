@@ -21,7 +21,6 @@ public class Timer : MonoBehaviour
     void minusSecond()
     {
         coolTimer -= Time.deltaTime;
-        print(coolTimer);   
         timer.text = Mathf.RoundToInt(coolTimer).ToString();
     }
 }
