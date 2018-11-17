@@ -5,7 +5,7 @@ public class AI : PlayingGame
     private string choise;
 
 
-    public int AiStep(GameButton GameButtonLeft, GameButton GameButtonRight, int res, int final)
+    public int AiStep(GameButton GameButtonLeft, GameButton GameButtonRight, int res, int final, int Difficulty)
     {
         switch (AiChoise(GameButtonLeft, GameButtonRight, res, final))
         {
@@ -17,6 +17,7 @@ public class AI : PlayingGame
                 break;
         }
 
+        Debug.Log(Difficulty);
         return StonesInBasket;
     }
 
