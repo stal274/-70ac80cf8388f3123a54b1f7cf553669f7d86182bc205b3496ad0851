@@ -8,12 +8,12 @@ public class MainMenu : MonoBehaviour
     public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
     public Text DifficultLevelLabel;
     public Slider DifficultSlider;
-
+    public int Difficulty;
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)
         {
-            case "StartGame_Button":
+            case "ChooseGame_Button":
                 MainMenuWindow.SetActive(false);
                 DifficultyWindow.SetActive(true);
                 break;
@@ -34,6 +34,10 @@ public class MainMenu : MonoBehaviour
                 SettingsWindow.SetActive(false);
                 MainMenuWindow.SetActive(true);
                 break;
+            case "StartGame_Button":
+                SceneManager.LoadScene("TestGameScene");
+                new PlayingGame().StartGame(Difficulty);
+                break;
             default:
                 break;
         }
@@ -44,14 +48,17 @@ public class MainMenu : MonoBehaviour
         if (DifficultSlider.value < 1)
         {
             DifficultLevelLabel.text = "Быстрая игра";
+            Difficulty = 0;
         }
         else if (DifficultSlider.value == 1)
         {
             DifficultLevelLabel.text = "Классическая игра";
+            Difficulty = 1;
         }
         else if (DifficultSlider.value == 2)
         {
             DifficultLevelLabel.text = "Долгая игра";
+            Difficulty = 2;
         }
     }
 
