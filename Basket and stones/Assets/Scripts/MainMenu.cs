@@ -1,20 +1,21 @@
-﻿using System;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject SettingsWindow;
-    public GameObject MainMenuWindow;
+    public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
+    public Text DifficultLevelLabel;
+    public Slider DifficultSlider;
 
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)
         {
             case "StartGame_Button":
-                SceneManager.LoadScene("LoadingScene");
+                MainMenuWindow.SetActive(false);
+                DifficultyWindow.SetActive(true);
                 break;
             case "Shop_Button":
                 break;
@@ -35,6 +36,22 @@ public class MainMenu : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void DifficultLevelEdit()
+    {
+        if (DifficultSlider.value < 1)
+        {
+            DifficultLevelLabel.text = "Быстрая игра";
+        }
+        else if (DifficultSlider.value == 1)
+        {
+            DifficultLevelLabel.text = "Классическая игра";
+        }
+        else if (DifficultSlider.value == 2)
+        {
+            DifficultLevelLabel.text = "Долгая игра";
         }
     }
 
