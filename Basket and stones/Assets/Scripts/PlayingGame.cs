@@ -3,45 +3,50 @@ using UnityEngine.UI;
 
 public class PlayingGame : MonoBehaviour
 {
-    public Button ButtonLeft,ButtonRight;
+    public Button ButtonLeft, ButtonRight;
     public Text ResultPanel;
     public GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
-    private int[] ButtonLeftActionNumericalValue = new int[] { 3, 2, 2 };
-    private int[] ButtonRightActionNumericalValue = new int[] {2,5,1};
+    private int[] ButtonLeftActionNumericalValue = new int[] {3, 2, 2};
+    private int[] ButtonRightActionNumericalValue = new int[] {2, 5, 1};
     private char[] Action;
     public char ButtonLeftAction, ButtonRightAction;
-    public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex;
-    
-    
+    public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex,Difficulty;
+
+    public void StartGame(int Difficulty)
+    {
+        this.Difficulty = Difficulty;
+    }
     private void Start()
     {
         ButtonsValueGenerate();
         StonesInBasketUpdate();
     }
+
     public void OnClickLeft()
     {
-        StonesInBasket =  GameButtonLeft.getResult(StonesInBasket);
+        StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
         StonesInBasketUpdate();
-        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones);
+        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones,Difficulty);
         Invoke("StonesInBasketUpdate", 2);
     }
+
     public void OnClickRight()
     {
         StonesInBasket = GameButtonRight.getResult(StonesInBasket);
         StonesInBasketUpdate();
-        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones);
+        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones,Difficulty);
         Invoke("StonesInBasketUpdate", 2);
+    }
 
-    }
-   private void StonesInBasketUpdate()
+    private void StonesInBasketUpdate()
     {
-        ResultPanel.GetComponent<Text>().text = System.Convert.ToString(StonesInBasket);
+        ResultPanel.text = System.Convert.ToString(StonesInBasket);
     }
-    
-  private void ButtonsValueGenerate()
+
+    private void ButtonsValueGenerate()
     {
-        Action = new char[] { '*', '+' };
+        Action = new char[] {'*', '+'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
         computer = new AI();
@@ -50,12 +55,13 @@ public class PlayingGame : MonoBehaviour
         ButtonRightActionIndex = Random.Range(0, Action.Length);
         ButtonRightAction = Action[ButtonRightActionIndex];
         ButtonLeftAction = Action[ButtonLeftActionIndex];
-        ButtonLeft.GetComponentInChildren<Text>().text = ButtonLeftAction + System.Convert.ToString(ButtonLeftActionNumericalValue[i]);
-        ButtonRight.GetComponentInChildren<Text>().text = ButtonRightAction + System.Convert.ToString(ButtonRightActionNumericalValue[i]);
+        ButtonLeft.GetComponentInChildren<Text>().text =
+            ButtonLeftAction + System.Convert.ToString(ButtonLeftActionNumericalValue[i]);
+        ButtonRight.GetComponentInChildren<Text>().text =
+            ButtonRightAction + System.Convert.ToString(ButtonRightActionNumericalValue[i]);
         GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
         StonesInBasket = Random.Range(2, 20);
         WinningNumberStones = Random.Range(20, 40);
     }
-
 }
