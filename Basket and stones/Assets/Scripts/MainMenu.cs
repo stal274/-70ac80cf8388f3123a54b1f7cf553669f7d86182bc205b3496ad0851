@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
     public Text DifficultLevelLabel;
     public Slider DifficultSlider;
-    public int Difficulty;
+    public static int Difficulty;
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)

@@ -11,7 +11,7 @@ public class PlayingGame : MonoBehaviour
     private int[] ButtonRightActionNumericalValue = new int[] {2, 5, 1};
     private char[] Action;
     public char ButtonLeftAction, ButtonRightAction;
-    public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex,Difficulty;
+    public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex,Difficulty=MainMenu.Difficulty;
 
     public void StartGame(int Difficulty)
     {
