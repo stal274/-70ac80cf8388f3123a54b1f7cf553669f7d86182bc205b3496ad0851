@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
                 break;
             case "StartGame_Button":
                 SceneManager.LoadScene("TestGameScene");
-                new PlayingGame().StartGame(Difficulty);
+                
                 break;
             default:
                 break;

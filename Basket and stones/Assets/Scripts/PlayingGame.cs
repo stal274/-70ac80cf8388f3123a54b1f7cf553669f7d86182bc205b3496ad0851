@@ -1,22 +1,26 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayingGame : MonoBehaviour
 {
     public Button ButtonLeft, ButtonRight;
     public Text ResultPanel;
-    public GameButton GameButtonLeft, GameButtonRight;
+    private GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
     private int[] ButtonLeftActionNumericalValue = new int[] {3, 2, 2};
     private int[] ButtonRightActionNumericalValue = new int[] {2, 5, 1};
     private char[] Action;
     public char ButtonLeftAction, ButtonRightAction;
-    public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex,Difficulty=MainMenu.Difficulty;
 
-    public void StartGame(int Difficulty)
-    {
-        this.Difficulty = Difficulty;
-    }
+
+    public int i,
+        StonesInBasket,
+        WinningNumberStones,
+        ButtonLeftActionIndex,
+        ButtonRightActionIndex,
+        Difficulty = MainMenu.Difficulty;
+
+
     private void Start()
     {
         ButtonsValueGenerate();
@@ -32,27 +36,33 @@ public class PlayingGame : MonoBehaviour
         StonesInBasket =
             computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
         Invoke("StonesInBasketUpdate", 2);
-        ButtonLeft.interactable = true;
-        ButtonRight.interactable = true;
+        Invoke("ButtonActive", 2);
     }
 
     public void OnClickRight()
     {
-        ButtonRight.interactable = false;
         ButtonLeft.interactable = false;
+        ButtonRight.interactable = false;
         StonesInBasket = GameButtonRight.getResult(StonesInBasket);
         StonesInBasketUpdate();
         StonesInBasket =
             computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
         Invoke("StonesInBasketUpdate", 2);
-        ButtonRight.interactable = true;
-        ButtonLeft.interactable = true;
+        Invoke("ButtonActive", 2);
+        Debug.Log(ButtonLeft.interactable);
     }
 
     private void StonesInBasketUpdate()
     {
         ResultPanel.text = System.Convert.ToString(StonesInBasket);
     }
+
+    private void ButtonActive()
+    {
+        ButtonRight.interactable = true;
+        ButtonLeft.interactable = true;
+    }
+
 
     private void ButtonsValueGenerate()
     {
