@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayingGame : MonoBehaviour
@@ -25,18 +25,28 @@ public class PlayingGame : MonoBehaviour
 
     public void OnClickLeft()
     {
+        ButtonLeft.interactable = false;
+        ButtonRight.interactable = false;
         StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
         StonesInBasketUpdate();
-        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones,Difficulty);
+        StonesInBasket =
+            computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
         Invoke("StonesInBasketUpdate", 2);
+        ButtonLeft.interactable = true;
+        ButtonRight.interactable = true;
     }
 
     public void OnClickRight()
     {
+        ButtonRight.interactable = false;
+        ButtonLeft.interactable = false;
         StonesInBasket = GameButtonRight.getResult(StonesInBasket);
         StonesInBasketUpdate();
-        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones,Difficulty);
+        StonesInBasket =
+            computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
         Invoke("StonesInBasketUpdate", 2);
+        ButtonRight.interactable = true;
+        ButtonLeft.interactable = true;
     }
 
     private void StonesInBasketUpdate()
