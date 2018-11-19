@@ -5,7 +5,9 @@ public class PlayingGame : MonoBehaviour
 {
     public Button ButtonLeft, ButtonRight;
 
+
     public Text ResultPanel, Victory;
+
 
     private GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
@@ -15,13 +17,15 @@ public class PlayingGame : MonoBehaviour
     public char ButtonLeftAction, ButtonRightAction;
 
 
+
+
+
     public int i,
         StonesInBasket,
         WinningNumberStones,
         ButtonLeftActionIndex,
         ButtonRightActionIndex,
         Difficulty = MainMenu.Difficulty;
-
 
     /*private Stones stones;*/
 
@@ -30,7 +34,9 @@ public class PlayingGame : MonoBehaviour
         ButtonsValueGenerate();
         StonesInBasketUpdate();
 
+
         /*stones.GetComponent<Stones>();*/
+
     }
 
     public void OnClickLeft()
