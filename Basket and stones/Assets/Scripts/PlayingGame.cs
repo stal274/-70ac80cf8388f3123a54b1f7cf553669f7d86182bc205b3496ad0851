@@ -8,7 +8,6 @@ public class PlayingGame : MonoBehaviour
 
     public Text ResultPanel, Victory;
 
-
     private GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
     private int[] ButtonLeftActionNumericalValue = new int[] {3, 2, 2};
@@ -23,6 +22,8 @@ public class PlayingGame : MonoBehaviour
         ButtonLeftActionIndex,
         ButtonRightActionIndex,
         Difficulty = MainMenu.Difficulty;
+
+    /*private Stones stones;*/
 
     /*private Stones stones;*/
 
