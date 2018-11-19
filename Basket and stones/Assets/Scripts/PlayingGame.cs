@@ -4,18 +4,15 @@ using UnityEngine.UI;
 public class PlayingGame : MonoBehaviour
 {
     public Button ButtonLeft, ButtonRight;
+
     public Text ResultPanel, Victory;
+
     private GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
     private int[] ButtonLeftActionNumericalValue = new int[] {3, 2, 2};
     private int[] ButtonRightActionNumericalValue = new int[] {2, 5, 1};
     private char[] Action;
     public char ButtonLeftAction, ButtonRightAction;
-<<<<<<< HEAD
-=======
-    public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex,Difficulty=MainMenu.Difficulty;
-    private Stones stones;
->>>>>>> Начал делать физику
 
 
     public int i,
@@ -26,12 +23,13 @@ public class PlayingGame : MonoBehaviour
         Difficulty = MainMenu.Difficulty;
 
 
+    /*private Stones stones;*/
+
     private void Start()
     {
         ButtonsValueGenerate();
         StonesInBasketUpdate();
-        stones.GetComponent<Stones>();
-        
+        /*stones.GetComponent<Stones>();*/
     }
 
     public void OnClickLeft()
@@ -73,7 +71,7 @@ public class PlayingGame : MonoBehaviour
 
     private void ButtonsValueGenerate()
     {
-        Action = new char[] {'*', '+','-','/'};
+        Action = new char[] {'*', '+', '-', '/'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
         computer = new AI();
