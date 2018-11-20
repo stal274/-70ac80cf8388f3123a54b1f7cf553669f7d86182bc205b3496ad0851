@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlayingGame : MonoBehaviour
 {
     public Button ButtonLeft, ButtonRight;
-    public Text ResultPanel;
+    public Text ResultPanel, Victory;
     private GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
     private int[] ButtonLeftActionNumericalValue = new int[] {3, 2, 2};
@@ -83,5 +83,6 @@ public class PlayingGame : MonoBehaviour
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
         StonesInBasket = Random.Range(2, 20);
         WinningNumberStones = Random.Range(20, 40);
+        Victory.text = "Победное число камней: " + WinningNumberStones;
     }
 }
