@@ -29,6 +29,7 @@ public class PlayingGame : MonoBehaviour
     {
         ButtonsValueGenerate();
         StonesInBasketUpdate();
+
         /*stones.GetComponent<Stones>();*/
     }
 
