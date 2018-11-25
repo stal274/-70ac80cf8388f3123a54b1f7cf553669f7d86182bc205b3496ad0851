@@ -17,9 +17,6 @@ public class PlayingGame : MonoBehaviour
     public char ButtonLeftAction, ButtonRightAction;
 
 
-
-
-
     public int i,
         StonesInBasket,
         WinningNumberStones,
