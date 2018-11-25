@@ -12,6 +12,7 @@ public class PlayingGame : MonoBehaviour
     private char[] Action;
     public char ButtonLeftAction, ButtonRightAction;
     public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex,Difficulty=MainMenu.Difficulty;
+    private Stones stones;
 
     public void StartGame(int Difficulty)
     {
@@ -21,6 +22,8 @@ public class PlayingGame : MonoBehaviour
     {
         ButtonsValueGenerate();
         StonesInBasketUpdate();
+        stones.GetComponent<Stones>();
+        
     }
 
     public void OnClickLeft()
