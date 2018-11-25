@@ -1,70 +1,63 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 public class PlayingGame : MonoBehaviour
 {
-    public Button ButtonLeft, ButtonRight;
+    public Button ButtonLeft,ButtonRight;
     public Text ResultPanel;
-    public GameButton GameButtonLeft, GameButtonRight;
+    private GameButton GBL, GBR;
     private AI computer;
-    private int[] ButtonLeftActionNumericalValue = new int[] {3, 2, 2};
-    private int[] ButtonRightActionNumericalValue = new int[] {2, 5, 1};
-    private char[] Action;
-    public char ButtonLeftAction, ButtonRightAction;
-    public int i, StonesInBasket, WinningNumberStones, ButtonLeftActionIndex, ButtonRightActionIndex,Difficulty=MainMenu.Difficulty;
-    private Stones stones;
-
-    public void StartGame(int Difficulty)
-    {
-        this.Difficulty = Difficulty;
-    }
+    private int[] BL = new int[] { 3, 2, 2 };
+    private int[] BR = new int[] {2,5,1};
+    private char[] Act;
+    public char BLA, BRA;
+    private int i, res, fin, BLAI, BRAI;
+    
+    
+   
     private void Start()
     {
         ButtonsValueGenerate();
-        StonesInBasketUpdate();
-        stones.GetComponent<Stones>();
-        
+        ResUpdate();
     }
-
     public void OnClickLeft()
     {
-        StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
-        StonesInBasketUpdate();
-        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones,Difficulty);
-        Invoke("StonesInBasketUpdate", 2);
+        res =  GBL.getResult(res);
+        ResUpdate();
+        res = computer.AiStep(GBL, GBR, res, fin);
+        Invoke("ResUpdate", 2);
     }
-
     public void OnClickRight()
     {
-        StonesInBasket = GameButtonRight.getResult(StonesInBasket);
-        StonesInBasketUpdate();
-        StonesInBasket = computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones,Difficulty);
-        Invoke("StonesInBasketUpdate", 2);
-    }
+        res = GBR.getResult(res);
+        ResUpdate();
+        res = computer.AiStep(GBL, GBR, res, fin);
+        Invoke("ResUpdate", 2);
 
-    private void StonesInBasketUpdate()
-    {
-        ResultPanel.text = System.Convert.ToString(StonesInBasket);
     }
-
-    private void ButtonsValueGenerate()
+   private void ResUpdate()
     {
-        Action = new char[] {'*', '+'};
-        GameButtonLeft = new GameButton();
-        GameButtonRight = new GameButton();
+        ResultPanel.GetComponent<Text>().text = System.Convert.ToString(res);
+    }
+    
+  private void ButtonsValueGenerate()
+    {
+        Act = new char[] { '*', '+' };
+        GBL = new GameButton();
+        GBR = new GameButton();
         computer = new AI();
-        i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ButtonLeftActionIndex = Random.Range(0, Action.Length);
-        ButtonRightActionIndex = Random.Range(0, Action.Length);
-        ButtonRightAction = Action[ButtonRightActionIndex];
-        ButtonLeftAction = Action[ButtonLeftActionIndex];
-        ButtonLeft.GetComponentInChildren<Text>().text =
-            ButtonLeftAction + System.Convert.ToString(ButtonLeftActionNumericalValue[i]);
-        ButtonRight.GetComponentInChildren<Text>().text =
-            ButtonRightAction + System.Convert.ToString(ButtonRightActionNumericalValue[i]);
-        GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
-        GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
-        StonesInBasket = Random.Range(2, 20);
-        WinningNumberStones = Random.Range(20, 40);
+        i = Random.Range(0, BL.Length);
+        BLAI = Random.Range(0, Act.Length);
+        BRAI = Random.Range(0, Act.Length);
+        BRA = Act[BRAI];
+        BLA = Act[BLAI];
+        ButtonLeft.GetComponentInChildren<Text>().text = BLA + System.Convert.ToString(BL[i]);
+        ButtonRight.GetComponentInChildren<Text>().text = BRA + System.Convert.ToString(BR[i]);
+        GBL.SetGameButton(BLA, BL[i]);
+        GBR.SetGameButton(BRA, BR[i]);
+        res = Random.Range(2, 20);
+        fin = Random.Range(20, 40);
     }
+
 }

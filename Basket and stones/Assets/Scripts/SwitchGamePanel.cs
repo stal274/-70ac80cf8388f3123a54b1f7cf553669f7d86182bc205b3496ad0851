@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchGamePanel : MonoBehaviour
-{
+public class SwitchGamePanel : MonoBehaviour {
 
 	
 }
