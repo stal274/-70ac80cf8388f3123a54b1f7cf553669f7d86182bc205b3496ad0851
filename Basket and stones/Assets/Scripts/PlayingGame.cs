@@ -66,7 +66,7 @@ public class PlayingGame : MonoBehaviour
 
     private void ButtonsValueGenerate()
     {
-        Action = new char[] {'*', '+'};
+        Action = new char[] {'*', '+','-','/'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
         computer = new AI();
