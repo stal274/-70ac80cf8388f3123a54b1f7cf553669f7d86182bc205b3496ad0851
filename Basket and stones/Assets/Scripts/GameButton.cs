@@ -1,42 +1,42 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameButton : MonoBehaviour {
+public class GameButton : MonoBehaviour
+{
     public int value;
     public char action;
     private int FinalResult;
- 
-   
+
+
     public void SetGameButton(char action, int value)
     {
-
         this.value = value;
         this.action = action;
-        
     }
+
     public int getResult(int result)
     {
-        FinalResult = SwitchAction(action, value, result);
+        FinalResult = SwitchAction(action, result);
         return FinalResult;
     }
-    public int SwitchAction(char action, int value, int result)
-    {
 
+    private int SwitchAction(char action, int result)
+    {
         switch (action)
         {
             case '*':
-                FinalResult = result * this.value;
+                FinalResult = result * value;
                 break;
             case '+':
-                FinalResult = result + this.value;
+                FinalResult = result + value;
                 break;
-            default:
+            case '-':
+                FinalResult = result - value;
                 break;
-
+            case '/':
+                FinalResult = result / value;
+                break;
         }
-   
+
         return FinalResult;
     }
-    
-  
 }
