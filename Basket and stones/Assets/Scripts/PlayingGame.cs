@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -15,6 +15,7 @@ public class PlayingGame : MonoBehaviour
     private int[] ButtonLeftActionNumericalValue = {3, 2, 2};
     private int[] ButtonRightActionNumericalValue =  {2, 5, 7};
     private char[] Action;
+    private string WhoseTurn;
     public char ButtonLeftAction, ButtonRightAction;
 
 
@@ -36,10 +37,12 @@ public class PlayingGame : MonoBehaviour
 
     public void OnClickLeft()
     {
+        WhoseTurn = "Human";
         ButtonLeft.interactable = false;
         ButtonRight.interactable = false;
         StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
         StonesInBasketUpdate();
+        WhoseTurn = "Computer";
         StonesInBasket =
             computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
         Invoke("StonesInBasketUpdate", 2);
@@ -48,10 +51,12 @@ public class PlayingGame : MonoBehaviour
 
     public void OnClickRight()
     {
+        WhoseTurn = "Human";
         ButtonLeft.interactable = false;
         ButtonRight.interactable = false;
         StonesInBasket = GameButtonRight.getResult(StonesInBasket);
         StonesInBasketUpdate();
+        WhoseTurn = "Computer";
         StonesInBasket =
             computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
         Invoke("StonesInBasketUpdate", 2);
@@ -60,7 +65,8 @@ public class PlayingGame : MonoBehaviour
 
     private void StonesInBasketUpdate()
     {
-        ResultPanel.text = System.Convert.ToString(StonesInBasket);
+        ResultPanel.text = Convert.ToString(StonesInBasket);
+        IsVictory();
     }
 
     private void ButtonActive()
@@ -69,6 +75,20 @@ public class PlayingGame : MonoBehaviour
         ButtonLeft.interactable = true;
     }
 
+    private void IsVictory()
+    {
+        
+    }
+
+    private void CheckActions()
+    {
+        if (ButtonLeftAction==ButtonRightAction)
+        {
+            ButtonLeftActionIndex = Random.Range(0, Action.Length);
+            ButtonLeftAction = Action[ButtonLeftActionIndex];
+            CheckActions();
+        } 
+    }
 
     private void ButtonsValueGenerate()
     {
@@ -79,8 +99,9 @@ public class PlayingGame : MonoBehaviour
         i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
         ButtonLeftActionIndex = Random.Range(0, Action.Length);
         ButtonRightActionIndex = Random.Range(0, Action.Length);
-        ButtonRightAction = Action[ButtonRightActionIndex];
         ButtonLeftAction = Action[ButtonLeftActionIndex];
+        ButtonRightAction = Action[ButtonRightActionIndex];
+        CheckActions();
         ButtonLeft.GetComponentInChildren<Text>().text =
             ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[i]);
         ButtonRight.GetComponentInChildren<Text>().text =
