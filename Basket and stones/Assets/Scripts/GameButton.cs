@@ -9,31 +9,31 @@ public class GameButton : MonoBehaviour
 
     public void SetGameButton(char action, int value)
     {
-        this.value = value;
         this.action = action;
+        this.value = value;
     }
 
-    public int getResult(int result)
+    public int getResult(int StonesInBasket)
     {
-        FinalResult = SwitchAction(action, result);
-        return FinalResult;
+        return Calculate(action, StonesInBasket);
     }
 
-    private int SwitchAction(char action, int result)
+    private int Calculate(char action, int StonesInBasket)
     {
+        FinalResult = StonesInBasket;
         switch (action)
         {
             case '*':
-                FinalResult = result * value;
+                FinalResult *= value;
                 break;
             case '+':
-                FinalResult = result + value;
+                FinalResult += value;
                 break;
             case '-':
-                FinalResult = result - value;
+                FinalResult -= value;
                 break;
             case '/':
-                FinalResult = result / value;
+                FinalResult /= value;
                 break;
         }
 

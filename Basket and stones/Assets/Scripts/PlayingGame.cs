@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayingGame : MonoBehaviour
 {
@@ -10,8 +12,8 @@ public class PlayingGame : MonoBehaviour
 
     private GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
-    private int[] ButtonLeftActionNumericalValue = new int[] {3, 2, 2};
-    private int[] ButtonRightActionNumericalValue = new int[] {2, 5, 1};
+    private int[] ButtonLeftActionNumericalValue = {3, 2, 2};
+    private int[] ButtonRightActionNumericalValue =  {2, 5, 7};
     private char[] Action;
     public char ButtonLeftAction, ButtonRightAction;
 
@@ -29,10 +31,7 @@ public class PlayingGame : MonoBehaviour
     {
         ButtonsValueGenerate();
         StonesInBasketUpdate();
-
-
-        /*stones.GetComponent<Stones>();*/
-
+        /*stones.GetComponent<Stones>();*/ 
     }
 
     public void OnClickLeft()
@@ -57,7 +56,6 @@ public class PlayingGame : MonoBehaviour
             computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
         Invoke("StonesInBasketUpdate", 2);
         Invoke("ButtonActive", 2);
-        Debug.Log(ButtonLeft.interactable);
     }
 
     private void StonesInBasketUpdate()
@@ -74,7 +72,7 @@ public class PlayingGame : MonoBehaviour
 
     private void ButtonsValueGenerate()
     {
-        Action = new char[] {'*', '+', '-', '/'};
+        Action =new []{'*', '+', '-', '/'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
         computer = new AI();
@@ -84,9 +82,9 @@ public class PlayingGame : MonoBehaviour
         ButtonRightAction = Action[ButtonRightActionIndex];
         ButtonLeftAction = Action[ButtonLeftActionIndex];
         ButtonLeft.GetComponentInChildren<Text>().text =
-            ButtonLeftAction + System.Convert.ToString(ButtonLeftActionNumericalValue[i]);
+            ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[i]);
         ButtonRight.GetComponentInChildren<Text>().text =
-            ButtonRightAction + System.Convert.ToString(ButtonRightActionNumericalValue[i]);
+            ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[i]);
         GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
         StonesInBasket = Random.Range(2, 20);

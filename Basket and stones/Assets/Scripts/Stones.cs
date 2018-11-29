@@ -13,7 +13,7 @@ public class Stones : MonoBehaviour
     {
         for (int i = 0; i < num; i++)
         {
-            Instantiate(stone, new Vector3(this.transform.position.x, this.transform.position.y),
+            Instantiate(stone, new Vector3(transform.position.x, transform.position.y),
                 new Quaternion(0, 0, 0, 0));
         }
     }
