@@ -896,10 +896,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonLeft: {fileID: 1665989378}
   ButtonRight: {fileID: 709908718}
+  ButtonPanel: {fileID: 1395634396}
   ResultPanel: {fileID: 136955942}
   Victory: {fileID: 1450153147}
-  ButtonLeftAction: 0
-  ButtonRightAction: 0
   i: 0
   StonesInBasket: 0
   WinningNumberStones: 0

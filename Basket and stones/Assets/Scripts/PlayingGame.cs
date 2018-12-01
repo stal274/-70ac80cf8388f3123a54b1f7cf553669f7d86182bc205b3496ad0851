@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -6,17 +6,18 @@ using Random = UnityEngine.Random;
 public class PlayingGame : MonoBehaviour
 {
     public Button ButtonLeft, ButtonRight;
-
+    public GameObject ButtonPanel;
 
     public Text ResultPanel, Victory;
 
     private GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
     private int[] ButtonLeftActionNumericalValue = {3, 2, 2};
-    private int[] ButtonRightActionNumericalValue =  {2, 5, 7};
+    private int[] ButtonRightActionNumericalValue = {2, 5, 7};
     private char[] Action;
     private string WhoseTurn;
-    public char ButtonLeftAction, ButtonRightAction;
+    private bool StopGame;
+    private char ButtonLeftAction, ButtonRightAction;
 
 
     public int i,
@@ -32,7 +33,7 @@ public class PlayingGame : MonoBehaviour
     {
         ButtonsValueGenerate();
         StonesInBasketUpdate();
-        /*stones.GetComponent<Stones>();*/ 
+        /*stones.GetComponent<Stones>();*/
     }
 
     public void OnClickLeft()
@@ -42,11 +43,16 @@ public class PlayingGame : MonoBehaviour
         ButtonRight.interactable = false;
         StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
         StonesInBasketUpdate();
-        WhoseTurn = "Computer";
-        StonesInBasket =
-            computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
-        Invoke("StonesInBasketUpdate", 2);
-        Invoke("ButtonActive", 2);
+        while (!StopGame)
+        {
+            WhoseTurn = "Computer";
+            StonesInBasket =
+                computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
+            Invoke("StonesInBasketUpdate", 2);
+            break;
+        }
+
+        Invoke("ButtonActive", 3);
     }
 
     public void OnClickRight()
@@ -56,11 +62,16 @@ public class PlayingGame : MonoBehaviour
         ButtonRight.interactable = false;
         StonesInBasket = GameButtonRight.getResult(StonesInBasket);
         StonesInBasketUpdate();
-        WhoseTurn = "Computer";
-        StonesInBasket =
-            computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
-        Invoke("StonesInBasketUpdate", 2);
-        Invoke("ButtonActive", 2);
+        while (!StopGame)
+        {
+            WhoseTurn = "Computer";
+            StonesInBasket =
+                computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
+            Invoke("StonesInBasketUpdate", 2);
+            break;
+        }
+
+        Invoke("ButtonActive", 3);
     }
 
     private void StonesInBasketUpdate()
@@ -71,8 +82,15 @@ public class PlayingGame : MonoBehaviour
 
     private void ButtonActive()
     {
-        ButtonRight.interactable = true;
-        ButtonLeft.interactable = true;
+        if (!StopGame)
+        {
+            ButtonRight.interactable = true;
+            ButtonLeft.interactable = true;
+        }
+        else
+        {
+            ButtonPanel.SetActive(false);
+        }
     }
 
     private void IsVictory()
