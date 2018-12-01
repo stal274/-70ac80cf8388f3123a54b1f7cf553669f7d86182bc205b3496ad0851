@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -109,12 +109,17 @@ public class PlayingGame : MonoBehaviour
 
     private void CheckActions()
     {
-        if (ButtonLeftAction==ButtonRightAction)
+        while (true)
         {
-            ButtonLeftActionIndex = Random.Range(0, Action.Length);
-            ButtonLeftAction = Action[ButtonLeftActionIndex];
-            CheckActions();
-        } 
+            if (ButtonLeftAction == ButtonRightAction)
+            {
+                ButtonLeftActionIndex = Random.Range(0, Action.Length);
+                ButtonLeftAction = Action[ButtonLeftActionIndex];
+                continue;
+            }
+
+            break;
+        }
     }
 
     private void ButtonsValueGenerate()
