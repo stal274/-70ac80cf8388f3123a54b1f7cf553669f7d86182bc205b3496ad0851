@@ -95,7 +95,16 @@ public class PlayingGame : MonoBehaviour
 
     private void IsVictory()
     {
-        
+        if (StonesInBasket == WinningNumberStones && WhoseTurn == "Human")
+        {
+            Victory.text = "Вы выиграли!";
+            StopGame = true;
+        }
+        else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
+        {
+            Victory.text = "Сожалею, но машина оказалась умней!";
+            StopGame = true;
+        }
     }
 
     private void CheckActions()
@@ -110,13 +119,13 @@ public class PlayingGame : MonoBehaviour
 
     private void ButtonsValueGenerate()
     {
-        Action =new []{'*', '+', '-', '/'};
+        Action = new[] {'+', '-'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
         computer = new AI();
         i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ButtonLeftActionIndex = Random.Range(0, Action.Length);
-        ButtonRightActionIndex = Random.Range(0, Action.Length);
+        ButtonLeftActionIndex = 0;
+        ButtonRightActionIndex = 1;
         ButtonLeftAction = Action[ButtonLeftActionIndex];
         ButtonRightAction = Action[ButtonRightActionIndex];
         CheckActions();
@@ -127,7 +136,7 @@ public class PlayingGame : MonoBehaviour
         GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
         StonesInBasket = Random.Range(2, 20);
-        WinningNumberStones = Random.Range(20, 40);
+        WinningNumberStones = Random.Range(20, 31);
         Victory.text = "Победное число камней: " + WinningNumberStones;
     }
 }
