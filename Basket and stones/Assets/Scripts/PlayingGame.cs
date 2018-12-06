@@ -1,16 +1,18 @@
 ﻿using System;
+using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class PlayingGame : MonoBehaviour
+public class PlayingGame :  MonoBehaviour, IPhoneButtons
 {
     public Button ButtonLeft, ButtonRight;
     public GameObject ButtonPanel;
 
     public Text ResultPanel, Victory;
 
-    private GameButton GameButtonLeft, GameButtonRight;
+    public static GameButton GameButtonLeft, GameButtonRight;
     private AI computer;
     private int[] ButtonLeftActionNumericalValue = {3, 2, 2};
     private int[] ButtonRightActionNumericalValue = {2, 5, 7};
@@ -20,7 +22,7 @@ public class PlayingGame : MonoBehaviour
     private char ButtonLeftAction, ButtonRightAction;
 
 
-    public int i,
+    public static int i,
         StonesInBasket,
         WinningNumberStones,
         ButtonLeftActionIndex,
@@ -47,7 +49,7 @@ public class PlayingGame : MonoBehaviour
         {
             WhoseTurn = "Computer";
             StonesInBasket =
-                computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
+                computer.AiStep();
             Invoke("StonesInBasketUpdate", 2);
             break;
         }
@@ -66,7 +68,7 @@ public class PlayingGame : MonoBehaviour
         {
             WhoseTurn = "Computer";
             StonesInBasket =
-                computer.AiStep(GameButtonLeft, GameButtonRight, StonesInBasket, WinningNumberStones, Difficulty);
+                computer.AiStep();
             Invoke("StonesInBasketUpdate", 2);
             break;
         }
@@ -122,6 +124,14 @@ public class PlayingGame : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            HardwareButtons(KeyCode.Escape);
+        }
+    }
+
     private void ButtonsValueGenerate()
     {
         Action = new[] {'+', '-'};
@@ -143,5 +153,13 @@ public class PlayingGame : MonoBehaviour
         StonesInBasket = Random.Range(2, 20);
         WinningNumberStones = Random.Range(20, 31);
         Victory.text = "Победное число камней: " + WinningNumberStones;
+    }
+
+   public  void HardwareButtons(KeyCode EscapeButton)
+    {
+        if (Input.GetKey(EscapeButton))
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
     }
 }
