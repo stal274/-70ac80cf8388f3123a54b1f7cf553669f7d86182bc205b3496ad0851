@@ -5,37 +5,82 @@ public class AI : PlayingGame
     private string choise;
 
 
-    public int AiStep(GameButton GameButtonLeft, GameButton GameButtonRight, int res, int StonesToWin, int Difficulty)
+    public int AiStep()
     {
-        switch (AiChoise(GameButtonLeft, GameButtonRight, res, StonesToWin))
+        GameDifficulty();
+        switch (choise)
         {
             case "Left":
-                StonesInBasket = GameButtonLeft.getResult(res);
+                StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
                 break;
             case "Right":
-                StonesInBasket = GameButtonRight.getResult(res);
+                StonesInBasket = GameButtonRight.getResult(StonesInBasket);
                 break;
         }
 
         return StonesInBasket;
     }
 
-    private string AiChoise(GameButton GameButtonLeft, GameButton GameButtonRight, int res, int StonesToWin)
+    private void GameDifficulty()
+    {
+        switch (Difficulty)
+        {
+            case 0:
+                AIChoiseL0();
+                break;
+            case 1:
+                AIChoiseL1();
+                break;
+            case 2:
+                AIChoiseL2();
+                break;
+        }
+    }
+
+    private void AIChoiseL0()
+    {
+        var x = Random.Range(0, 2);
+        choise = x == 0 ? "Left" : "Right";
+    }
+
+    private void AIChoiseL1()
+    {
+        var x = Random.Range(0, 3);
+        if (x==0)
+        {
+            choise = "Left";
+        }
+        else if (x == 1)
+        {
+            AIChoiseL2();
+        }
+        else
+        {
+            choise = "Right";
+        }
+    }
+
+    private void AIChoiseL2()
     {
         {
-            if (Mathf.Abs(GameButtonLeft.getResult(res) - StonesToWin) < Mathf.Abs(GameButtonRight.getResult(res) - StonesToWin) &&
-                (GameButtonLeft.getResult(res) < StonesToWin))
+            if (Mathf.Abs(GameButtonLeft.getResult(StonesInBasket) - WinningNumberStones) <
+                Mathf.Abs(GameButtonRight.getResult(StonesInBasket) - WinningNumberStones) &&
+                GameButtonLeft.getResult(StonesInBasket) < WinningNumberStones)
             {
                 choise = "Left";
             }
-            else if (Mathf.Abs(GameButtonLeft.getResult(res) - StonesToWin) >
-                     Mathf.Abs(GameButtonRight.getResult(res) - StonesToWin) &&
-                     (GameButtonRight.getResult(res) < StonesToWin))
+            else if (Mathf.Abs(GameButtonLeft.getResult(StonesInBasket) - WinningNumberStones) >
+                     Mathf.Abs(GameButtonRight.getResult(StonesInBasket) - WinningNumberStones) &&
+                     GameButtonRight.getResult(StonesInBasket) < WinningNumberStones)
             {
                 choise = "Right";
             }
+            else
+            {
+                choise = "Left";
+            }
 
-            return choise;
+            
         }
     }
 }
