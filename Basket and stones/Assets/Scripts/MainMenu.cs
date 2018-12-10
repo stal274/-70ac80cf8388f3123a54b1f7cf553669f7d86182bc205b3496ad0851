@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
     public Text DifficultLevelLabel;
     public Slider DifficultSlider;
-    public static int Difficulty;
+    public static byte Difficulty;
   
 
     public void OnMouseUpAsButton()
