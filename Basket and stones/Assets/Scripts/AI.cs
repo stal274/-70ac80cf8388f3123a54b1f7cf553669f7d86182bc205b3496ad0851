@@ -11,9 +11,11 @@ public class AI : PlayingGame
         switch (choise)
         {
             case "Left":
+                print("Компьютер нажимает левую кнопку!");
                 StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
                 break;
             case "Right":
+                print("Компьютер нажимает правую кнопку!");
                 StonesInBasket = GameButtonRight.getResult(StonesInBasket);
                 break;
         }
