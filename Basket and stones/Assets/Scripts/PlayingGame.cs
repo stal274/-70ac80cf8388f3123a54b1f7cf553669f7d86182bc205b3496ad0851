@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class PlayingGame :  MonoBehaviour, IPhoneButtons
+public class PlayingGame : MonoBehaviour, IPhoneButtons
 {
     public Button ButtonLeft, ButtonRight;
     public GameObject ButtonPanel;
@@ -13,9 +13,9 @@ public class PlayingGame :  MonoBehaviour, IPhoneButtons
     public Text ResultPanel, Victory;
 
     public static GameButton GameButtonLeft, GameButtonRight;
-    private AI computer;
-    private int[] ButtonLeftActionNumericalValue = {3, 2, 2};
-    private int[] ButtonRightActionNumericalValue = {2, 5, 7};
+    private Ai computer;
+    private int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6};
+    private int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5};
     private char[] Action;
     private string WhoseTurn;
     private bool StopGame;
@@ -135,13 +135,13 @@ public class PlayingGame :  MonoBehaviour, IPhoneButtons
 
     private void ButtonsValueGenerate()
     {
-        Action = new[] {'+', '-'};
+        Action = new[] {'+', '-','*'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
-        computer = new AI();
+        computer = new Ai();
         i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ButtonLeftActionIndex = 0;
-        ButtonRightActionIndex = 1;
+        ButtonLeftActionIndex = Random.Range(0,Action.Length);
+        ButtonRightActionIndex = Random.Range(0,Action.Length);
         ButtonLeftAction = Action[ButtonLeftActionIndex];
         ButtonRightAction = Action[ButtonRightActionIndex];
         CheckActions();
@@ -152,11 +152,12 @@ public class PlayingGame :  MonoBehaviour, IPhoneButtons
         GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
         StonesInBasket = Random.Range(2, 20);
-        WinningNumberStones = Random.Range(20, 31);
+        WinningNumberStones = Random.Range(20, 61);//Для дебага число можно изменить.
+                                                   //В противном случае тестовая игра может затянуться
         Victory.text = "Победное число камней: " + WinningNumberStones;
     }
 
-   public  void HardwareButtons(KeyCode EscapeButton)
+    public void HardwareButtons(KeyCode EscapeButton)
     {
         if (Input.GetKey(EscapeButton))
         {
