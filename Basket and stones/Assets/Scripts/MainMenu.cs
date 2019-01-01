@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using DefaultNamespace;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour, IPhoneButtons
+
 {
     public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
     public Text DifficultLevelLabel;
     public Slider DifficultSlider;
-    public static int Difficulty;
+    public static byte Difficulty;
+  
+
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)
@@ -36,7 +41,7 @@ public class MainMenu : MonoBehaviour
                 break;
             case "StartGame_Button":
                 SceneManager.LoadScene("TestGameScene");
-                
+
                 break;
             default:
                 break;
@@ -66,10 +71,15 @@ public class MainMenu : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            if (Input.GetKey(KeyCode.Home) || Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Menu))
-            {
-                Application.Quit();
-            }
+            HardwareButtons(KeyCode.Escape);
+        }
+    }
+
+    public void HardwareButtons(KeyCode EscapeButton)
+    {
+        if (Input.GetKey(EscapeButton))
+        {
+            Application.Quit();
         }
     }
 }

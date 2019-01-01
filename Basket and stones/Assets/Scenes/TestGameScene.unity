@@ -664,10 +664,10 @@ RectTransform:
   m_Father: {fileID: 2064647534}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -259.1, y: 294.08}
-  m_SizeDelta: {x: 207.7, y: 120}
+  m_AnchorMin: {x: 0, y: 0.72483844}
+  m_AnchorMax: {x: 0.34800002, y: 0.88970965}
+  m_AnchoredPosition: {x: -102.600006, y: 31.579987}
+  m_SizeDelta: {x: 40.699997, y: -21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1239818460
 MonoBehaviour:
@@ -743,7 +743,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1317457418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1236.5645, y: 817.5974, z: 1199.5928}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2064647534}
@@ -845,10 +845,10 @@ RectTransform:
   m_Father: {fileID: 2064647534}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 640}
-  m_SizeDelta: {x: 800, y: 1280}
+  m_AnchorMin: {x: 0.0425, y: 0.025}
+  m_AnchorMax: {x: 0.9625001, y: 0.114843756}
+  m_AnchoredPosition: {x: -2, y: 550.5}
+  m_SizeDelta: {x: 64, y: 1165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395634398
 MonoBehaviour:
@@ -896,16 +896,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonLeft: {fileID: 1665989378}
   ButtonRight: {fileID: 709908718}
+  ButtonPanel: {fileID: 1395634396}
   ResultPanel: {fileID: 136955942}
   Victory: {fileID: 1450153147}
-  ButtonLeftAction: 0
-  ButtonRightAction: 0
-  i: 0
-  StonesInBasket: 0
-  WinningNumberStones: 0
-  ButtonLeftActionIndex: 0
-  ButtonRightActionIndex: 0
-  Difficulty: 0
 --- !u!1 &1450153145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,7 +1023,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 66.64264
   orthographic: 1
   orthographic size: 669.4
   m_Depth: -1
@@ -1268,10 +1261,10 @@ Canvas:
   m_GameObject: {fileID: 2064647533}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1547102373}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
