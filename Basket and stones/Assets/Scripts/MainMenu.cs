@@ -12,7 +12,8 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     public Text DifficultLevelLabel;
     public Slider DifficultSlider;
     public static byte Difficulty;
-  
+    private static byte Scene;
+
 
     public void OnMouseUpAsButton()
     {
@@ -21,6 +22,7 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
             case "ChooseGame_Button":
                 MainMenuWindow.SetActive(false);
                 DifficultyWindow.SetActive(true);
+                Scene = 1;
                 break;
             case "Shop_Button":
                 break;
@@ -42,8 +44,6 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
             case "StartGame_Button":
                 SceneManager.LoadScene("TestGameScene");
 
-                break;
-            default:
                 break;
         }
     }
@@ -79,7 +79,17 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     {
         if (Input.GetKey(EscapeButton))
         {
-            Application.Quit();
+            switch (Scene)
+            {
+                case 0:
+                    Application.Quit();
+                    break;
+                case 1:
+                    MainMenuWindow.SetActive(true);
+                    DifficultyWindow.SetActive(false);
+                    Scene = 0;
+                    break;
+            }
         }
     }
 }
