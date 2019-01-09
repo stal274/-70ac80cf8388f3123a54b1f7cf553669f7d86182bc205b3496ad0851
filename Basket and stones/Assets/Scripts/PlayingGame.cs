@@ -12,10 +12,10 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     public Text ResultPanel, Victory;
 
-    public static GameButton GameButtonLeft, GameButtonRight;
+    protected static GameButton GameButtonLeft, GameButtonRight;
     private Ai computer;
-    private int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6};
-    private int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5};
+    private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6};
+    private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5};
     private char[] Action;
     private string WhoseTurn;
     private bool StopGame;
@@ -135,13 +135,13 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void ButtonsValueGenerate()
     {
-        Action = new[] {'+', '-','*'};
+        Action = new[] {'+', '-'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
         computer = new Ai();
         i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ButtonLeftActionIndex = Random.Range(0,Action.Length);
-        ButtonRightActionIndex = Random.Range(0,Action.Length);
+        ButtonLeftActionIndex = Random.Range(0, Action.Length);
+        ButtonRightActionIndex = Random.Range(0, Action.Length);
         ButtonLeftAction = Action[ButtonLeftActionIndex];
         ButtonRightAction = Action[ButtonRightActionIndex];
         CheckActions();
@@ -152,8 +152,8 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
         StonesInBasket = Random.Range(2, 20);
-        WinningNumberStones = Random.Range(20, 61);//Для дебага число можно изменить.
-                                                   //В противном случае тестовая игра может затянуться
+        WinningNumberStones = Random.Range(20, 61); //Для дебага число можно изменить.
+        //В противном случае тестовая игра может затянуться
         Victory.text = "Победное число камней: " + WinningNumberStones;
     }
 
