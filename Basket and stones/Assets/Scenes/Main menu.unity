@@ -138,7 +138,7 @@ RectTransform:
   m_GameObject: {fileID: 37650129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 705862510}
   - {fileID: 1172263051}
@@ -148,8 +148,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 0, y: 27.8}
+  m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37650131
 MonoBehaviour:
@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 631922047}
   - component: {fileID: 631922046}
   - component: {fileID: 631922049}
+  - component: {fileID: 631922050}
   m_Layer: 5
   m_Name: ChooseGame_Button
   m_TagString: Untagged
@@ -696,10 +697,10 @@ RectTransform:
   m_Father: {fileID: 1187954134}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 427, y: 164}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: -23, y: 164}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &631922046
 MonoBehaviour:
@@ -802,6 +803,21 @@ MonoBehaviour:
   DifficultyWindow: {fileID: 1668665934}
   DifficultLevelLabel: {fileID: 0}
   DifficultSlider: {fileID: 0}
+--- !u!111 &631922050
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631922044}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &696504032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1061,7 @@ GameObject:
   - component: {fileID: 906632066}
   - component: {fileID: 906632065}
   - component: {fileID: 906632068}
+  - component: {fileID: 906632069}
   m_Layer: 5
   m_Name: Shop_Button
   m_TagString: Untagged
@@ -1058,7 +1075,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 906632063}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1160,6 +1177,21 @@ MonoBehaviour:
   DifficultyWindow: {fileID: 0}
   DifficultLevelLabel: {fileID: 0}
   DifficultSlider: {fileID: 0}
+--- !u!111 &906632069
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 906632063}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &977930089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1297,7 @@ GameObject:
   - component: {fileID: 996615026}
   - component: {fileID: 996615025}
   - component: {fileID: 996615024}
+  - component: {fileID: 996615027}
   m_Layer: 5
   m_Name: Achievements_Button
   m_TagString: Untagged
@@ -1364,6 +1397,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 996615022}
+--- !u!111 &996615027
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 996615022}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1081712280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1759,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 37650130}
-  - {fileID: 2121897315}
   - {fileID: 2142671079}
   m_Father: {fileID: 977930094}
   m_RootOrder: 0
@@ -1719,7 +1766,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 800}
+  m_SizeDelta: {x: 700, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1468061074
 MonoBehaviour:
@@ -2843,17 +2890,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2121897314}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 159234008}
-  m_Father: {fileID: 1468061073}
-  m_RootOrder: 1
+  m_Father: {fileID: 2142671079}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: -166.87003}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121897316
@@ -2982,15 +3029,16 @@ RectTransform:
   m_GameObject: {fileID: 2142671078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children:
+  - {fileID: 2121897315}
   m_Father: {fileID: 1468061073}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 81.87}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.06714287, y: 0.11125001}
+  m_AnchorMax: {x: 0.92, y: 0.7875}
+  m_AnchoredPosition: {x: 4.5, y: 231.07}
+  m_SizeDelta: {x: -137, y: -511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142671080
 MonoBehaviour:
