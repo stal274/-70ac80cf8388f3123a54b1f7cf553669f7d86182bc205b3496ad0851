@@ -34,9 +34,22 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void Start()
     {
+        StonesInBasket = StonesInBasketGenerate();
         ButtonsValueGenerate();
         StonesInBasketUpdate();
         /*stones.GetComponent<Stones>();*/
+    }
+
+    private int StonesInBasketGenerate()
+    {
+        var i = 0;
+        if (Difficulty == 0)
+            i = Random.Range(10, 26);
+        else if (Difficulty == 1)
+            i = Random.Range(15, 47);
+        else if (Difficulty == 2) i = Random.Range(47, 81);
+        WinningNumberStones = Random.Range(i + 15, i + 25);
+        return i;
     }
 
     public void OnClickLeft()
@@ -77,12 +90,6 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         Invoke("ButtonActive", 3);
     }
 
-    private void StonesInBasketUpdate()
-    {
-        ResultPanel.text = Convert.ToString(StonesInBasket);
-        IsVictory();
-    }
-
     private void ButtonActive()
     {
         if (!StopGame)
@@ -92,8 +99,14 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         }
         else
         {
-            ButtonPanel.SetActive(false);
+            ButtonPanel.active = false;
         }
+    }
+
+    private void StonesInBasketUpdate()
+    {
+        ResultPanel.text = Convert.ToString(StonesInBasket);
+        IsVictory();
     }
 
     private void IsVictory()
@@ -108,6 +121,29 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
             Victory.text = "Сожалею, но машина оказалась умней!";
             StopGame = true;
         }
+    }
+
+    private void ButtonsValueGenerate()
+    {
+        Action = new[] {'+', '-'};
+        GameButtonLeft = new GameButton();
+        GameButtonRight = new GameButton();
+        computer = new Ai();
+        i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
+        ButtonLeftActionIndex = Random.Range(0, Action.Length);
+        ButtonRightActionIndex = Random.Range(0, Action.Length);
+        ButtonLeftAction = Action[ButtonLeftActionIndex];
+        ButtonRightAction = Action[ButtonRightActionIndex];
+        CheckActions();
+        ButtonLeft.GetComponentInChildren<Text>().text =
+            ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[i]);
+        ButtonRight.GetComponentInChildren<Text>().text =
+            ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[i]);
+        GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
+        GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
+
+
+        Victory.text = "Победное число камней: " + WinningNumberStones;
     }
 
     private void CheckActions()
@@ -131,30 +167,6 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         {
             HardwareButtons(KeyCode.Escape);
         }
-    }
-
-    private void ButtonsValueGenerate()
-    {
-        Action = new[] {'+', '-'};
-        GameButtonLeft = new GameButton();
-        GameButtonRight = new GameButton();
-        computer = new Ai();
-        i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ButtonLeftActionIndex = Random.Range(0, Action.Length);
-        ButtonRightActionIndex = Random.Range(0, Action.Length);
-        ButtonLeftAction = Action[ButtonLeftActionIndex];
-        ButtonRightAction = Action[ButtonRightActionIndex];
-        CheckActions();
-        ButtonLeft.GetComponentInChildren<Text>().text =
-            ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[i]);
-        ButtonRight.GetComponentInChildren<Text>().text =
-            ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[i]);
-        GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
-        GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
-        StonesInBasket = Random.Range(2, 20);
-        WinningNumberStones = Random.Range(20, 61); //Для дебага число можно изменить.
-        //В противном случае тестовая игра может затянуться
-        Victory.text = "Победное число камней: " + WinningNumberStones;
     }
 
     public void HardwareButtons(KeyCode EscapeButton)
