@@ -7,7 +7,7 @@ public class Ai : PlayingGame
 
     public int AiStep()
     {
-        GameDifficulty();
+        AiChoice();
         // ReSharper disable once ConvertIfStatementToSwitchStatement
         if (_choice == "Left")
         {
@@ -23,49 +23,8 @@ public class Ai : PlayingGame
         return StonesInBasket;
     }
 
-    private void GameDifficulty()
-    {
-        switch (Difficulty)
-        {
-            case 0:
-                AiChoiceL0();
-                break;
-            case 1:
-                AiChoiceL1();
-                break;
-            case 2:
-                AiChoiceL2();
-                break;
-            default:
-                AiChoiceL2();
-                break;
-        }
-    }
 
-    private void AiChoiceL0()
-    {
-        var x = Random.Range(0, 2);
-        _choice = x == 0 ? "Left" : "Right";
-    }
-
-    private void AiChoiceL1()
-    {
-        var x = Random.Range(0, 3);
-        switch (x)
-        {
-            case 0:
-                _choice = "Left";
-                break;
-            case 1:
-                AiChoiceL2();
-                break;
-            default:
-                _choice = "Right";
-                break;
-        }
-    }
-
-    private void AiChoiceL2()
+    private void AiChoice()
     {
         {
             if (Mathf.Abs(GameButtonLeft.getResult(StonesInBasket) - WinningNumberStones) <=
