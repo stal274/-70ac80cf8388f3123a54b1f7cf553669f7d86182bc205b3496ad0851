@@ -8,11 +8,12 @@ using Random = UnityEngine.Random;
 public class PlayingGame : MonoBehaviour, IPhoneButtons
 {
     public Button ButtonLeft, ButtonRight;
-    public GameObject ButtonPanel;
+    public GameObject ButtonPanel, WinOrLosePanel;
 
-    public Text ResultPanel, Victory;
+    public Text ResultPanel, StonesToWinPanel, VictoryPanel;
 
     protected static GameButton GameButtonLeft, GameButtonRight;
+
     private Ai computer;
     private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6};
     private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5};
@@ -29,7 +30,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         ButtonRightActionIndex;
 
     protected static readonly byte Difficulty = MainMenu.Difficulty;
-
+    
     /*private Stones stones;*/
 
     private void Start()
@@ -68,7 +69,8 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
             break;
         }
 
-        Invoke("ButtonActive", 3);
+        Invoke("ButtonActive", 2);
+        
     }
 
     public void OnClickRight()
@@ -87,7 +89,21 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
             break;
         }
 
-        Invoke("ButtonActive", 3);
+        Invoke("ButtonActive", 2);
+      
+    }
+
+    public void OnMouseUpAsButton()
+    {
+        switch (gameObject.name)
+        {
+            case "Retry_Button":
+                SceneManager.LoadScene("TestGameScene");
+                break;
+            case "MainMenu_Button":
+                SceneManager.LoadScene("Main menu");
+                break;
+        }
     }
 
     private void ButtonActive()
@@ -97,8 +113,14 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
             ButtonRight.interactable = true;
             ButtonLeft.interactable = true;
         }
-        else
+    }
+
+    private void ButtonPanelVision()
+    {
+        if (StopGame)
+
         {
+            Debug.Log("Игра окончена");
             ButtonPanel.active = false;
         }
     }
@@ -107,18 +129,21 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     {
         ResultPanel.text = Convert.ToString(StonesInBasket);
         IsVictory();
+        ButtonPanelVision();
     }
 
     private void IsVictory()
     {
         if (StonesInBasket == WinningNumberStones && WhoseTurn == "Human")
         {
-            Victory.text = "Вы выиграли!";
+            WinOrLosePanel.SetActive(true);
+            VictoryPanel.text = "Вы выиграли!";
             StopGame = true;
         }
         else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
         {
-            Victory.text = "Сожалею, но машина оказалась умней!";
+            WinOrLosePanel.SetActive(true);
+            VictoryPanel.text = "Сожалею, но машина оказалась умней!";
             StopGame = true;
         }
     }
@@ -141,9 +166,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
             ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[i]);
         GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
-
-
-        Victory.text = "Победное число камней: " + WinningNumberStones;
+        StonesToWinPanel.text = "Победное число камней: " + WinningNumberStones;
     }
 
     private void CheckActions()
@@ -156,7 +179,6 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
                 ButtonLeftAction = Action[ButtonLeftActionIndex];
                 continue;
             }
-
             break;
         }
     }

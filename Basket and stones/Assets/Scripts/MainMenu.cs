@@ -21,7 +21,6 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
             case "ChooseGame_Button":
                 MainMenuWindow.SetActive(false);
                 DifficultyWindow.SetActive(true);
-
                 break;
             case "Shop_Button":
                 break;
@@ -42,7 +41,6 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
                 break;
             case "StartGame_Button":
                 SceneManager.LoadScene("TestGameScene");
-
                 break;
         }
     }
