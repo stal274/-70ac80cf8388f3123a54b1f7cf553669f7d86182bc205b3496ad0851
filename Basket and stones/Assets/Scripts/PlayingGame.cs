@@ -30,7 +30,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         ButtonRightActionIndex;
 
     protected static readonly byte Difficulty = MainMenu.Difficulty;
-    
+
     /*private Stones stones;*/
 
     private void Start()
@@ -70,7 +70,6 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         }
 
         Invoke("ButtonActive", 2);
-        
     }
 
     public void OnClickRight()
@@ -90,7 +89,6 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         }
 
         Invoke("ButtonActive", 2);
-      
     }
 
     public void OnMouseUpAsButton()
@@ -120,7 +118,6 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         if (StopGame)
 
         {
-            Debug.Log("Игра окончена");
             ButtonPanel.active = false;
         }
     }
@@ -179,6 +176,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
                 ButtonLeftAction = Action[ButtonLeftActionIndex];
                 continue;
             }
+
             break;
         }
     }

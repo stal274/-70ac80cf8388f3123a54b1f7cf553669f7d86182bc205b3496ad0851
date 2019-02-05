@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 60266331}
   - component: {fileID: 60266330}
   - component: {fileID: 60266329}
+  - component: {fileID: 60266332}
   m_Layer: 0
   m_Name: MainMenu_Button
   m_TagString: Untagged
@@ -189,7 +190,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 60266332}
         m_MethodName: OnMouseUpAsButton
         m_Mode: 1
         m_Arguments:
@@ -235,6 +236,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60266327}
+--- !u!114 &60266332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60266327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8420ac2863576034a8c8b3c9017f3291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonLeft: {fileID: 0}
+  ButtonRight: {fileID: 0}
+  ButtonPanel: {fileID: 0}
+  WinOrLosePanel: {fileID: 0}
+  ResultPanel: {fileID: 0}
+  StonesToWinPanel: {fileID: 0}
+  VictoryPanel: {fileID: 0}
 --- !u!1 &66249087
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +882,7 @@ GameObject:
   - component: {fileID: 803776208}
   - component: {fileID: 803776207}
   - component: {fileID: 803776206}
+  - component: {fileID: 803776209}
   m_Layer: 0
   m_Name: Retry_Button
   m_TagString: Untagged
@@ -928,7 +948,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 803776209}
         m_MethodName: OnMouseUpAsButton
         m_Mode: 1
         m_Arguments:
@@ -974,6 +994,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 803776204}
+--- !u!114 &803776209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 803776204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8420ac2863576034a8c8b3c9017f3291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonLeft: {fileID: 0}
+  ButtonRight: {fileID: 0}
+  ButtonPanel: {fileID: 0}
+  WinOrLosePanel: {fileID: 0}
+  ResultPanel: {fileID: 0}
+  StonesToWinPanel: {fileID: 0}
+  VictoryPanel: {fileID: 0}
 --- !u!1 &1057982488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,7 +1241,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C"
+  m_Text: "\u041D\u043E\u0432\u0430\u044F \u0438\u0433\u0440\u0430"
 --- !u!222 &1300765670
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -578,18 +578,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HELP
+  m_Text: '?'
 --- !u!222 &331248063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -814,6 +814,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 2712d29857dc6364c884c1231f8ffa97, type: 2}
+  - {fileID: 7400000, guid: d8f38cba074e7764b91c5c8d5f16cabb, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1884,6 +1885,7 @@ GameObject:
   - component: {fileID: 1535611232}
   - component: {fileID: 1535611231}
   - component: {fileID: 1535611230}
+  - component: {fileID: 1535611233}
   m_Layer: 5
   m_Name: Study_Button
   m_TagString: Untagged
@@ -1905,10 +1907,10 @@ RectTransform:
   m_Father: {fileID: 1775962000}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.008750001, y: 0.012485956}
-  m_AnchorMax: {x: 0.125, y: 0.10246876}
-  m_AnchoredPosition: {x: 4.9992676, y: 3}
-  m_SizeDelta: {x: 7, y: 11.400002}
+  m_AnchorMin: {x: 0.008750001, y: 0}
+  m_AnchorMax: {x: 0.13375, y: 0.10956251}
+  m_AnchoredPosition: {x: 1, y: 6.5}
+  m_SizeDelta: {x: -1, y: -13.599998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1535611230
 MonoBehaviour:
@@ -1929,9 +1931,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.78431374, g: 0.5882353, b: 0.7921569, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.5882353, b: 0.7921569, a: 1}
+    m_PressedColor: {r: 1, g: 0.909804, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1948,7 +1950,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1535611231}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1535611233}
+        m_MethodName: OnMouseUpAsButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1535611231
@@ -1984,6 +1997,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1535611228}
+--- !u!114 &1535611233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1535611228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingsWindow: {fileID: 0}
+  MainMenuWindow: {fileID: 0}
+  DifficultyWindow: {fileID: 0}
+  DifficultLevelLabel: {fileID: 0}
+  DifficultSlider: {fileID: 0}
 --- !u!1 &1555451965
 GameObject:
   m_ObjectHideFlags: 0
