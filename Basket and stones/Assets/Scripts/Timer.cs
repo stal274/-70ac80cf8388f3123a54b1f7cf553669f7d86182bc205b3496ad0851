@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public float coolTimer;
-
+    [SerializeField] private float coolTimer;
     public Text timer;
 
     // Use this for initialization
@@ -13,7 +12,7 @@ public class Timer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         minusSecond();
     }
