@@ -15,15 +15,22 @@ namespace DefaultNamespace
             this.sprite = sprite;
         }
 
-        public void PerkActivation()
+        private void PerkActivation()
         {
-            
-            Cooldown(cooldown);
+            //Активация перков через Switch-case
+            IsActive = !IsActive;
         }
 
         private void Cooldown(int cooldown)
         {
-          
+        }
+
+        public void OnClick()
+        {
+            if (IsActive)
+            {
+                PerkActivation();
+            }
         }
     }
 }
