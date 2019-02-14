@@ -8,7 +8,9 @@ namespace DefaultNamespace
         private string name;
         private readonly int cooldown;
         private Image sprite;
-        public Perk(string name,int cooldown,Image sprite)
+        private bool IsActive = true;
+
+        public Perk(string name, int cooldown, Image sprite)
         {
             this.name = name;
             this.cooldown = cooldown;
