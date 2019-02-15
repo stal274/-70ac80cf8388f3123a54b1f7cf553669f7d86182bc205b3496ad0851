@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     public static byte Difficulty;
 
 
+<<<<<<< HEAD:Basket and stones/Assets/Scripts/MainMenu.cs
     public void OnMouseUpAsButton()
     {
         switch (gameObject.name)
@@ -47,6 +48,9 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
                 break;
         }
     }
+=======
+  
+>>>>>>> Perks_Feature:Basket and stones/Assets/Scripts/MainScene/MainMenu.cs
 
     public void DifficultLevelEdit()
     {

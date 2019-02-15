@@ -21,7 +21,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     private string WhoseTurn;
     private bool StopGame;
     private char ButtonLeftAction, ButtonRightAction;
-
+    private Perk Perk0, Perk1, Perk2;
 
     public static int i,
         StonesInBasket,
@@ -38,6 +38,9 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         StonesInBasket = StonesInBasketGenerate();
         ButtonsValueGenerate();
         StonesInBasketUpdate();
+        Perk0 = new Perk("Заморозка", 6, null);
+        Perk1 = new Perk("Встряска", 5, null);
+        Perk2 = new Perk("Подмена кнопок", 3, null);
         /*stones.GetComponent<Stones>();*/
     }
 
