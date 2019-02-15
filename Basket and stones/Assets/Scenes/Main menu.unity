@@ -221,11 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 1668665934}
-  DifficultLevelLabel: {fileID: 2142671080}
-  DifficultSlider: {fileID: 37650131}
 --- !u!1 &117773172
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,10 +767,9 @@ GameObject:
   - component: {fileID: 631922048}
   - component: {fileID: 631922047}
   - component: {fileID: 631922046}
-  - component: {fileID: 631922049}
   - component: {fileID: 631922050}
   - component: {fileID: 631922051}
-  - component: {fileID: 631922052}
+  - component: {fileID: 631922049}
   m_Layer: 5
   m_Name: ChooseGame_Button
   m_TagString: Untagged
@@ -840,7 +834,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 631922052}
+      - m_Target: {fileID: 631922049}
         m_MethodName: OnMouseUpAsButton
         m_Mode: 1
         m_Arguments:
@@ -894,14 +888,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 631922044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
+  m_Script: {fileID: 11500000, guid: 40967c4b55c05c846bbc9998930761cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsWindow: {fileID: 2075836729}
   MainMenuWindow: {fileID: 1775961996}
   DifficultyWindow: {fileID: 1668665934}
-  DifficultLevelLabel: {fileID: 0}
-  DifficultSlider: {fileID: 0}
 --- !u!111 &631922050
 Animation:
   m_ObjectHideFlags: 0
@@ -930,20 +922,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 2.3383772
---- !u!114 &631922052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 631922044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca2b681be71438da7e76cc10886da4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 1668665934}
 --- !u!1 &696504032
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,11 +963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 0}
-  DifficultLevelLabel: {fileID: 0}
-  DifficultSlider: {fileID: 0}
 --- !u!1 &705862509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1161,7 @@ GameObject:
   - component: {fileID: 906632069}
   - component: {fileID: 906632070}
   - component: {fileID: 906632071}
+  - component: {fileID: 906632072}
   m_Layer: 5
   m_Name: Shop_Button
   m_TagString: Untagged
@@ -1298,11 +1272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 0}
-  MainMenuWindow: {fileID: 0}
-  DifficultyWindow: {fileID: 0}
-  DifficultLevelLabel: {fileID: 0}
-  DifficultSlider: {fileID: 0}
 --- !u!111 &906632069
 Animation:
   m_ObjectHideFlags: 0
@@ -1342,9 +1311,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca2b681be71438da7e76cc10886da4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 0}
-  MainMenuWindow: {fileID: 0}
-  DifficultyWindow: {fileID: 0}
+--- !u!114 &906632072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 906632063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40967c4b55c05c846bbc9998930761cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingsWindow: {fileID: 2075836729}
+  MainMenuWindow: {fileID: 1775961996}
+  DifficultyWindow: {fileID: 1668665934}
 --- !u!1 &996615022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,6 +1339,7 @@ GameObject:
   - component: {fileID: 996615027}
   - component: {fileID: 996615028}
   - component: {fileID: 996615029}
+  - component: {fileID: 996615030}
   m_Layer: 5
   m_Name: Achievements_Button
   m_TagString: Untagged
@@ -1497,9 +1478,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca2b681be71438da7e76cc10886da4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 0}
-  MainMenuWindow: {fileID: 0}
-  DifficultyWindow: {fileID: 0}
+--- !u!114 &996615030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 996615022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40967c4b55c05c846bbc9998930761cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingsWindow: {fileID: 2075836729}
+  MainMenuWindow: {fileID: 1775961996}
+  DifficultyWindow: {fileID: 1668665934}
 --- !u!1 &1081712280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,11 +1625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 0}
-  MainMenuWindow: {fileID: 0}
-  DifficultyWindow: {fileID: 0}
-  DifficultLevelLabel: {fileID: 0}
-  DifficultSlider: {fileID: 0}
 --- !u!1 &1172263050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,11 +2143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 0}
-  DifficultLevelLabel: {fileID: 0}
-  DifficultSlider: {fileID: 0}
 --- !u!114 &1559810368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2379,11 +2361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 0}
-  DifficultLevelLabel: {fileID: 0}
-  DifficultSlider: {fileID: 0}
 --- !u!1 &1571228823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,7 +2581,7 @@ GameObject:
   - component: {fileID: 1668665936}
   - component: {fileID: 1668665935}
   m_Layer: 0
-  m_Name: Switch game window
+  m_Name: Difficulty window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2621,11 +2598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 1668665934}
-  DifficultLevelLabel: {fileID: 2142671080}
-  DifficultSlider: {fileID: 37650131}
 --- !u!4 &1668665936
 Transform:
   m_ObjectHideFlags: 0
@@ -3032,7 +3004,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2121897314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca2b681be71438da7e76cc10886da4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 40967c4b55c05c846bbc9998930761cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsWindow: {fileID: 2075836729}
