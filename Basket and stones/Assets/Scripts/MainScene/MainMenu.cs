@@ -11,46 +11,9 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
     public Text DifficultLevelLabel;
     public Slider DifficultSlider;
-    public Button ChooseGame_Button;
     public static byte Difficulty;
 
 
-<<<<<<< HEAD:Basket and stones/Assets/Scripts/MainMenu.cs
-    public void OnMouseUpAsButton()
-    {
-        switch (gameObject.name)
-        {
-            case "ChooseGame_Button":
-                MainMenuWindow.SetActive(false);
-                DifficultyWindow.SetActive(true);
-                break;
-            case "Shop_Button":
-                break;
-            case "Settings_Button":
-                SettingsWindow.SetActive(true);
-                MainMenuWindow.SetActive(false);
-                break;
-            case "Achievements_Button":
-                break;
-            case "Study_Button":
-                /*ChooseGame_Button.animation*/
-                break;
-            case "Exit_Button":
-                Application.Quit();
-                break;
-            case "Exit_Settings_Button":
-                SettingsWindow.SetActive(false);
-                MainMenuWindow.SetActive(true);
-                break;
-            case "StartGame_Button":
-                SceneManager.LoadScene("TestGameScene");
-               
-                break;
-        }
-    }
-=======
-  
->>>>>>> Perks_Feature:Basket and stones/Assets/Scripts/MainScene/MainMenu.cs
 
     public void DifficultLevelEdit()
     {
