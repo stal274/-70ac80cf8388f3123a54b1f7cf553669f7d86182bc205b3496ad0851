@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
+    public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow,StudyBoard,StudyTrigger;
 
     public void OnMouseUpAsButton()
     {
@@ -24,6 +24,8 @@ public class Buttons : MonoBehaviour
             case "Achievements_Button":
                 break;
             case "Study_Button":
+                StudyBoard.SetActive(true);
+                StudyTrigger.SetActive(true);
                 break;
             case "Exit_Button":
                 Application.Quit();
