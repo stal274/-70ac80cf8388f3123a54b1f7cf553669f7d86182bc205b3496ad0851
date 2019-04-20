@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,9 +15,11 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     protected static GameButton GameButtonLeft, GameButtonRight;
 
     private Ai computer;
-    private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6};
-    private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5};
-    private char[] Action;
+    private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6, 5, 3, 2, 6, 4, 2, 3, 5, 4};
+    private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5, 4, 6, 1, 7, 3, 2, 7, 3, 6};
+    private readonly char[] Action1 = {'+', '*', '+', '+', '-', '+', '-', '+', '*', '+', '-', '+', '-', '+', '-'};
+    private readonly char[] Action2 = {'-', '-', '-', '-', '+', '-', '+', '-', '-', '-', '+', '-', '+', '-', '+'};
+
     private string WhoseTurn;
     private bool StopGame;
     private char ButtonLeftAction, ButtonRightAction;
