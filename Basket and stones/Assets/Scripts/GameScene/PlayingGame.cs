@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,7 +30,9 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         WinningNumberStones,
         ActionIndex;
 
-    protected static readonly byte Difficulty = MainMenu.Difficulty;
+    private int tick = 0;
+
+    private static readonly byte Difficulty = MainMenu.Difficulty;
 
     /*private Stones stones;*/
 
