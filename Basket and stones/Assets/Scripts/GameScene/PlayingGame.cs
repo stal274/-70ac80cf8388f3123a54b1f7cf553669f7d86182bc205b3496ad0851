@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,10 +17,10 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private Ai computer;
     private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6, 5, 3, 2, 6, 4, 2, 3, 5, 4};
-    private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5, 4, 6, 1, 7, 3, 2, 7, 3, 6};
+    private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5, 4, 6, 4, 7, 3, 2, 7, 3, 6};
     private readonly char[] Action1 = {'+', '*', '+', '+', '-', '+', '-', '+', '*', '+', '-', '+', '-', '+', '-'};
     private readonly char[] Action2 = {'-', '-', '-', '-', '+', '-', '+', '-', '-', '-', '+', '-', '+', '-', '+'};
-
+    private Animation anim;
     private string WhoseTurn;
     private bool StopGame;
     private char ButtonLeftAction, ButtonRightAction;
@@ -30,7 +31,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         WinningNumberStones,
         ActionIndex;
 
-    private int tick = 0;
+    private int tick = 0, s_tick = 0;
 
     private static readonly byte Difficulty = MainMenu.Difficulty;
 
@@ -45,6 +46,19 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         Perk0 = new Perk("Заморозка", 6, null);
         Perk1 = new Perk("Встряска", 5, null);
         Perk2 = new Perk("Подмена кнопок", 3, null);
+        switch (Difficulty)
+        {
+            case 0:
+                s_tick = 4;
+                break;
+            case 1:
+                s_tick = 3;
+                break;
+            case 2:
+                s_tick = 2;
+                break;
+        }
+
         /*stones.GetComponent<Stones>();*/
     }
 
@@ -131,28 +145,19 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
             ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[i]);
         GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
         GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
-        StonesToWinPanel.text = "Победное число камней: " + WinningNumberStones;
+        StonesToWinPanel.text = WinningNumberStones.ToString();
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         transform.localScale = new Vector3(0.95f, 0.95f, 1f);
         WhoseTurn = "Human";
         ButtonLeft.interactable = false;
         ButtonRight.interactable = false;
-        switch (gameObject.name)
-        {
-            case "LeftChoise_Button":
-            {
-                StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
-            }
-                break;
-            case "RightChoise_Button":
-            {
-                StonesInBasket = GameButtonRight.getResult(StonesInBasket);
-            }
-                break;
-        }
+
+        if (gameObject.name == "LeftChoise_Button")
+            StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
+        else if (gameObject.name == "RightChoise_Button") StonesInBasket = GameButtonRight.getResult(StonesInBasket);
 
         StonesInBasketUpdate();
         while (!StopGame)
@@ -166,7 +171,8 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
         Invoke("ButtonActive", 2);
         tick += 1;
-        if (tick == 5)
+
+        if (tick == s_tick)
         {
             ButtonsValueGenerate();
             tick = 0;
