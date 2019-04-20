@@ -22,7 +22,6 @@ public class DetectClicks : MonoBehaviour
 
         if (PlayerPrefs.GetInt("IsFirstRun") == 1)
         {
-            print("Не первый запуск");
             StudyBoard.SetActive(false);
             StudyTrigger.SetActive(false);
         }
