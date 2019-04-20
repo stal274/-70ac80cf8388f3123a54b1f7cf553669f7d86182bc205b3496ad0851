@@ -28,8 +28,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     public static int i,
         StonesInBasket,
         WinningNumberStones,
-        ButtonLeftActionIndex,
-        ButtonRightActionIndex;
+        ActionIndex;
 
     protected static readonly byte Difficulty = MainMenu.Difficulty;
 
