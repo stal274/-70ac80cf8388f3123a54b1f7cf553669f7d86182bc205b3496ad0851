@@ -19,6 +19,10 @@ namespace DefaultNamespace
 
         private void PerkActivation()
         {
+            /*switch (name)
+            {
+                case 
+            }*/
             //Активация перков через Switch-case
             IsActive = !IsActive;
         }
