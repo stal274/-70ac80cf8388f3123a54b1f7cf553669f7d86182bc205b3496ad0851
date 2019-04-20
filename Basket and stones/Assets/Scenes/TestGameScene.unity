@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 607296546}
   - component: {fileID: 607296548}
   - component: {fileID: 607296547}
+  - component: {fileID: 607296549}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -887,6 +888,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607296545}
   m_CullTransparentMesh: 0
+--- !u!65 &607296549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607296545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &670288831
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +970,7 @@ GameObject:
   - component: {fileID: 709908719}
   - component: {fileID: 709908718}
   - component: {fileID: 709908721}
+  - component: {fileID: 709908722}
   m_Layer: 5
   m_Name: RightChoise_Button
   m_TagString: Untagged
@@ -1092,6 +1107,19 @@ MonoBehaviour:
   ResultPanel: {fileID: 136955942}
   StonesToWinPanel: {fileID: 1450153147}
   VictoryPanel: {fileID: 1704333085}
+--- !u!65 &709908722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709908716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 600, y: 200, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &803776204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,9 +1405,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 35
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1548,9 +1576,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 35
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1981,6 +2009,7 @@ GameObject:
   - component: {fileID: 1665989379}
   - component: {fileID: 1665989378}
   - component: {fileID: 1665989381}
+  - component: {fileID: 1665989382}
   m_Layer: 5
   m_Name: LeftChoise_Button
   m_TagString: Untagged
@@ -2117,6 +2146,19 @@ MonoBehaviour:
   ResultPanel: {fileID: 136955942}
   StonesToWinPanel: {fileID: 1450153147}
   VictoryPanel: {fileID: 1704333085}
+--- !u!65 &1665989382
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665989376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 600, y: 200, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1704333083
 GameObject:
   m_ObjectHideFlags: 0
