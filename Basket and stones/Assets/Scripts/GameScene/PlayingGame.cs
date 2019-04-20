@@ -36,6 +36,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void Start()
     {
+        computer = new Ai();
         StonesInBasket = StonesInBasketGenerate();
         ButtonsValueGenerate();
         StonesInBasketUpdate();
@@ -57,43 +58,6 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         return i;
     }
 
-    public void OnClickLeft()
-    {
-        WhoseTurn = "Human";
-        ButtonLeft.interactable = false;
-        ButtonRight.interactable = false;
-        StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
-        StonesInBasketUpdate();
-        while (!StopGame)
-        {
-            WhoseTurn = "Computer";
-            StonesInBasket =
-                computer.AiStep();
-            Invoke("StonesInBasketUpdate", 2);
-            break;
-        }
-
-        Invoke("ButtonActive", 2);
-    }
-
-    public void OnClickRight()
-    {
-        WhoseTurn = "Human";
-        ButtonLeft.interactable = false;
-        ButtonRight.interactable = false;
-        StonesInBasket = GameButtonRight.getResult(StonesInBasket);
-        StonesInBasketUpdate();
-        while (!StopGame)
-        {
-            WhoseTurn = "Computer";
-            StonesInBasket =
-                computer.AiStep();
-            Invoke("StonesInBasketUpdate", 2);
-            break;
-        }
-
-        Invoke("ButtonActive", 2);
-    }
 
     public void OnMouseUpAsButton()
     {
@@ -151,16 +115,14 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void ButtonsValueGenerate()
     {
-        Action = new[] {'+', '-'};
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
-        computer = new Ai();
+
         i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ButtonLeftActionIndex = Random.Range(0, Action.Length);
-        ButtonRightActionIndex = Random.Range(0, Action.Length);
-        ButtonLeftAction = Action[ButtonLeftActionIndex];
-        ButtonRightAction = Action[ButtonRightActionIndex];
-        CheckActions();
+        ActionIndex = i;
+        ButtonLeftAction = Action1[ActionIndex];
+        ButtonRightAction = Action2[ActionIndex];
+        /*CheckActions();*/
         ButtonLeft.GetComponentInChildren<Text>().text =
             ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[i]);
         ButtonRight.GetComponentInChildren<Text>().text =
@@ -170,20 +132,63 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         StonesToWinPanel.text = "Победное число камней: " + WinningNumberStones;
     }
 
-    private void CheckActions()
+    private void OnMouseDown()
+    {
+        transform.localScale = new Vector3(0.95f, 0.95f, 1f);
+        WhoseTurn = "Human";
+        ButtonLeft.interactable = false;
+        ButtonRight.interactable = false;
+        switch (gameObject.name)
+        {
+            case "LeftChoise_Button":
+            {
+                StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
+            }
+                break;
+            case "RightChoise_Button":
+            {
+                StonesInBasket = GameButtonRight.getResult(StonesInBasket);
+            }
+                break;
+        }
+
+        StonesInBasketUpdate();
+        while (!StopGame)
+        {
+            WhoseTurn = "Computer";
+            StonesInBasket =
+                computer.AiStep();
+            Invoke("StonesInBasketUpdate", 2);
+            break;
+        }
+
+        Invoke("ButtonActive", 2);
+        tick += 1;
+        if (tick == 5)
+        {
+            ButtonsValueGenerate();
+            tick = 0;
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+    /*private void CheckActions()
     {
         while (true)
         {
             if (ButtonLeftAction == ButtonRightAction)
             {
-                ButtonLeftActionIndex = Random.Range(0, Action.Length);
-                ButtonLeftAction = Action[ButtonLeftActionIndex];
+                ActionIndex = Random.Range(0, Action1.Length);
+                ButtonLeftAction = Action1[ActionIndex];
                 continue;
             }
 
             break;
         }
-    }
+    }*/
 
     private void Update()
     {
