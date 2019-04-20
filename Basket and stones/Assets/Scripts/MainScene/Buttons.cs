@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow,StudyBoard,StudyTrigger;
+    public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow, StudyBoard, StudyTrigger;
 
     public void OnMouseUpAsButton()
     {
@@ -39,5 +39,15 @@ public class Buttons : MonoBehaviour
 
                 break;
         }
+    }
+
+    private void OnMouseDown()
+    {
+        transform.localScale = new Vector3(0.95f, 0.95f, 1f);
+    }
+
+    private void OnMouseUp()
+    {
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
 }
