@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using DefaultNamespace;
 using UnityEngine;
@@ -48,9 +48,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         StonesInBasket = StonesInBasketGenerate();
         ButtonsValueGenerate();
         StonesInBasketUpdate();
-        Perk0 = new Perk("Заморозка", 6, null);
-        Perk1 = new Perk("Встряска", 5, null);
-        Perk2 = new Perk("Подмена кнопок", 3, null);
+
         switch (Difficulty)
         {
             case 0:
@@ -111,7 +109,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         }
     }
 
-    private void StonesInBasketUpdate()
+    protected void StonesInBasketUpdate()
     {
         ResultPanel.text = Convert.ToString(StonesInBasket);
         IsVictory();
@@ -134,11 +132,10 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         }
     }
 
-    private void ButtonsValueGenerate()
+    protected void ButtonsValueGenerate()
     {
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
-
         i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
         ActionIndex = i;
         ButtonLeftAction = Action1[ActionIndex];
