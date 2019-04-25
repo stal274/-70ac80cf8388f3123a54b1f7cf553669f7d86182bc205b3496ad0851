@@ -14,17 +14,12 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     public Text ResultPanel, StonesToWinPanel, VictoryPanel;
 
     protected static GameButton GameButtonLeft, GameButtonRight;
-    public static int Step = 0;
+
     private Ai computer;
-    private static readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6, 5, 3, 2, 6, 4, 2, 3, 5, 4};
-    private static readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5, 4, 6, 4, 7, 3, 2, 7, 3, 6};
-
-    private static readonly char[] Action1 =
-        {'+', '*', '+', '+', '-', '+', '-', '+', '*', '+', '-', '+', '-', '+', '-'};
-
-    private static readonly char[] Action2 =
-        {'-', '-', '-', '-', '+', '-', '+', '-', '-', '-', '+', '-', '+', '-', '+'};
-
+    private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6, 5, 3, 2, 6, 4, 2, 3, 5, 4};
+    private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5, 4, 6, 4, 7, 3, 2, 7, 3, 6};
+    private readonly char[] Action1 = {'+', '*', '+', '+', '-', '+', '-', '+', '*', '+', '-', '+', '-', '+', '-'};
+    private readonly char[] Action2 = {'-', '-', '-', '-', '+', '-', '+', '-', '-', '-', '+', '-', '+', '-', '+'};
     private Animation anim;
     private string WhoseTurn;
     private bool StopGame;
