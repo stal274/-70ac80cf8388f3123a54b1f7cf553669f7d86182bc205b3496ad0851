@@ -50,6 +50,11 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
                 MainMenuWindow.SetActive(true);
                 DifficultyWindow.SetActive(false);
             }
+            else if (SettingsWindow.active)
+            {
+                MainMenuWindow.SetActive(true);
+                SettingsWindow.SetActive(false);
+            }
             else
             {
                 Application.Quit();
