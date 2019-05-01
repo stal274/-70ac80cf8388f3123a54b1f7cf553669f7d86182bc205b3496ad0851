@@ -290,7 +290,6 @@ GameObject:
   m_Component:
   - component: {fileID: 37650130}
   - component: {fileID: 37650131}
-  - component: {fileID: 37650133}
   - component: {fileID: 37650132}
   m_Layer: 5
   m_Name: Difficult_Slider
@@ -368,7 +367,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 37650133}
+      - m_Target: {fileID: 696504034}
         m_MethodName: DifficultLevelEdit
         m_Mode: 1
         m_Arguments:
@@ -395,23 +394,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 2.5
---- !u!114 &37650133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 37650129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38d27b7d65aaf574492c04b2164e9b2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 1668665934}
-  DifficultLevelLabel: {fileID: 2142671080}
-  DifficultSlider: {fileID: 37650131}
 --- !u!1 &55463625
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,9 +521,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131644553}
+  - component: {fileID: 131644554}
   m_Layer: 0
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,9 +536,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131644552}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -195.6}
-  m_LocalScale: {x: 0.2677869, y: 0.2677869, z: 0.2677869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1571495748}
   - {fileID: 507613943}
@@ -565,9 +548,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 469.0297, y: 802.87726}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &131644554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131644552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &151068587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1237,7 @@ GameObject:
   - component: {fileID: 507613944}
   m_Layer: 0
   m_Name: SFX_New_Game
-  m_TagString: Audio
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1797,9 +1792,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 696504032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e8e0d9ad43fe247b4b90157858af99, type: 3}
+  m_Script: {fileID: 11500000, guid: 38d27b7d65aaf574492c04b2164e9b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsWindow: {fileID: 2075836729}
+  mainMenuWindow: {fileID: 1775961996}
+  difficultyWindow: {fileID: 1668665934}
+  difficultLevelLabel: {fileID: 2142671080}
+  difficultSlider: {fileID: 37650131}
 --- !u!1 &702487338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,7 +3476,7 @@ GameObject:
   - component: {fileID: 1571495749}
   m_Layer: 0
   m_Name: SFX_Menu_button
-  m_TagString: Audio
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3867,7 +3867,7 @@ GameObject:
   - component: {fileID: 1747456416}
   m_Layer: 0
   m_Name: SFX_Menu_switch
-  m_TagString: Audio
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4517,11 +4517,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d27b7d65aaf574492c04b2164e9b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 1668665934}
-  DifficultLevelLabel: {fileID: 0}
-  DifficultSlider: {fileID: 0}
+  settingsWindow: {fileID: 0}
+  mainMenuWindow: {fileID: 0}
+  difficultyWindow: {fileID: 0}
+  difficultLevelLabel: {fileID: 0}
+  difficultSlider: {fileID: 0}
 --- !u!1 &2076651205
 GameObject:
   m_ObjectHideFlags: 0
@@ -4761,11 +4761,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d27b7d65aaf574492c04b2164e9b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 1668665934}
-  DifficultLevelLabel: {fileID: 2142671080}
-  DifficultSlider: {fileID: 37650131}
+  settingsWindow: {fileID: 0}
+  mainMenuWindow: {fileID: 0}
+  difficultyWindow: {fileID: 0}
+  difficultLevelLabel: {fileID: 0}
+  difficultSlider: {fileID: 0}
 --- !u!1 &2142671078
 GameObject:
   m_ObjectHideFlags: 0
@@ -4858,8 +4858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d27b7d65aaf574492c04b2164e9b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsWindow: {fileID: 2075836729}
-  MainMenuWindow: {fileID: 1775961996}
-  DifficultyWindow: {fileID: 1668665934}
-  DifficultLevelLabel: {fileID: 2142671080}
-  DifficultSlider: {fileID: 37650131}
+  settingsWindow: {fileID: 0}
+  mainMenuWindow: {fileID: 0}
+  difficultyWindow: {fileID: 0}
+  difficultLevelLabel: {fileID: 0}
+  difficultSlider: {fileID: 0}
