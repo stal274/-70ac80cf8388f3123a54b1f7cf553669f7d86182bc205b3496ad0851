@@ -11,12 +11,11 @@ public class Ai : PlayingGame
         // ReSharper disable once ConvertIfStatementToSwitchStatement
         if (_choice == "Left")
         {
-            print("Компьютер нажимает левую кнопку!");
+           
             StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
         }
         else if (_choice == "Right")
         {
-            print("Компьютер нажимает правую кнопку!");
             StonesInBasket = GameButtonRight.getResult(StonesInBasket);
         }
 

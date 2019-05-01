@@ -13,7 +13,7 @@ public class Buttons : MonoBehaviour
             case "ChooseGame_Button":
                 MainMenuWindow.SetActive(false);
                 DifficultyWindow.SetActive(true);
-
+                GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
                 break;
             case "Shop_Button":
                 break;
@@ -35,8 +35,9 @@ public class Buttons : MonoBehaviour
                 MainMenuWindow.SetActive(true);
                 break;
             case "StartGame_Button":
+           
+                GameObject.Find("SFX_New_Game").GetComponent<AudioSource>().Play();
                 SceneManager.LoadScene("TestGameScene");
-
                 break;
         }
     }

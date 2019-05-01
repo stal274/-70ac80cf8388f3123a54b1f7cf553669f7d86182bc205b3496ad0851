@@ -26,7 +26,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     private char ButtonLeftAction, ButtonRightAction;
     private Perk Perk0, Perk1, Perk2;
 
-    public static int i,
+    public static int index = 1,
         StonesInBasket,
         WinningNumberStones,
         ActionIndex;
@@ -79,9 +79,11 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         {
             case "Retry_Button":
                 SceneManager.LoadScene("TestGameScene");
+                GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
                 break;
             case "MainMenu_Button":
                 SceneManager.LoadScene("Main menu");
+                GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
                 break;
         }
     }
@@ -92,6 +94,16 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         {
             ButtonRight.interactable = true;
             ButtonLeft.interactable = true;
+            var i = Random.Range(0, 2);
+            switch (i)
+            {
+                case 0:
+                    GameObject.Find("SFX_Tern_button_3").GetComponent<AudioSource>().Play();
+                    break;
+                case 1:
+                    GameObject.Find("SFX_Tern_button_4").GetComponent<AudioSource>().Play();
+                    break;
+            }
         }
     }
 
@@ -117,31 +129,33 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         {
             WinOrLosePanel.SetActive(true);
             VictoryPanel.text = "Вы выиграли!";
+            GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
             StopGame = true;
         }
         else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
         {
             WinOrLosePanel.SetActive(true);
             VictoryPanel.text = "Сожалею, но машина оказалась умней!";
+            GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
             StopGame = true;
         }
     }
 
-    protected void ButtonsValueGenerate()
+    private void ButtonsValueGenerate()
     {
         GameButtonLeft = new GameButton();
         GameButtonRight = new GameButton();
-        i = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ActionIndex = i;
+        index = Random.Range(0, ButtonLeftActionNumericalValue.Length);
+        ActionIndex = index;
         ButtonLeftAction = Action1[ActionIndex];
         ButtonRightAction = Action2[ActionIndex];
         /*CheckActions();*/
         ButtonLeft.GetComponentInChildren<Text>().text =
-            ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[i]);
+            ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[index]);
         ButtonRight.GetComponentInChildren<Text>().text =
-            ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[i]);
-        GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[i]);
-        GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[i]);
+            ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[index]);
+        GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[index]);
+        GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[index]);
         StonesToWinPanel.text = WinningNumberStones.ToString();
     }
 
@@ -151,7 +165,16 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         WhoseTurn = "Human";
         ButtonLeft.interactable = false;
         ButtonRight.interactable = false;
-
+        var i = Random.Range(0, 2);
+        switch (i)
+        {
+            case 0:
+                GameObject.Find("SFX_Tern_button_1").GetComponent<AudioSource>().Play();
+                break;
+            case 1:
+                GameObject.Find("SFX_Tern_button_2").GetComponent<AudioSource>().Play();
+                break;
+        }
         if (gameObject.name == "LeftChoise_Button")
             StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
         else if (gameObject.name == "RightChoise_Button") StonesInBasket = GameButtonRight.getResult(StonesInBasket);

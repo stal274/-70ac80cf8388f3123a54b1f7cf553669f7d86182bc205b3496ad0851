@@ -10,7 +10,7 @@ namespace DefaultNamespace
     {
         public string name;
         public readonly int cooldown;
-        public Image sprite;
+
         private bool IsActive;
         public Button Perk0;
 
@@ -18,7 +18,6 @@ namespace DefaultNamespace
         {
             this.name = name;
             this.cooldown = cooldown;
-            this.sprite = sprite;
         }
 
         private void PerkActivation()
@@ -26,7 +25,7 @@ namespace DefaultNamespace
             switch (name)
             {
                 case "Заморозка":
-                    int i = 0;
+                    int i ;
                     i = Random.Range(0, 2);
                     switch (i)
 
@@ -53,8 +52,8 @@ namespace DefaultNamespace
                     StonesInBasketUpdate();
                     break;
                 case "Подмена":
-                    print(name);
-                    ButtonsValueGenerate();
+
+                    //ButtonsValueGenerate();
 
                     break;
             }
