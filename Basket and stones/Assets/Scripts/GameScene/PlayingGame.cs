@@ -15,12 +15,12 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     protected static GameButton GameButtonLeft, GameButtonRight;
 
-    private Ai computer;
+    private Ai Computer;
     private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6, 5, 3, 2, 6, 4, 2, 3, 5, 4};
     private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5, 4, 6, 4, 7, 3, 2, 7, 3, 6};
     private readonly char[] Action1 = {'+', '*', '+', '+', '-', '+', '-', '+', '*', '+', '-', '+', '-', '+', '-'};
     private readonly char[] Action2 = {'-', '-', '-', '-', '+', '-', '+', '-', '-', '-', '+', '-', '+', '-', '+'};
-    private Animation anim;
+    private Animation Anim;
     private string WhoseTurn;
     private bool StopGame;
     private char ButtonLeftAction, ButtonRightAction;
@@ -31,7 +31,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         WinningNumberStones,
         ActionIndex;
 
-    private int tick = 0, s_tick = 0;
+    private int Tick , STick;
 
     private static readonly byte Difficulty = MainMenu.Difficulty;
 
@@ -39,7 +39,8 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void Start()
     {
-        computer = new Ai();
+        // ReSharper disable once Unity.IncorrectMonoBehaviourInstantiation
+        Computer = new Ai();
         StonesInBasket = StonesInBasketGenerate();
         ButtonsValueGenerate();
         StonesInBasketUpdate();
@@ -47,13 +48,13 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         switch (Difficulty)
         {
             case 0:
-                s_tick = 4;
+                STick = 4;
                 break;
             case 1:
-                s_tick = 3;
+                STick = 3;
                 break;
             case 2:
-                s_tick = 2;
+                STick = 2;
                 break;
         }
 
@@ -68,7 +69,10 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         else if (Difficulty == 1)
             i = Random.Range(15, 47);
         else if (Difficulty == 2) i = Random.Range(47, 81);
+
         WinningNumberStones = Random.Range(i + 15, i + 25);
+
+
         return i;
     }
 
@@ -90,20 +94,18 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void ButtonActive()
     {
-        if (!StopGame)
+        if (StopGame) return;
+        ButtonRight.interactable = true;
+        ButtonLeft.interactable = true;
+        var i = Random.Range(0, 2);
+        switch (i)
         {
-            ButtonRight.interactable = true;
-            ButtonLeft.interactable = true;
-            var i = Random.Range(0, 2);
-            switch (i)
-            {
-                case 0:
-                    GameObject.Find("SFX_Tern_button_3").GetComponent<AudioSource>().Play();
-                    break;
-                case 1:
-                    GameObject.Find("SFX_Tern_button_4").GetComponent<AudioSource>().Play();
-                    break;
-            }
+            case 0:
+                GameObject.Find("SFX_Tern_button_3").GetComponent<AudioSource>().Play();
+                break;
+            case 1:
+                GameObject.Find("SFX_Tern_button_4").GetComponent<AudioSource>().Play();
+                break;
         }
     }
 
@@ -125,26 +127,29 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void IsVictory()
     {
-        if (StonesInBasket == WinningNumberStones && WhoseTurn == "Human")
+        if (StonesInBasket == WinningNumberStones)
         {
-            WinOrLosePanel.SetActive(true);
-            VictoryPanel.text = "Вы выиграли!";
-            GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
-            StopGame = true;
-        }
-        else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
-        {
-            WinOrLosePanel.SetActive(true);
-            VictoryPanel.text = "Сожалею, но машина оказалась умней!";
-            GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
-            StopGame = true;
+            if (StonesInBasket == WinningNumberStones && WhoseTurn == "Human")
+            {
+                WinOrLosePanel.SetActive(true);
+                VictoryPanel.text = "Вы выиграли!";
+                GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
+                StopGame = true;
+            }
+            else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
+            {
+                WinOrLosePanel.SetActive(true);
+                VictoryPanel.text = "Сожалею, но машина оказалась умней!";
+                GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
+                StopGame = true;
+            }
         }
     }
 
     private void ButtonsValueGenerate()
     {
-        GameButtonLeft = new GameButton();
-        GameButtonRight = new GameButton();
+        GameButtonLeft = gameObject.AddComponent<GameButton>();
+        GameButtonRight = gameObject.AddComponent<GameButton>();
         index = Random.Range(0, ButtonLeftActionNumericalValue.Length);
         ActionIndex = index;
         ButtonLeftAction = Action1[ActionIndex];
@@ -159,9 +164,8 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         StonesToWinPanel.text = WinningNumberStones.ToString();
     }
 
-    public void OnMouseDown()
+    public void OnMouseDown(GameObject gameObject)
     {
-        transform.localScale = new Vector3(0.95f, 0.95f, 1f);
         WhoseTurn = "Human";
         ButtonLeft.interactable = false;
         ButtonRight.interactable = false;
@@ -175,6 +179,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
                 GameObject.Find("SFX_Tern_button_2").GetComponent<AudioSource>().Play();
                 break;
         }
+
         if (gameObject.name == "LeftChoise_Button")
             StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
         else if (gameObject.name == "RightChoise_Button") StonesInBasket = GameButtonRight.getResult(StonesInBasket);
@@ -184,18 +189,18 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         {
             WhoseTurn = "Computer";
             StonesInBasket =
-                computer.AiStep();
+                Computer.AiStep();
             Invoke("StonesInBasketUpdate", 2);
             break;
         }
 
         Invoke("ButtonActive", 2);
-        tick += 1;
+        Tick += 1;
 
-        if (tick == s_tick)
+        if (Tick == STick)
         {
             ButtonsValueGenerate();
-            tick = 0;
+            Tick = 0;
         }
     }
 

@@ -8,27 +8,27 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour, IPhoneButtons
 
 {
-    public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow;
-    public Text DifficultLevelLabel;
-    public Slider DifficultSlider;
+    public GameObject settingsWindow, mainMenuWindow, difficultyWindow;
+    public Text difficultLevelLabel;
+    public Slider difficultSlider;
     public static byte Difficulty;
 
 
     public void DifficultLevelEdit()
     {
-        if (DifficultSlider.value < 1)
+        if (difficultSlider.value < 1)
         {
-            DifficultLevelLabel.text = "Быстрая игра";
+            difficultLevelLabel.text = "Быстрая игра";
             Difficulty = 0;
         }
-        else if (DifficultSlider.value == 1)
+        else if (difficultSlider.value == 1)
         {
-            DifficultLevelLabel.text = "Классическая игра";
+            difficultLevelLabel.text = "Классическая игра";
             Difficulty = 1;
         }
-        else if (DifficultSlider.value == 2)
+        else if (difficultSlider.value == 2)
         {
-            DifficultLevelLabel.text = "Долгая игра";
+            difficultLevelLabel.text = "Долгая игра";
             Difficulty = 2;
         }
         GameObject.Find("SFX_Menu_switch").GetComponent<AudioSource>().Play();
@@ -46,10 +46,10 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     {
         if (Input.GetKey(EscapeButton))
         {
-            if (DifficultyWindow.active)
+            if (difficultyWindow.active)
             {
-                MainMenuWindow.SetActive(true);
-                DifficultyWindow.SetActive(false);
+                mainMenuWindow.SetActive(true);
+                difficultyWindow.SetActive(false);
             }
             else
             {
