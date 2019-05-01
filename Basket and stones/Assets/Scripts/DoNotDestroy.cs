@@ -1,11 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 public class DoNotDestroy : MonoBehaviour
 {
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        if (GameObject.FindGameObjectsWithTag("Audio").Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
