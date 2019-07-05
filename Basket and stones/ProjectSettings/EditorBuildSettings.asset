@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Comics.unity
+    guid: 69a527e022b281942a25fc96f999b5b1
+  - enabled: 1
     path: Assets/Scenes/Main menu.unity
     guid: 08589f6564d7700409309793e79e9fe2
   - enabled: 1
@@ -14,7 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LoadingScene.unity
     guid: f0ba21927d59c3948816f8db5e5eecb3
+<<<<<<< HEAD
   - enabled: 1
     path: Assets/Scenes/StudyGameScene.unity
     guid: 3cdfd1608ca04a041b1ee76b151dd5f4
+=======
+>>>>>>> Прототип перелистывания слайдов комикса
   m_configObjects: {}
