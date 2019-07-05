@@ -31,7 +31,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         WinningNumberStones,
         ActionIndex;
 
-    private int Tick , STick;
+    private int Tick, STick;
 
     private static readonly byte Difficulty = MainMenu.Difficulty;
 
@@ -114,7 +114,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         if (StopGame)
 
         {
-            ButtonPanel.active = false;
+            ButtonPanel.SetActive(false);
         }
     }
 
