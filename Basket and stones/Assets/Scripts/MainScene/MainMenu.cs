@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
             difficultLevelLabel.text = "Долгая игра";
             Difficulty = 2;
         }
+
         GameObject.Find("SFX_Menu_switch").GetComponent<AudioSource>().Play();
     }
 
@@ -46,7 +47,7 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     {
         if (Input.GetKey(EscapeButton))
         {
-            if (difficultyWindow.active)
+            if (difficultyWindow.activeSelf)
             {
                 mainMenuWindow.SetActive(true);
                 difficultyWindow.SetActive(false);
