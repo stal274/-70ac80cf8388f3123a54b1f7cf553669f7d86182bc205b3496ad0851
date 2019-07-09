@@ -31,7 +31,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         WinningNumberStones,
         ActionIndex;
 
-    private int Tick , STick;
+    private int Tick, STick;
 
     private static readonly byte Difficulty = MainMenu.Difficulty;
 
@@ -83,13 +83,13 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         {
             case "Retry_Button":
                 SceneManager.LoadScene("TestGameScene");
-                GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
                 break;
             case "MainMenu_Button":
                 SceneManager.LoadScene("Main menu");
-                GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
                 break;
         }
+
+        GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
     }
 
     private void ButtonActive()
@@ -97,16 +97,9 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         if (StopGame) return;
         ButtonRight.interactable = true;
         ButtonLeft.interactable = true;
-        var i = Random.Range(0, 2);
-        switch (i)
-        {
-            case 0:
-                GameObject.Find("SFX_Tern_button_3").GetComponent<AudioSource>().Play();
-                break;
-            case 1:
-                GameObject.Find("SFX_Tern_button_4").GetComponent<AudioSource>().Play();
-                break;
-        }
+
+
+        GameObject.Find("SFX_Tern_button_" + Random.Range(3, 5)).GetComponent<AudioSource>().Play();
     }
 
     private void ButtonPanelVision()
