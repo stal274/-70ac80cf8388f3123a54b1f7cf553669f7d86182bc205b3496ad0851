@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class Buttons : MonoBehaviour
 {
     public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow, StudyBoard, StudyTrigger;
+
+    public GameObject backpackWindow;
+
 
     public void OnMouseUpAsButton()
     {
@@ -35,9 +39,10 @@ public class Buttons : MonoBehaviour
                 MainMenuWindow.SetActive(true);
                 break;
             case "StartGame_Button":
-           
-                GameObject.Find("SFX_New_Game").GetComponent<AudioSource>().Play();
-                SceneManager.LoadScene("TestGameScene");
+                backpackWindow.SetActive(true);
+                DifficultyWindow.SetActive(false);
+                //GameObject.Find("SFX_New_Game").GetComponent<AudioSource>().Play();
+                //SceneManager.LoadScene("TestGameScene");
                 break;
         }
     }

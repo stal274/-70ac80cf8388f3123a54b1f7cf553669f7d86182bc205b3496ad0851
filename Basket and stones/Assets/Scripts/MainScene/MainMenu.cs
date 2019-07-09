@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour, IPhoneButtons
 
 {
-    public GameObject settingsWindow, mainMenuWindow, difficultyWindow;
+    public GameObject settingsWindow, mainMenuWindow, difficultyWindow, backpackWindow;
     public Text difficultLevelLabel;
     public Slider difficultSlider;
     public static byte Difficulty;
@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
             difficultLevelLabel.text = "Долгая игра";
             Difficulty = 2;
         }
+
         GameObject.Find("SFX_Menu_switch").GetComponent<AudioSource>().Play();
     }
 
@@ -46,10 +47,19 @@ public class MainMenu : MonoBehaviour, IPhoneButtons
     {
         if (Input.GetKey(EscapeButton))
         {
+#pragma warning disable 618
             if (difficultyWindow.active)
+#pragma warning restore 618
             {
                 mainMenuWindow.SetActive(true);
                 difficultyWindow.SetActive(false);
+            }
+#pragma warning disable 618
+            else if (backpackWindow.active)
+#pragma warning restore 618
+            {
+                difficultyWindow.SetActive(true);
+                backpackWindow.SetActive(false);
             }
             else
             {
