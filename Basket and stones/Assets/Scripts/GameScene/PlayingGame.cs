@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using DefaultNamespace;
+using MainScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
