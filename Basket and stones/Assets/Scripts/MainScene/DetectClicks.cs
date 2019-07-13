@@ -1,36 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DetectClicks : MonoBehaviour
+namespace MainScene
 {
-    public GameObject StudyBoard, StudyTrigger;
-
-    public void OnMouseDown()
+    public class DetectClicks : MonoBehaviour
     {
-        StudyBoard.SetActive(false);
-        StudyTrigger.SetActive(false);
-    }
+        public GameObject StudyBoard, StudyTrigger;
 
-    private void Start()
-    {
-        if (!PlayerPrefs.HasKey("IsFirstRun"))
-        {
-            PlayerPrefs.SetInt("IsFirstRun", 0);
-        }
-
-
-        if (PlayerPrefs.GetInt("IsFirstRun") == 1)
+        public void OnMouseDown()
         {
             StudyBoard.SetActive(false);
             StudyTrigger.SetActive(false);
         }
 
-        else if (PlayerPrefs.GetInt("IsFirstRun") == 0)
+        private void Start()
         {
-            StudyBoard.SetActive(true);
-            StudyTrigger.SetActive(true);
-            PlayerPrefs.SetInt("IsFirstRun", 1);
+            if (!PlayerPrefs.HasKey("IsFirstRun"))
+            {
+                PlayerPrefs.SetInt("IsFirstRun", 0);
+            }
+
+
+            if (PlayerPrefs.GetInt("IsFirstRun") == 1)
+            {
+                StudyBoard.SetActive(false);
+                StudyTrigger.SetActive(false);
+            }
+
+            else if (PlayerPrefs.GetInt("IsFirstRun") == 0)
+            {
+                StudyBoard.SetActive(true);
+                StudyTrigger.SetActive(true);
+                PlayerPrefs.SetInt("IsFirstRun", 1);
+            }
         }
     }
 }
