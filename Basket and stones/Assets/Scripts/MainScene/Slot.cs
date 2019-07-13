@@ -1,59 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class Slot : MonoBehaviour, IDropHandler
+namespace MainScene
 {
-    private void Start()
+    public class Slot : MonoBehaviour, IDropHandler
     {
-    }
-
-    public GameObject item
-    {
-        get
+        private GameObject Item
         {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-
-            return null;
+            get { return transform.childCount > 0 ? transform.GetChild(0).gameObject : null; }
         }
-    }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        if (!item && DragElement.name == transform.name || !item && transform.name == "Backpack slot")
+        public void OnDrop(PointerEventData eventData)
         {
-            var I = 0;
+            if ((Item || DragElement.name != transform.name) && (Item || transform.name != "Backpack slot")) return;
             DragElement.itemBeingDragged.transform.SetParent(transform);
+            BackpackProgressBar.CheckBackPack();
             GameObject.Find("Drop" + Random.Range(0, 6)).GetComponent<AudioSource>().Play();
-
-            for (var i = 0; i < GameObject.FindGameObjectsWithTag("BackpackSlot").Length; i++)
-            {
-                if (GameObject.FindGameObjectsWithTag("BackpackSlot")[i].GetComponentsInChildren<Image>().Length == 2)
-                {
-                    I++;
-                }
-            }
-
-            var script = FindObjectOfType<BackpackProgressBar>();
-
-
-            switch (I)
-            {
-                case 0:
-                    script.EndFloat = 0f;
-                    break;
-                case 3:
-                    script.EndFloat = 1f;
-                    break;
-                default:
-                    script.EndFloat = I / 3f;
-                    break;
-            }
-
-            script.LoadingBackpack();
         }
     }
 }
