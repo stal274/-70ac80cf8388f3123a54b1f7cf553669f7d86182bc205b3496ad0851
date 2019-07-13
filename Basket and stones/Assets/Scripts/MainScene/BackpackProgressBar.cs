@@ -3,47 +3,84 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackpackProgressBar : MonoBehaviour
+namespace MainScene
 {
-    private Image ProgressBar;
-    private float StartFloat;
-
-    public float EndFloat { private get; set; }
-
-    public void LoadingBackpack()
+    public class BackpackProgressBar : MonoBehaviour
     {
-        StartFloat = gameObject.GetComponent<Image>().fillAmount;
-        StartCoroutine(fillAmount());
-    }
-
-    private void Start()
-    {
-        StartFloat = gameObject.GetComponent<Image>().fillAmount;
-        ProgressBar = gameObject.GetComponent<Image>();
-    }
+        [SerializeField] private Image progressBar;
+        [SerializeField] private float startFloat;
 
 
-    IEnumerator fillAmount()
-    {
-        for (var i = StartFloat;
-            Math.Abs(i - (EndFloat - 1 / 60f)) > 0.01;
-            i += EndFloat - StartFloat > 0 ? 1 / 60f : -1 / 60f)
+        private float EndFloat { get; set; }
+
+        private void LoadingBackpack()
         {
-            if (Math.Abs(StartFloat - EndFloat) < 0.0001f)
+            startFloat = gameObject.GetComponent<Image>().fillAmount;
+            StartCoroutine(FillAmount());
+        }
+
+
+        private IEnumerator FillAmount()
+        {
+            for (var i = startFloat;
+                Math.Abs(i - (EndFloat - 1 / 60f)) > 0.01;
+                i += EndFloat - startFloat > 0 ? 1 / 60f : -1 / 60f)
             {
-                break;
+                yield return new WaitForSeconds(1 / 60f);
+                if (Math.Abs(startFloat - EndFloat) < 0.0001f)
+                {
+                    break;
+                }
+
+
+                if (Math.Abs(i - (1f - 2 / 60f)) < 0.01f && Math.Abs(EndFloat - 1f) < 0.01)
+                {
+                    i = 1f;
+                    progressBar.fillAmount = i;
+                    break;
+                }
+
+                progressBar.fillAmount = i;
+            }
+        }
+
+        public static void CheckBackPack()
+        {
+            var I = 0;
+            for (var i = 0; i < GameObject.FindGameObjectsWithTag("BackpackSlot").Length; i++)
+            {
+                if (GameObject.FindGameObjectsWithTag("BackpackSlot")[i].GetComponentsInChildren<Image>().Length == 2)
+                {
+                    I++;
+                }
             }
 
 
-            yield return new WaitForSeconds(1 / 60f);
-            if (Math.Abs(i - (1f - 2 / 60f)) < 0.01f && Math.Abs(EndFloat - 1f) < 0.01)
+            var script = FindObjectOfType<BackpackProgressBar>();
+            var timer = FindObjectOfType<TimerToStartGame>();
+            TimerToStartGame.StartTick = I == 3;
+            timer.StartTicker();
+            switch (I)
             {
-                i = 1f;
-                ProgressBar.fillAmount = i;
-                break;
+                case 0:
+                    script.EndFloat = 0f;
+                    break;
+                case 3:
+                    script.EndFloat = 1f;
+                    for (var i = 0; i < GameObject.FindGameObjectsWithTag("BackpackSlot").Length; i++)
+                    {
+                        PlayerPrefs.SetString("BackpackSlot" + i,
+                            GameObject.FindGameObjectsWithTag("BackpackSlot")[i].GetComponentInChildren<DragElement>()
+                                .gameObject.name);
+                    }
+
+                    break;
+                default:
+                    script.EndFloat = I / 3f;
+                    break;
             }
 
-            ProgressBar.fillAmount = i;
+            script.LoadingBackpack();
         }
     }
 }
