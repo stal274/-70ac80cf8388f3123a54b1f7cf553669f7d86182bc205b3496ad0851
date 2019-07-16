@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using DefaultNamespace;
 using MainScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class PlayingGame : MonoBehaviour, IPhoneButtons
@@ -26,7 +27,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     private char ButtonLeftAction, ButtonRightAction;
     private Perk Perk0, Perk1, Perk2;
 
-    public static int index = 1,
+    public static int Index = 1,
         StonesInBasket,
         WinningNumberStones,
         ActionIndex;
@@ -135,21 +136,21 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
     {
         GameButtonLeft = gameObject.AddComponent<GameButton>();
         GameButtonRight = gameObject.AddComponent<GameButton>();
-        index = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-        ActionIndex = index;
+        Index = Random.Range(0, ButtonLeftActionNumericalValue.Length);
+        ActionIndex = Index;
         ButtonLeftAction = Action1[ActionIndex];
         ButtonRightAction = Action2[ActionIndex];
         /*CheckActions();*/
         ButtonLeft.GetComponentInChildren<Text>().text =
-            ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[index]);
+            ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[Index]);
         ButtonRight.GetComponentInChildren<Text>().text =
-            ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[index]);
-        GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[index]);
-        GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[index]);
+            ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[Index]);
+        GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[Index]);
+        GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[Index]);
         StonesToWinPanel.text = WinningNumberStones.ToString();
     }
 
-    public void OnMouseDown(GameObject gameObject)
+    private void OnMouseDown(Object gameObject)
     {
         WhoseTurn = "Human";
         ButtonLeft.interactable = false;
