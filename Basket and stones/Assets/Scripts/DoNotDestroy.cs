@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 
-
 public class DoNotDestroy : MonoBehaviour
 {
     private void Start()
     {
-        if (GameObject.FindGameObjectsWithTag("Audio").Length == 1)
+        if (gameObject.CompareTag("Audio"))
         {
             DontDestroyOnLoad(gameObject);
         }
