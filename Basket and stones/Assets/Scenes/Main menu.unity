@@ -290,6 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21445184}
   - component: {fileID: 21445185}
+  - component: {fileID: 21445186}
   m_Layer: 8
   m_Name: Backpack
   m_TagString: Untagged
@@ -343,6 +344,18 @@ MonoBehaviour:
   m_Spacing: {x: 24, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!114 &21445186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21445183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f507b842c3fe141bc7f0256ceb5acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &33443894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1175,7 +1188,6 @@ GameObject:
   m_Component:
   - component: {fileID: 172159230}
   - component: {fileID: 172159232}
-  - component: {fileID: 172159231}
   m_Layer: 0
   m_Name: Drop0
   m_TagString: Untagged
@@ -1197,18 +1209,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &172159231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172159229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &172159232
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1460,7 +1460,6 @@ GameObject:
   m_Component:
   - component: {fileID: 263777520}
   - component: {fileID: 263777522}
-  - component: {fileID: 263777521}
   m_Layer: 0
   m_Name: Drop4
   m_TagString: Untagged
@@ -1482,18 +1481,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &263777521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263777519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &263777522
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1836,7 +1823,6 @@ GameObject:
   m_Component:
   - component: {fileID: 326513673}
   - component: {fileID: 326513675}
-  - component: {fileID: 326513674}
   m_Layer: 0
   m_Name: Drop5
   m_TagString: Untagged
@@ -1858,18 +1844,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &326513674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326513672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &326513675
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2294,7 +2268,7 @@ GameObject:
   - component: {fileID: 367683083}
   m_Layer: 0
   m_Name: Replacement
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2620,7 +2594,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 7
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2768,7 +2742,7 @@ GameObject:
   - component: {fileID: 430660934}
   m_Layer: 0
   m_Name: Perk
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2876,7 +2850,6 @@ GameObject:
   m_Component:
   - component: {fileID: 507613943}
   - component: {fileID: 507613945}
-  - component: {fileID: 507613944}
   m_Layer: 0
   m_Name: SFX_New_Game
   m_TagString: Untagged
@@ -2898,18 +2871,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &507613944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507613942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &507613945
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3021,7 +2982,7 @@ GameObject:
   - component: {fileID: 513453799}
   m_Layer: 0
   m_Name: Perk
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3208,7 +3169,6 @@ GameObject:
   m_Component:
   - component: {fileID: 626943935}
   - component: {fileID: 626943937}
-  - component: {fileID: 626943936}
   m_Layer: 0
   m_Name: Drag3
   m_TagString: Untagged
@@ -3230,18 +3190,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &626943936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626943934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &626943937
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3937,7 +3885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723404566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 180, y: 320, z: 0}
+  m_LocalPosition: {x: 180, y: 320, z: -58.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4068,7 +4016,6 @@ GameObject:
   m_Component:
   - component: {fileID: 777526259}
   - component: {fileID: 777526261}
-  - component: {fileID: 777526260}
   m_Layer: 0
   m_Name: Drag2
   m_TagString: Untagged
@@ -4090,18 +4037,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &777526260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777526258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &777526261
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4526,7 +4461,7 @@ GameObject:
   - component: {fileID: 903054363}
   m_Layer: 0
   m_Name: Frost
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4873,7 +4808,7 @@ GameObject:
   - component: {fileID: 912226602}
   m_Layer: 0
   m_Name: Shake
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4981,7 +4916,6 @@ GameObject:
   m_Component:
   - component: {fileID: 919381367}
   - component: {fileID: 919381369}
-  - component: {fileID: 919381368}
   m_Layer: 0
   m_Name: Drag1
   m_TagString: Untagged
@@ -5003,18 +4937,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919381368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919381366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &919381369
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5559,7 +5481,7 @@ GameObject:
   - component: {fileID: 1021265943}
   m_Layer: 0
   m_Name: 'Perk '
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6209,7 +6131,7 @@ GameObject:
   - component: {fileID: 1177355138}
   m_Layer: 0
   m_Name: 'Perk '
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6927,7 +6849,7 @@ GameObject:
   - component: {fileID: 1550617447}
   m_Layer: 0
   m_Name: 'Perk '
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7040,7 +6962,7 @@ GameObject:
   - component: {fileID: 1554749813}
   m_Layer: 0
   m_Name: Perk
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7222,7 +7144,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1571495748}
   - component: {fileID: 1571495750}
-  - component: {fileID: 1571495749}
   m_Layer: 0
   m_Name: SFX_Menu_button
   m_TagString: Untagged
@@ -7244,18 +7165,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1571495749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571495747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1571495750
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7674,7 +7583,6 @@ GameObject:
   - component: {fileID: 1645739308}
   - component: {fileID: 1645739309}
   - component: {fileID: 1645739310}
-  - component: {fileID: 1645739311}
   m_Layer: 0
   m_Name: Backpack slot
   m_TagString: BackpackSlot
@@ -7786,22 +7694,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1645739311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645739304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f507b842c3fe141bc7f0256ceb5acf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BackpackSlots:
-  - {fileID: 2103429244}
-  - {fileID: 1841506121}
-  - {fileID: 1645739304}
 --- !u!1 &1654670332
 GameObject:
   m_ObjectHideFlags: 0
@@ -7921,7 +7813,7 @@ GameObject:
   - component: {fileID: 1693142143}
   m_Layer: 0
   m_Name: Perk
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8174,7 +8066,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1747456415}
   - component: {fileID: 1747456417}
-  - component: {fileID: 1747456416}
   m_Layer: 0
   m_Name: SFX_Menu_switch
   m_TagString: Untagged
@@ -8196,18 +8087,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1747456416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747456414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1747456417
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8537,7 +8416,7 @@ GameObject:
   - component: {fileID: 1815657702}
   m_Layer: 0
   m_Name: Perk
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8645,7 +8524,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1830016039}
   - component: {fileID: 1830016041}
-  - component: {fileID: 1830016040}
   m_Layer: 0
   m_Name: Drag0
   m_TagString: Untagged
@@ -8667,18 +8545,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1830016040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830016038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1830016041
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8789,7 +8655,6 @@ GameObject:
   - component: {fileID: 1841506125}
   - component: {fileID: 1841506126}
   - component: {fileID: 1841506127}
-  - component: {fileID: 1841506128}
   m_Layer: 0
   m_Name: Backpack slot
   m_TagString: BackpackSlot
@@ -8901,22 +8766,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1841506128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841506121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f507b842c3fe141bc7f0256ceb5acf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BackpackSlots:
-  - {fileID: 2103429244}
-  - {fileID: 1841506121}
-  - {fileID: 1645739304}
 --- !u!1 &1891058420
 GameObject:
   m_ObjectHideFlags: 0
@@ -9016,7 +8865,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1907840026}
   - component: {fileID: 1907840028}
-  - component: {fileID: 1907840027}
   m_Layer: 0
   m_Name: Drop3
   m_TagString: Untagged
@@ -9038,18 +8886,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1907840027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907840025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1907840028
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9583,7 +9419,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2026602470}
   - component: {fileID: 2026602472}
-  - component: {fileID: 2026602471}
   m_Layer: 0
   m_Name: Drop1
   m_TagString: Untagged
@@ -9605,18 +9440,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2026602471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026602469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2026602472
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10251,7 +10074,6 @@ GameObject:
   - component: {fileID: 2103429248}
   - component: {fileID: 2103429249}
   - component: {fileID: 2103429250}
-  - component: {fileID: 2103429251}
   m_Layer: 0
   m_Name: Backpack slot
   m_TagString: BackpackSlot
@@ -10363,22 +10185,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &2103429251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103429244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f507b842c3fe141bc7f0256ceb5acf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BackpackSlots:
-  - {fileID: 2103429244}
-  - {fileID: 1841506121}
-  - {fileID: 1645739304}
 --- !u!1 &2121897314
 GameObject:
   m_ObjectHideFlags: 0
@@ -10543,7 +10349,7 @@ GameObject:
   - component: {fileID: 2125849869}
   m_Layer: 0
   m_Name: 'Perk '
-  m_TagString: Untagged
+  m_TagString: PerkSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10749,7 +10555,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2147011301}
   - component: {fileID: 2147011303}
-  - component: {fileID: 2147011302}
   m_Layer: 0
   m_Name: Drop2
   m_TagString: Untagged
@@ -10771,18 +10576,6 @@ Transform:
   m_Father: {fileID: 131644553}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2147011302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147011300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd01edd853eb2f48af02c907159b086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2147011303
 AudioSource:
   m_ObjectHideFlags: 0
