@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DefaultNamespace;
 using MainScene;
 using UnityEngine;
@@ -79,15 +79,9 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     public void OnMouseUpAsButton()
     {
-        switch (gameObject.name)
-        {
-            case "Retry_Button":
-                SceneManager.LoadScene("TestGameScene");
-                break;
-            case "MainMenu_Button":
-                SceneManager.LoadScene("Main menu");
-                break;
-        }
+        if (gameObject.name == "Retry_Button")
+            SceneManager.LoadScene("TestGameScene");
+        else if (gameObject.name == "MainMenu_Button") SceneManager.LoadScene("Main menu");
 
         GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
     }
@@ -120,22 +114,20 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
 
     private void IsVictory()
     {
-        if (StonesInBasket == WinningNumberStones)
+        if (StonesInBasket != WinningNumberStones) return;
+        if (StonesInBasket == WinningNumberStones && WhoseTurn == "Human")
         {
-            if (StonesInBasket == WinningNumberStones && WhoseTurn == "Human")
-            {
-                WinOrLosePanel.SetActive(true);
-                VictoryPanel.text = "Вы выиграли!";
-                GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
-                StopGame = true;
-            }
-            else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
-            {
-                WinOrLosePanel.SetActive(true);
-                VictoryPanel.text = "Сожалею, но машина оказалась умней!";
-                GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
-                StopGame = true;
-            }
+            WinOrLosePanel.SetActive(true);
+            VictoryPanel.text = "Вы выиграли!";
+            GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
+            StopGame = true;
+        }
+        else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
+        {
+            WinOrLosePanel.SetActive(true);
+            VictoryPanel.text = "Сожалею, но машина оказалась умней!";
+            GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
+            StopGame = true;
         }
     }
 
@@ -162,16 +154,9 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         WhoseTurn = "Human";
         ButtonLeft.interactable = false;
         ButtonRight.interactable = false;
-        var i = Random.Range(0, 2);
-        switch (i)
-        {
-            case 0:
-                GameObject.Find("SFX_Tern_button_1").GetComponent<AudioSource>().Play();
-                break;
-            case 1:
-                GameObject.Find("SFX_Tern_button_2").GetComponent<AudioSource>().Play();
-                break;
-        }
+
+        GameObject.Find("SFX_Tern_button_" + Random.Range(0, 2)).GetComponent<AudioSource>().Play();
+
 
         if (gameObject.name == "LeftChoise_Button")
             StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
@@ -190,11 +175,9 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
         Invoke("ButtonActive", 2);
         Tick += 1;
 
-        if (Tick == STick)
-        {
-            ButtonsValueGenerate();
-            Tick = 0;
-        }
+        if (Tick != STick) return;
+        ButtonsValueGenerate();
+        Tick = 0;
     }
 
     private void OnMouseUp()
