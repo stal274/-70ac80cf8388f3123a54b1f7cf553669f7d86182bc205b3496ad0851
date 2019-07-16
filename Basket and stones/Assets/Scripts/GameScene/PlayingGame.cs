@@ -83,7 +83,7 @@ public class PlayingGame : MonoBehaviour, IPhoneButtons
             SceneManager.LoadScene("TestGameScene");
         else if (gameObject.name == "MainMenu_Button") SceneManager.LoadScene("Main menu");
 
-        GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
+        GameObject.Find("SFX_New_Game").GetComponent<AudioSource>().Play();
     }
 
     private void ButtonActive()
