@@ -46,6 +46,7 @@ namespace GameScene
 
                     break;
                 case "Shake":
+                    GameObject.Find("PerkShake").GetComponent<AudioSource>().Play();
                     var inti = Random.Range(1, 11);
                     while (PG.StonesInBasket - inti <= 0)
                     {
