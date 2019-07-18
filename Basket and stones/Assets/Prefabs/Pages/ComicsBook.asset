@@ -14,7 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pages:
   - {fileID: 11400000, guid: a235741617411e84ea307f8e589e94eb, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a3fd7622ad934734f99e17e39df1021f, type: 2}
+  - {fileID: 11400000, guid: 916b6697e5cf2524d9e5910abb211f4a, type: 2}
+  - {fileID: 11400000, guid: b55b26ab5b550494892e572be0f04264, type: 2}
+  - {fileID: 11400000, guid: 7c6c51a519d93a54a95fb1ed15bd3127, type: 2}
+  - {fileID: 11400000, guid: 0ea6a974457470e469f1d5ee81c9abae, type: 2}
+  - {fileID: 11400000, guid: 1c347d6ae78ee2e46bd45bfbb98e667b, type: 2}
+  - {fileID: 11400000, guid: a3b20f2d47af87942923f99a977b62f3, type: 2}
+  - {fileID: 11400000, guid: 8caf87df44da408448014f006a304e05, type: 2}
+  - {fileID: 11400000, guid: d7e98ea050bb08b4385d6b139494a121, type: 2}
+  i: 17
+  countOfPages: 10
