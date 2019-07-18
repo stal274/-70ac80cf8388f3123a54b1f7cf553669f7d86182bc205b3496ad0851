@@ -11,15 +11,15 @@ namespace MainScene
         public static GameObject itemBeingDragged;
         private Vector3 startPosition;
         public static string name;
-        [SerializeField] private Transform FirstParent;
+        private Transform FirstParent;
 
-        [SerializeField] private bool parentIsBackpack;
+        private bool parentIsBackpack;
 
         private void Start()
         {
             for (var i = 0; i < GameObject.FindGameObjectsWithTag("PerkSlot").Length; i++)
             {
-                if (GameObject.FindGameObjectsWithTag("PerkSlot")[i].name != gameObject.name) continue;
+                if (GameObject.FindGameObjectsWithTag("PerkSlot")[i].name != gameObject.name + "Slot") continue;
                 FirstParent = GameObject.FindGameObjectsWithTag("PerkSlot")[i].transform;
                 break;
             }
@@ -45,17 +45,20 @@ namespace MainScene
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (transform.position == startPosition) return;
+            if (!parentIsBackpack)
+            {
+                transform.position = startPosition;
+            }
+            else
+            {
+                transform.position = FirstParent.position;
+                gameObject.transform.SetParent(FirstParent);
+            }
+
             itemBeingDragged = null;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
             BackpackProgressBar.CheckBackPack();
-            if (transform.position == startPosition) return;
-            transform.position = parentIsBackpack
-                ? FirstParent.position
-                : startPosition;
-            if (parentIsBackpack)
-            {
-                gameObject.transform.SetParent(FirstParent);
-            }
         }
     }
 }
