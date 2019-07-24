@@ -13,14 +13,14 @@ namespace GameScene
         [SerializeField] private int stepsIsWorkTick;
         [SerializeField] private Image image;
         [SerializeField] private bool IsActive = true;
-        [SerializeField] private Ai AI;
+        [SerializeField] private Ai ai;
         [SerializeField] private PlayingGame PG;
 
         private void Start()
         {
             name = gameObject.name;
             image = gameObject.GetComponent<Image>();
-            AI = FindObjectOfType<Ai>();
+            ai = FindObjectOfType<Ai>();
             stepsIsWorkTick = stepsIsWork;
         }
 
@@ -36,10 +36,10 @@ namespace GameScene
 
                     {
                         case 0:
-                            AI.ButtonLeft.interactable = false;
+                            ai.ButtonLeft.interactable = false;
                             break;
                         case 1:
-                            AI.ButtonRight.interactable = false;
+                            ai.ButtonRight.interactable = false;
                             break;
                     }
 
@@ -101,7 +101,7 @@ namespace GameScene
             }
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-          
+
 
             StartCoroutine(fillAmount());
         }
@@ -118,8 +118,8 @@ namespace GameScene
             }
 
             if (stepsIsWorkTick != 0 || gameObject.name != "Frost") return;
-            AI.ButtonLeft.interactable = true;
-            AI.ButtonRight.interactable = true;
+            ai.ButtonLeft.interactable = true;
+            ai.ButtonRight.interactable = true;
         }
 
         public void PerkOnClick()
