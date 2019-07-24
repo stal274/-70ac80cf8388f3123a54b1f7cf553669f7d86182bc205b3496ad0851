@@ -64,5 +64,35 @@ namespace MainScene
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
+
+        private void Update()
+        {
+            if (Application.platform != RuntimePlatform.Android) return;
+            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+            HardwareButtons(KeyCode.Escape);
+        }
+
+        public void HardwareButtons(KeyCode escapeButton)
+        {
+            if (!Input.GetKeyDown(escapeButton)) return;
+
+            if (difficultyWindow.activeSelf)
+
+            {
+                mainMenuWindow.SetActive(true);
+                difficultyWindow.SetActive(false);
+            }
+            else if (backpackWindow.activeSelf)
+
+            {
+                difficultyWindow.SetActive(true);
+                backpackWindow.SetActive(false);
+            }
+
+            else
+            {
+                Application.Quit();
+            }
+        }
     }
 }
