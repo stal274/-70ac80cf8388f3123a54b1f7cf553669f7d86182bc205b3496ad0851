@@ -1,7 +1,5 @@
 ﻿using System;
-using DefaultNamespace;
 using MainScene;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -140,9 +138,8 @@ namespace GameScene
             }
         }
 
-       public void ButtonsValueGenerate()
+        public void ButtonsValueGenerate()
         {
-        
             GameButtonLeft = gameObject.AddComponent<GameButton>();
             GameButtonRight = gameObject.AddComponent<GameButton>();
             Index = Random.Range(0, ButtonLeftActionNumericalValue.Length);
