@@ -1,13 +1,18 @@
+using GameScene;
 using UnityEngine;
+
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 
 namespace MainScene
 {
-    public class Buttons : MonoBehaviour
+    public class Buttons : MonoBehaviour, IPhoneButtons
     {
-        public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow, StudyBoard, StudyTrigger;
-
-        public GameObject BackpackWindow;
-        [SerializeField] private GameObject MainMenuWindow1;
+        [SerializeField] private GameObject settingsWindow,
+            mainMenuWindow,
+            difficultyWindow,
+            studyBoard,
+            studyTrigger,
+            backpackWindow;
 
 
         public void OnMouseUpAsButton()
@@ -15,33 +20,37 @@ namespace MainScene
             switch (gameObject.name)
             {
                 case "ChooseGame_Button":
-                    MainMenuWindow.SetActive(false);
-                    DifficultyWindow.SetActive(true);
+                    mainMenuWindow.SetActive(false);
+                    difficultyWindow.SetActive(true);
                     GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
                     break;
                 case "Shop_Button":
                     break;
                 case "Settings_Button":
-                    SettingsWindow.SetActive(true);
-                    MainMenuWindow.SetActive(false);
+                    settingsWindow.SetActive(true);
+                    mainMenuWindow.SetActive(false);
                     break;
                 case "Achievements_Button":
                     break;
                 case "Study_Button":
-                    StudyBoard.SetActive(true);
-                    StudyTrigger.SetActive(true);
+
+                    studyBoard.SetActive(true);
+                    studyTrigger.SetActive(true);
                     break;
                 case "Exit_Button":
                     Application.Quit();
                     break;
                 case "Exit_Settings_Button":
-                    SettingsWindow.SetActive(false);
-                    MainMenuWindow.SetActive(true);
+                    settingsWindow.SetActive(false);
+                    mainMenuWindow.SetActive(true);
                     break;
                 case "StartGame_Button":
-                    BackpackWindow.transform.position = MainMenuWindow1.transform.position;
+                    backpackWindow.SetActive(true);
                     BackpackProgressBar.CheckBackPack();
-                    DifficultyWindow.SetActive(false);
+                    difficultyWindow.SetActive(false);
+                    break;
+                default:
+                    Debug.Log("Error");
                     break;
             }
         }
