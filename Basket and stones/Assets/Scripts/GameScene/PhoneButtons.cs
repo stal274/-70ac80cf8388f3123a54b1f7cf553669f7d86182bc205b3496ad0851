@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace GameScene
 {
     public interface IPhoneButtons
     {
