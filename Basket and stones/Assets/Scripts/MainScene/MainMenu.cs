@@ -1,11 +1,11 @@
-﻿using DefaultNamespace;
+using DefaultNamespace;
 
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace MainScene
 {
-    public class MainMenu : MonoBehaviour, IPhoneButtons
+    public class MainMenu : MonoBehaviour
 
     {
         public GameObject settingsWindow, mainMenuWindow, difficultyWindow, backpackWindow;
@@ -33,39 +33,6 @@ namespace MainScene
             }
 
             GameObject.Find("SFX_Menu_switch").GetComponent<AudioSource>().Play();
-        }
-
-        private void Update()
-        {
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                HardwareButtons(KeyCode.Escape);
-            }
-        }
-
-        public void HardwareButtons(KeyCode EscapeButton)
-        {
-            if (Input.GetKey(EscapeButton))
-            {
-#pragma warning disable 618
-                if (difficultyWindow.active)
-#pragma warning restore 618
-                {
-                    mainMenuWindow.SetActive(true);
-                    difficultyWindow.SetActive(false);
-                }
-#pragma warning disable 618
-                else if (backpackWindow.active)
-#pragma warning restore 618
-                {
-                    difficultyWindow.SetActive(true);
-                    backpackWindow.SetActive(false);
-                }
-                else
-                {
-                    Application.Quit();
-                }
-            }
         }
     }
 }
