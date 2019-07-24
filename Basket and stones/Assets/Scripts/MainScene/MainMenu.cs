@@ -1,6 +1,4 @@
-using DefaultNamespace;
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace MainScene
