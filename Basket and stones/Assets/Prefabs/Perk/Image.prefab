@@ -69,7 +69,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9ff956dfa425c4848936b9d14b48df1e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8083685864929975712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2544711961b34624bb09c28b23885f1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 207f70d0eabfde640be94e0ced919818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!225 &8123369785083123301
@@ -164,9 +164,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8083685864929975712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faead65d7736c924bb628acc76e291b6, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b03b3c0eda2154b8b834f105debad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: Image
   cooldown: 0
+  progressOfcooldown: 0
+  stepsIsWork: 0
+  stepsIsWorkTick: 0
+  image: {fileID: 0}
   IsActive: 1
+  AI: {fileID: 0}
+  PG: {fileID: 0}
