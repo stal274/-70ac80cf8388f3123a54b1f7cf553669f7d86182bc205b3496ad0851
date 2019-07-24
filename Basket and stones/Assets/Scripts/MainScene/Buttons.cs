@@ -1,54 +1,98 @@
+using GameScene;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 
-public class Buttons : MonoBehaviour
+namespace MainScene
 {
-    public GameObject SettingsWindow, MainMenuWindow, DifficultyWindow, StudyBoard, StudyTrigger;
-
-    public void OnMouseUpAsButton()
+    public class Buttons : MonoBehaviour, IPhoneButtons
     {
-        switch (gameObject.name)
+        [SerializeField] private GameObject settingsWindow,
+            mainMenuWindow,
+            difficultyWindow,
+            studyBoard,
+            studyTrigger,
+            backpackWindow;
+
+
+        public void OnMouseUpAsButton()
         {
-            case "ChooseGame_Button":
-                MainMenuWindow.SetActive(false);
-                DifficultyWindow.SetActive(true);
-                GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
-                break;
-            case "Shop_Button":
-                break;
-            case "Settings_Button":
-                SettingsWindow.SetActive(true);
-                MainMenuWindow.SetActive(false);
-                break;
-            case "Achievements_Button":
-                break;
-            case "Study_Button":
-                StudyBoard.SetActive(true);
-                StudyTrigger.SetActive(true);
-                break;
-            case "Exit_Button":
-                Application.Quit();
-                break;
-            case "Exit_Settings_Button":
-                SettingsWindow.SetActive(false);
-                MainMenuWindow.SetActive(true);
-                break;
-            case "StartGame_Button":
-           
-                GameObject.Find("SFX_New_Game").GetComponent<AudioSource>().Play();
-                SceneManager.LoadScene("TestGameScene");
-                break;
+            switch (gameObject.name)
+            {
+                case "ChooseGame_Button":
+                    mainMenuWindow.SetActive(false);
+                    difficultyWindow.SetActive(true);
+                    GameObject.Find("SFX_Menu_button").GetComponent<AudioSource>().Play();
+                    break;
+                case "Shop_Button":
+                    break;
+                case "Settings_Button":
+                    settingsWindow.SetActive(true);
+                    mainMenuWindow.SetActive(false);
+                    break;
+                case "Achievements_Button":
+                    break;
+                case "Study_Button":
+
+                    studyBoard.SetActive(true);
+                    studyTrigger.SetActive(true);
+                    break;
+                case "Exit_Button":
+                    Application.Quit();
+                    break;
+                case "Exit_Settings_Button":
+                    settingsWindow.SetActive(false);
+                    mainMenuWindow.SetActive(true);
+                    break;
+                case "StartGame_Button":
+                    backpackWindow.SetActive(true);
+                    BackpackProgressBar.CheckBackPack();
+                    difficultyWindow.SetActive(false);
+                    break;
+                default:
+                    Debug.Log("Error");
+                    break;
+            }
         }
-    }
 
-    private void OnMouseDown()
-    {
-        transform.localScale = new Vector3(0.95f, 0.95f, 1f);
-    }
+        private void OnMouseDown()
+        {
+            transform.localScale = new Vector3(0.95f, 0.95f, 1f);
+        }
 
-    private void OnMouseUp()
-    {
-        transform.localScale = new Vector3(1f, 1f, 1f);
+        private void OnMouseUp()
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+        private void Update()
+        {
+            if (Application.platform != RuntimePlatform.Android) return;
+            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+            HardwareButtons(KeyCode.Escape);
+        }
+
+        public void HardwareButtons(KeyCode escapeButton)
+        {
+            if (!Input.GetKeyDown(escapeButton)) return;
+
+            if (difficultyWindow.activeSelf)
+
+            {
+                mainMenuWindow.SetActive(true);
+                difficultyWindow.SetActive(false);
+            }
+            else if (backpackWindow.activeSelf)
+
+            {
+                difficultyWindow.SetActive(true);
+                backpackWindow.SetActive(false);
+            }
+
+            else
+            {
+                Application.Quit();
+            }
+        }
     }
 }

@@ -1,59 +1,65 @@
 using System;
-using System.Diagnostics;
-using UnityEngine.Assertions.Must;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace DefaultNamespace
+namespace GameScene
 {
-    public class Perk : PlayingGame
+    public class Perk : MonoBehaviour
     {
         public string name;
-        public readonly int cooldown;
+        [SerializeField] private int cooldown, progressOfcooldown, stepsIsWork;
+        [SerializeField] private int stepsIsWorkTick;
+        [SerializeField] private Image image;
+        [SerializeField] private bool IsActive = true;
+        [SerializeField] private Ai ai;
+        [SerializeField] private PlayingGame PG;
 
-        private bool IsActive;
-        public Button Perk0;
-
-        public Perk(string name, int cooldown, Image sprite)
+        private void Start()
         {
-            this.name = name;
-            this.cooldown = cooldown;
+            name = gameObject.name;
+            image = gameObject.GetComponent<Image>();
+            ai = FindObjectOfType<Ai>();
+            stepsIsWorkTick = stepsIsWork;
         }
 
         private void PerkActivation()
         {
+            image.fillAmount = 0f;
             switch (name)
             {
-                case "Заморозка":
-                    int i ;
+                case "Frost":
+                    int i;
                     i = Random.Range(0, 2);
                     switch (i)
 
                     {
                         case 0:
-                            ButtonLeft.interactable = false;
+                            ai.ButtonLeft.interactable = false;
                             break;
                         case 1:
-                            ButtonRight.interactable = false;
+                            ai.ButtonRight.interactable = false;
                             break;
                     }
 
-                    print(name);
+
                     break;
-                case "Встряска":
+                case "Shake":
+                    GameObject.Find("PerkShake").GetComponent<AudioSource>().Play();
                     var inti = Random.Range(1, 11);
-                    while (StonesInBasket - inti <= 0)
+                    while (PG.StonesInBasket - inti <= 0)
                     {
                         inti = Random.Range(1, 11);
                     }
 
-                    StonesInBasket -= inti;
+                    PG.StonesInBasket -= inti;
 
-                    StonesInBasketUpdate();
+                    PG.StonesInBasketUpdate();
                     break;
-                case "Подмена":
+                case "Replacement":
 
-                    //ButtonsValueGenerate();
+                    PG.ButtonsValueGenerate();
 
                     break;
             }
@@ -64,18 +70,64 @@ namespace DefaultNamespace
             }
         }
 
-        private void Cooldown(int cooldown)
+        IEnumerator fillAmount()
         {
+            for (var i = image.fillAmount;
+                Math.Abs(i - (float) progressOfcooldown / cooldown) >
+                (float) 1 / (60 * cooldown);
+                i +=
+                    (float) 1 / (60 * cooldown))
+            {
+                yield return new WaitForSeconds((float) 1 / (60 * cooldown));
+                image.fillAmount = i;
+                if (!(Math.Abs(i - (1f - (float) 1 / (60 * cooldown))) < (float) 1 / (60 * cooldown))) continue;
+                image.fillAmount = 1f;
+                break;
+            }
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (image.fillAmount != 1f) yield break;
+            IsActive = !IsActive;
+            progressOfcooldown = 0;
+        }
+
+        public void Cooldown()
+        {
+            if (IsActive) return;
+            CheckOfWork();
+            if (progressOfcooldown != cooldown)
+            {
+                progressOfcooldown++;
+            }
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+
+
+            StartCoroutine(fillAmount());
+        }
+
+        private void CheckOfWork()
+        {
+            if (stepsIsWorkTick > 0)
+            {
+                stepsIsWorkTick--;
+            }
+            else if (stepsIsWorkTick == 0)
+            {
+                stepsIsWorkTick = stepsIsWork;
+            }
+
+            if (stepsIsWorkTick != 0 || gameObject.name != "Frost") return;
+            ai.ButtonLeft.interactable = true;
+            ai.ButtonRight.interactable = true;
         }
 
         public void PerkOnClick()
         {
-            if (!IsActive)
+            if (IsActive)
             {
                 PerkActivation();
             }
-
-            Perk0.interactable = false;
         }
     }
 }
