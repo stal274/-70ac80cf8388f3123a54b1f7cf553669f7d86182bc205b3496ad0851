@@ -297,11 +297,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Perk
       objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -413,6 +408,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c6cd05a0a9b96df43b52d4ffa6783b87,
         type: 3}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508708360945433428, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
 --- !u!224 &18913155 stripped
@@ -3018,11 +3023,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Perk
       objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3134,6 +3134,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5b92cf0bc2cfe174b8426ddc5f4ad67a,
         type: 3}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508708360945433428, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
 --- !u!224 &507226513 stripped
@@ -4186,11 +4196,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Perk
       objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4302,6 +4307,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 43be28a69fb449a4fbcb10fb449e2231,
         type: 3}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508708360945433428, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
 --- !u!224 &710270256 stripped
@@ -4993,7 +5008,7 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 0
+  m_FillMethod: 1
   m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
