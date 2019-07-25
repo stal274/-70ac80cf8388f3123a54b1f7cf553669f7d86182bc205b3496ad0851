@@ -763,26 +763,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Perk
       objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: stepsIsWork
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: cooldown
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: PG
-      value: 
-      objectReference: {fileID: 1833727840}
     - target: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -918,6 +898,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PerkOnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: stepsIsWork
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: cooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: PG
+      value: 
+      objectReference: {fileID: 1833727840}
+    - target: {fileID: 1508708360945433428, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
@@ -1333,26 +1338,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Perk
       objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: PG
-      value: 
-      objectReference: {fileID: 1833727840}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: cooldown
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: stepsIsWork
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1488,6 +1473,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PerkOnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: PG
+      value: 
+      objectReference: {fileID: 1833727840}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: cooldown
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: stepsIsWork
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508708360945433428, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
@@ -1827,7 +1837,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 794172997}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2365,9 +2375,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1087117286}
-  - {fileID: 914114352}
   - {fileID: 626753515}
+  - {fileID: 914114352}
+  - {fileID: 1087117286}
   m_Father: {fileID: 1833727839}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3108,7 +3118,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 794172997}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3259,26 +3269,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Perk
       objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: cooldown
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: stepsIsWork
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: PG
-      value: 
-      objectReference: {fileID: 1833727840}
     - target: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3414,6 +3404,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PerkOnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: cooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: stepsIsWork
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: PG
+      value: 
+      objectReference: {fileID: 1833727840}
+    - target: {fileID: 1508708360945433428, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
