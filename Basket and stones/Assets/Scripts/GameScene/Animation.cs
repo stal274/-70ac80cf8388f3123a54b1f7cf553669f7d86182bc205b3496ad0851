@@ -1,10 +1,13 @@
 using UnityEngine;
 
-    public class Animation: MonoBehaviour
+namespace GameScene
+{
+    public class Animation : MonoBehaviour
     {
         private Animation anim;
+
         private void OnMouseDown()
         {
-        
         }
     }
+}

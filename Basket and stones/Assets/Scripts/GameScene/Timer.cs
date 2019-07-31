@@ -1,29 +1,32 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+namespace GameScene
 {
-    [SerializeField] private float coolTimer;
-    public Text timer;
-
-    // Use this for initialization
-    void Start()
+    public class Timer : MonoBehaviour
     {
-    }
+        [SerializeField] private float coolTimer;
 
-    // Update is called once per frame
-    private void Update()
-    {
-        minusSecond();
-    }
+        public Text timer;
 
-    void minusSecond()
-    {
-        coolTimer -= Time.deltaTime;
-
-        if (coolTimer > 0)
+        // Use this for initialization
+        void Start()
         {
-            timer.text = Mathf.RoundToInt(coolTimer).ToString();
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            minusSecond();
+        }
+
+        void minusSecond()
+        {
+            coolTimer -= Time.deltaTime;
+            if (coolTimer > 0)
+            {
+                timer.text = Mathf.RoundToInt(coolTimer).ToString();
+            }
         }
     }
 }
