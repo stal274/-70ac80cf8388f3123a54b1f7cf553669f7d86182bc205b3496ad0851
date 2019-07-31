@@ -25,7 +25,7 @@ namespace GameScene
             StartCoroutine(AiChoice());
         }
 
-        public int AiStep()
+        private IEnumerator AiChoice()
         {
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
 
