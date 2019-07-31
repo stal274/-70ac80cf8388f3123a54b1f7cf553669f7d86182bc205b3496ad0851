@@ -1,42 +1,61 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-public class GameButton : MonoBehaviour
+namespace GameScene
 {
-    public int value;
-    public char action;
-    private int FinalResult;
-
-
-    public void SetGameButton(char action, int value)
+    public class GameButton : MonoBehaviour
     {
-        this.action = action;
-        this.value = value;
-    }
-
-    public int getResult(int StonesInBasket)
-    {
-        return Calculate(action, StonesInBasket);
-    }
-
-    private int Calculate(char action, int StonesInBasket)
-    {
-        FinalResult = StonesInBasket;
-        switch (action)
+        public int Value
         {
-            case '*':
-                FinalResult *= value;
-                break;
-            case '+':
-                FinalResult += value;
-                break;
-            case '-':
-                FinalResult -= value;
-                break;
-            case '/':
-                FinalResult /= value;
-                break;
+            get { return value; }
+            private set { this.value = value; }
         }
 
-        return FinalResult;
+        public char Action { get; private set; }
+
+        public int Index
+        {
+            set
+            {
+                index = value;
+                ButtonsValueGenerate();
+            }
+        }
+
+        [SerializeField] private int value;
+        [SerializeField] private char action;
+        [SerializeField] private int index;
+        [SerializeField] private BankOfButtonActions bank;
+
+        private void Start()
+        {
+            bank.GenerateIndex();
+        }
+
+
+        public void OnClick()
+        {
+            var pg = FindObjectOfType<PlayingGame>();
+            GameObject.Find("SFX_Tern_button_" + Random.Range(1, 3)).GetComponent<AudioSource>().Play();
+            foreach (var VARIABLE in FindObjectsOfType<GameButton>())
+            {
+                VARIABLE.GetComponent<Button>().interactable = false;
+            }
+
+            pg.WhoseTurn = "Computer";
+        }
+
+
+        private void ButtonsValueGenerate()
+        {
+            var leftOrRight = gameObject.name == "LeftChoice_Button" ? 0 : 1;
+            action = bank.Actions[leftOrRight, index];
+            value = bank.ButtonsActionNumericalValue[leftOrRight, index];
+            gameObject.GetComponentInChildren<Text>().text =
+                action + Convert.ToString(value);
+            Action = action;
+            Value = value;
+        }
     }
 }
