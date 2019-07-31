@@ -14,7 +14,8 @@ namespace GameScene
         [SerializeField] private Image image;
         [SerializeField] private bool IsActive = true;
         [SerializeField] private Ai ai;
-        [SerializeField] private PlayingGame PG;
+        [SerializeField] private GameButton[] GameButton;
+        [SerializeField] private Basket basket;
 
         private void Start()
         {
@@ -22,46 +23,41 @@ namespace GameScene
             image = gameObject.GetComponent<Image>();
             ai = FindObjectOfType<Ai>();
             stepsIsWorkTick = stepsIsWork;
+            GameButton = FindObjectsOfType<GameButton>();
+            basket = FindObjectOfType<Basket>();
         }
 
         private void PerkActivation()
         {
+            var pg = FindObjectOfType<PlayingGame>();
+            if (pg.WhoseTurn == "Computer") return;
             image.fillAmount = 0f;
             switch (name)
             {
                 case "Frost":
-                    int i;
-                    i = Random.Range(0, 2);
-                    switch (i)
 
-                    {
-                        case 0:
-                            ai.ButtonLeft.interactable = false;
-                            break;
-                        case 1:
-                            ai.ButtonRight.interactable = false;
-                            break;
-                    }
-
-
+                    ai.buttonsAi[Random.Range(0, 2)].interactable = false;
                     break;
                 case "Shake":
-                    GameObject.Find("PerkShake").GetComponent<AudioSource>().Play();
+
                     var inti = Random.Range(1, 11);
-                    while (PG.StonesInBasket - inti <= 0)
+                    while (basket.CurrentAmountOfStones - inti <= 0)
                     {
                         inti = Random.Range(1, 11);
                     }
 
-                    PG.StonesInBasket -= inti;
-
-                    PG.StonesInBasketUpdate();
+                    basket.Calculate('-', inti, false);
                     break;
                 case "Replacement":
-
-                    PG.ButtonsValueGenerate();
+                    var bank = FindObjectOfType<BankOfButtonActions>();
+                    bank.GenerateIndex();
 
                     break;
+            }
+
+            if (gameObject.GetComponent<AudioSource>() != null)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
             }
 
             if (IsActive)
@@ -70,7 +66,7 @@ namespace GameScene
             }
         }
 
-        IEnumerator fillAmount()
+        private IEnumerator FillAmount()
         {
             for (var i = image.fillAmount;
                 Math.Abs(i - (float) progressOfcooldown / cooldown) >
@@ -100,10 +96,7 @@ namespace GameScene
                 progressOfcooldown++;
             }
 
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-
-
-            StartCoroutine(fillAmount());
+            StartCoroutine(FillAmount());
         }
 
         private void CheckOfWork()
@@ -118,8 +111,10 @@ namespace GameScene
             }
 
             if (stepsIsWorkTick != 0 || gameObject.name != "Frost") return;
-            ai.ButtonLeft.interactable = true;
-            ai.ButtonRight.interactable = true;
+            foreach (var VARIABLE in ai.buttonsAi)
+            {
+                VARIABLE.interactable = true;
+            }
         }
 
         public void PerkOnClick()
