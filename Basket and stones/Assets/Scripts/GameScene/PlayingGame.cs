@@ -1,215 +1,115 @@
-﻿using System;
-using MainScene;
+﻿using MainScene;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
 namespace GameScene
 {
-    public class PlayingGame : MonoBehaviour, IPhoneButtons
+    public class PlayingGame : MonoBehaviour, IPhoneButtons, IPointerDownHandler, IPointerUpHandler
     {
-        public Button ButtonLeft, ButtonRight;
         public GameObject ButtonPanel, WinOrLosePanel;
-
-        [SerializeField] private Text ResultPanel, StonesToWinPanel, VictoryPanel;
-
-        public GameButton GameButtonLeft;
-        public GameButton GameButtonRight;
-
-        [SerializeField] private Ai Computer;
-        private readonly int[] ButtonLeftActionNumericalValue = {3, 2, 2, 3, 4, 6, 5, 3, 2, 6, 4, 2, 3, 5, 4};
-        private readonly int[] ButtonRightActionNumericalValue = {2, 5, 7, 4, 3, 5, 4, 6, 4, 7, 3, 2, 7, 3, 6};
-        private readonly char[] Action1 = {'+', '*', '+', '+', '-', '+', '-', '+', '*', '+', '-', '+', '-', '+', '-'};
-        private readonly char[] Action2 = {'-', '-', '-', '-', '+', '-', '+', '-', '-', '-', '+', '-', '+', '-', '+'};
+        [SerializeField] private Text VictoryPanel;
         private Animation Anim;
-        private string WhoseTurn;
-        private bool StopGame;
-        private char ButtonLeftAction, ButtonRightAction;
 
+        public string WhoseTurn
+        {
+            get { return whoseTurn; }
+            set
+            {
+                whoseTurn = value;
+                IsVictory();
+            }
+        }
 
-        [SerializeField] private Perk[] Perks;
+        public bool StopGame
+        {
+            get { return stopGame; }
+        }
 
-        public static int Index = 1;
+        [SerializeField] private string whoseTurn;
+        private bool stopGame;
+        [SerializeField] private Basket basket;
+        private readonly byte Difficulty = MainMenu.Difficulty;
+        [SerializeField] private int Tick, STick;
 
-        public int StonesInBasket;
-
-        public int WinningNumberStones;
-
-        public static int ActionIndex;
-
-        private int Tick, STick;
-
-        private static readonly byte Difficulty = MainMenu.Difficulty;
 
         /*private Stones stones;*/
 
         private void Start()
         {
-            // ReSharper disable once Unity.IncorrectMonoBehaviourInstantiation
-            StonesInBasket = StonesInBasketGenerate();
-            ButtonsValueGenerate();
-            StonesInBasketUpdate();
-            Perks = FindObjectsOfType<Perk>();
+            basket = FindObjectOfType<Basket>();
             switch (Difficulty)
             {
                 case 0:
-                    STick = 4;
+                    STick = 8;
                     break;
                 case 1:
-                    STick = 3;
+                    STick = 6;
                     break;
                 case 2:
-                    STick = 2;
+                    STick = 4;
+                    break;
+                default:
+                    STick = 4;
                     break;
             }
+
 
             /*stones.GetComponent<Stones>();*/
         }
 
-        private int StonesInBasketGenerate()
+
+        public void Click(GameObject obj)
         {
-            var i = 0;
-            if (Difficulty == 0)
-                i = Random.Range(10, 26);
-            else if (Difficulty == 1)
-                i = Random.Range(15, 47);
-            else if (Difficulty == 2) i = Random.Range(47, 81);
-
-            WinningNumberStones = Random.Range(i + 15, i + 25);
-
-
-            return i;
-        }
-
-
-        public void OnMouseUpAsButton(GameObject gameObject)
-        {
-            if (gameObject.name == "Retry_Button")
-                SceneManager.LoadScene("TestGameScene");
-            else if (gameObject.name == "MainMenu_Button") SceneManager.LoadScene("Main menu");
-
             GameObject.Find("SFX_New_Game").GetComponent<AudioSource>().Play();
-        }
-
-        private void ButtonActive()
-        {
-            if (StopGame) return;
-            ButtonRight.interactable = true;
-            ButtonLeft.interactable = true;
-
-
-            GameObject.Find("SFX_Tern_button_" + Random.Range(3, 5)).GetComponent<AudioSource>().Play();
-        }
-
-        private void ButtonPanelVision()
-        {
-            if (StopGame)
-
+            switch (obj.name)
             {
-                ButtonPanel.active = false;
+                case "Retry_Button":
+                    SceneManager.LoadScene("TestGameScene");
+                    break;
+                case "MainMenu_Button":
+                    SceneManager.LoadScene("Main menu");
+                    break;
             }
         }
 
-        public void StonesInBasketUpdate()
-        {
-            ResultPanel.text = Convert.ToString(StonesInBasket);
-            IsVictory();
-            ButtonPanelVision();
-        }
 
         private void IsVictory()
         {
-            if (StonesInBasket != WinningNumberStones) return;
-            if (StonesInBasket == WinningNumberStones && WhoseTurn == "Human")
-            {
-                WinOrLosePanel.SetActive(true);
-                VictoryPanel.text = "Вы выиграли!";
-                GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
-                StopGame = true;
-            }
-            else if (StonesInBasket == WinningNumberStones && WhoseTurn == "Computer")
-            {
-                WinOrLosePanel.SetActive(true);
-                VictoryPanel.text = "Сожалею, но машина оказалась умней!";
-                GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
-                StopGame = true;
-            }
-        }
-
-        public void ButtonsValueGenerate()
-        {
-            GameButtonLeft = gameObject.AddComponent<GameButton>();
-            GameButtonRight = gameObject.AddComponent<GameButton>();
-            Index = Random.Range(0, ButtonLeftActionNumericalValue.Length);
-            ActionIndex = Index;
-            ButtonLeftAction = Action1[ActionIndex];
-            ButtonRightAction = Action2[ActionIndex];
-            /*CheckActions();*/
-            ButtonLeft.GetComponentInChildren<Text>().text =
-                ButtonLeftAction + Convert.ToString(ButtonLeftActionNumericalValue[Index]);
-            ButtonRight.GetComponentInChildren<Text>().text =
-                ButtonRightAction + Convert.ToString(ButtonRightActionNumericalValue[Index]);
-            GameButtonLeft.SetGameButton(ButtonLeftAction, ButtonLeftActionNumericalValue[Index]);
-            GameButtonRight.SetGameButton(ButtonRightAction, ButtonRightActionNumericalValue[Index]);
-            StonesToWinPanel.text = WinningNumberStones.ToString();
-        }
-
-        private void OnMouseDown(Object gameObject)
-        {
-            WhoseTurn = "Human";
-            ButtonLeft.interactable = false;
-            ButtonRight.interactable = false;
-
-            GameObject.Find("SFX_Tern_button_" + Random.Range(1, 3)).GetComponent<AudioSource>().Play();
-
-
-            if (gameObject.name == "LeftChoice_Button")
-                StonesInBasket = GameButtonLeft.getResult(StonesInBasket);
-            else if (gameObject.name == "RightChoice_Button")
-                StonesInBasket = GameButtonRight.getResult(StonesInBasket);
-            foreach (var tPerk in Perks)
-            {
-                tPerk.Cooldown();
-            }
-
-            StonesInBasketUpdate();
-            while (!StopGame)
-            {
-                WhoseTurn = "Computer";
-                StonesInBasket =
-                    Computer.AiStep();
-                Invoke("StonesInBasketUpdate", 2);
-                break;
-            }
-
-            Invoke("ButtonActive", 2);
             Tick += 1;
-
-            if (Tick != STick) return;
-            ButtonsValueGenerate();
-            Tick = 0;
-        }
-
-        private void OnMouseUp()
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-        /*private void CheckActions()
-    {
-        while (true)
-        {
-            if (ButtonLeftAction == ButtonRightAction)
+            if (Tick == STick)
             {
-                ActionIndex = Random.Range(0, Action1.Length);
-                ButtonLeftAction = Action1[ActionIndex];
-                continue;
+                var bank = FindObjectOfType<BankOfButtonActions>();
+                bank.GenerateIndex();
+                Tick = 0;
             }
 
-            break;
+            if (basket.CurrentAmountOfStones != basket.StonesToWin) return;
+            WinOrLosePanel.SetActive(true);
+            stopGame = true;
+            switch (whoseTurn)
+            {
+                case "Computer":
+                    VictoryPanel.text = "Вы выиграли!";
+                    GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
+                    break;
+                case "Human":
+                    VictoryPanel.text = "Сожалею, но машина оказалась умней!";
+                    GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
+                    break;
+                default:
+                    Debug.Log("Ошибка");
+                    break;
+            }
+
+            if (stopGame)
+
+            {
+                ButtonPanel.SetActive(false);
+            }
         }
-    }*/
+
 
         private void Update()
         {
@@ -225,6 +125,15 @@ namespace GameScene
             {
                 SceneManager.LoadScene("Main Menu");
             }
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }
