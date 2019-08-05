@@ -16,7 +16,7 @@ namespace Prefabs
 
         private IEnumerator OnHold()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
             DescriptionActivation();
         }
