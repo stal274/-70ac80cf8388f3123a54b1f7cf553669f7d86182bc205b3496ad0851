@@ -26,9 +26,9 @@ namespace GameScene
         {
             var button = FindObjectsOfType<GameButton>();
             index = Random.Range(0, ButtonsActionNumericalValue.GetLength(1));
-            foreach (var VARIABLE in button)
+            foreach (var variable in button)
             {
-                VARIABLE.Index = index;
+                variable.Index = index;
             }
         }
     }
