@@ -34,6 +34,9 @@ namespace MainScene
                                0.01f;
             GetComponent<CanvasGroup>().blocksRaycasts = false;
             GameObject.Find("Drag" + Random.Range(0, 4)).GetComponent<AudioSource>().Play();
+            var flag = FindObjectOfType<TimerToStartGame>();
+            flag.StartTick = false;
+            flag.StartTicker();
         }
 
         public void OnDrag(PointerEventData eventData)
