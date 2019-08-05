@@ -1,11 +1,10 @@
-using GameScene;
 using UnityEngine;
 
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 
 namespace MainScene
 {
-    public class Buttons : MonoBehaviour, IPhoneButtons
+    public class Buttons : MonoBehaviour
     {
         [SerializeField] private GameObject settingsWindow,
             mainMenuWindow,
@@ -33,7 +32,6 @@ namespace MainScene
                 case "Achievements_Button":
                     break;
                 case "Study_Button":
-
                     studyBoard.SetActive(true);
                     studyTrigger.SetActive(true);
                     break;
@@ -63,36 +61,6 @@ namespace MainScene
         private void OnMouseUp()
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-
-        private void Update()
-        {
-            if (Application.platform != RuntimePlatform.Android) return;
-            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-            HardwareButtons(KeyCode.Escape);
-        }
-
-        public void HardwareButtons(KeyCode escapeButton)
-        {
-            if (!Input.GetKeyDown(escapeButton)) return;
-
-            if (difficultyWindow.activeSelf)
-
-            {
-                mainMenuWindow.SetActive(true);
-                difficultyWindow.SetActive(false);
-            }
-            else if (backpackWindow.activeSelf)
-
-            {
-                difficultyWindow.SetActive(true);
-                backpackWindow.SetActive(false);
-            }
-
-            else
-            {
-                Application.Quit();
-            }
         }
     }
 }
