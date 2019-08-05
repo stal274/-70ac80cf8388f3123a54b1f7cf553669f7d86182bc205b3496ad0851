@@ -6,7 +6,6 @@ namespace MainScene
     public class MainMenu : MonoBehaviour
 
     {
-        public GameObject settingsWindow, mainMenuWindow, difficultyWindow, backpackWindow;
         public Text difficultLevelLabel;
         public Slider difficultSlider;
         public static byte Difficulty;
@@ -19,11 +18,13 @@ namespace MainScene
                 difficultLevelLabel.text = "Быстрая игра";
                 Difficulty = 0;
             }
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             else if (difficultSlider.value == 1)
             {
                 difficultLevelLabel.text = "Классическая игра";
                 Difficulty = 1;
             }
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             else if (difficultSlider.value == 2)
             {
                 difficultLevelLabel.text = "Долгая игра";
