@@ -19,6 +19,10 @@ namespace MainScene
             StartCoroutine(FillAmount());
         }
 
+        private void OnBecameInvisible()
+        {
+            gameObject.GetComponent<Image>().fillAmount = 0;
+        }
 
         private IEnumerator FillAmount()
         {
@@ -55,10 +59,9 @@ namespace MainScene
                 }
             }
 
-
             var script = FindObjectOfType<BackpackProgressBar>();
             var timer = FindObjectOfType<TimerToStartGame>();
-            TimerToStartGame.StartTick = I == 3;
+            timer.StartTick = I == 3;
             timer.StartTicker();
             switch (I)
             {
@@ -81,6 +84,10 @@ namespace MainScene
             }
 
             script.LoadingBackpack();
+            if (I != 0)
+            {
+                GameObject.Find("ProgressBarAudio").GetComponents<AudioSource>()[I - 1].Play();
+            }
         }
     }
 }
