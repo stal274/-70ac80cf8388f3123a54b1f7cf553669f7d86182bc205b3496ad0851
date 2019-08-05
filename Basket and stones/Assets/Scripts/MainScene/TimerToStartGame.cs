@@ -10,7 +10,7 @@ namespace MainScene
         [SerializeField] private GameObject Timer;
         [SerializeField] private Text Text;
 
-        public static bool StartTick { private get; set; }
+        public bool StartTick { private get; set; }
 
         private IEnumerator Tick()
         {
@@ -32,6 +32,11 @@ namespace MainScene
         {
             Timer = GameObject.Find("Timer");
             Text = Timer.GetComponent<Text>();
+        }
+
+        private void OnEnable()
+        {
+            StartTicker();
         }
 
         public void StartTicker()
