@@ -1,4 +1,5 @@
 ﻿using MainScene;
+using Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -8,8 +9,8 @@ namespace GameScene
 {
     public class PlayingGame : MonoBehaviour, IPhoneButtons, IPointerDownHandler, IPointerUpHandler
     {
-        public GameObject ButtonPanel, WinOrLosePanel;
-        [SerializeField] private Text VictoryPanel;
+        public GameObject buttonPanel, winOrLosePanel;
+        [SerializeField] private Text victoryPanel;
         private Animation Anim;
 
         public string WhoseTurn
@@ -22,16 +23,12 @@ namespace GameScene
             }
         }
 
-        public bool StopGame
-        {
-            get { return stopGame; }
-        }
+        public bool StopGame { get; private set; }
 
         [SerializeField] private string whoseTurn;
-        private bool stopGame;
         [SerializeField] private Basket basket;
-        private readonly byte Difficulty = MainMenu.Difficulty;
-        [SerializeField] private int Tick, STick;
+        private readonly byte difficulty = MainMenu.Difficulty;
+        [SerializeField] private int tick, sTick;
 
 
         /*private Stones stones;*/
@@ -39,19 +36,19 @@ namespace GameScene
         private void Start()
         {
             basket = FindObjectOfType<Basket>();
-            switch (Difficulty)
+            switch (difficulty)
             {
                 case 0:
-                    STick = 8;
+                    sTick = 8;
                     break;
                 case 1:
-                    STick = 6;
+                    sTick = 6;
                     break;
                 case 2:
-                    STick = 4;
+                    sTick = 4;
                     break;
                 default:
-                    STick = 4;
+                    sTick = 4;
                     break;
             }
 
@@ -77,25 +74,25 @@ namespace GameScene
 
         private void IsVictory()
         {
-            Tick += 1;
-            if (Tick == STick)
+            tick += 1;
+            if (tick == sTick)
             {
                 var bank = FindObjectOfType<BankOfButtonActions>();
                 bank.GenerateIndex();
-                Tick = 0;
+                tick = 0;
             }
 
             if (basket.CurrentAmountOfStones != basket.StonesToWin) return;
-            WinOrLosePanel.SetActive(true);
-            stopGame = true;
+            winOrLosePanel.SetActive(true);
+            StopGame = true;
             switch (whoseTurn)
             {
                 case "Computer":
-                    VictoryPanel.text = "Вы выиграли!";
+                    victoryPanel.text = "Вы выиграли!";
                     GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
                     break;
                 case "Human":
-                    VictoryPanel.text = "Сожалею, но машина оказалась умней!";
+                    victoryPanel.text = "Сожалею, но машина оказалась умней!";
                     GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
                     break;
                 default:
@@ -103,11 +100,15 @@ namespace GameScene
                     break;
             }
 
-            if (stopGame)
-
+            winOrLosePanel.GetComponentInChildren<UnityEngine.Animation>().Play();
+            if (!StopGame) return;
             {
-                ButtonPanel.SetActive(false);
+                var wallet = gameObject.AddComponent<Wallet>();
+                wallet.FireCoins += Random.Range(15, 25 * difficulty);
             }
+
+
+            buttonPanel.SetActive(false);
         }
 
 
@@ -119,9 +120,9 @@ namespace GameScene
             }
         }
 
-        public void HardwareButtons(KeyCode EscapeButton)
+        public void HardwareButtons(KeyCode escapeButton)
         {
-            if (Input.GetKey(EscapeButton))
+            if (Input.GetKey(escapeButton))
             {
                 SceneManager.LoadScene("Main Menu");
             }
