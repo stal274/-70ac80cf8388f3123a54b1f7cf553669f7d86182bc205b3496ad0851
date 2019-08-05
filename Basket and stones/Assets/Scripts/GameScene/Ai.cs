@@ -27,6 +27,7 @@ namespace GameScene
 
         private IEnumerator AiChoice()
         {
+            yield return StartCoroutine(Basket.StonesInBasketGenerate());
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
 
             choice =
