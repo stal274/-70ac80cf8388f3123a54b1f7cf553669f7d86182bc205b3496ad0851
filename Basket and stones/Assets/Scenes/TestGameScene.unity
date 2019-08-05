@@ -499,7 +499,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 0
 --- !u!222 &136955943
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4137,6 +4137,7 @@ GameObject:
   - component: {fileID: 1704333084}
   - component: {fileID: 1704333086}
   - component: {fileID: 1704333085}
+  - component: {fileID: 1704333087}
   m_Layer: 5
   m_Name: Win/Lose_Text
   m_TagString: Untagged
@@ -4196,7 +4197,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Nsr
 --- !u!222 &1704333086
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4205,6 +4206,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704333083}
   m_CullTransparentMesh: 0
+--- !u!111 &1704333087
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704333083}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a1c5cda4e28d5714d8a97329824be327, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a1c5cda4e28d5714d8a97329824be327, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &1803174353 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8130577217073167225, guid: ac990c0378d942d468ffdfe1c35301c3,
