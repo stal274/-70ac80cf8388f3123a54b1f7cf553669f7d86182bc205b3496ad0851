@@ -1,6 +1,6 @@
+using MainScene;
 using System;
 using System.Collections;
-using MainScene;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -24,10 +24,18 @@ namespace GameScene
         {
             var i = 0;
             if (Difficulty == 0)
+            {
                 i = Random.Range(10, 26);
+            }
             else if (Difficulty == 1)
+            {
                 i = Random.Range(15, 47);
-            else if (Difficulty == 2) i = Random.Range(47, 81);
+            }
+            else if (Difficulty == 2)
+            {
+                i = Random.Range(47, 81);
+            }
+
             CurrentAmountOfStones = i;
             StartCoroutine(StonesInBasketGenerate());
             StonesToWin = Random.Range(i + i * 3, i + i * 5);
@@ -39,12 +47,22 @@ namespace GameScene
         {
             var expectedAmount = CurrentAmountOfStones;
             if (action == '*')
+            {
                 expectedAmount *= value;
+            }
             else if (action == '+')
+            {
                 expectedAmount += value;
+            }
             else if (action == '-')
+            {
                 expectedAmount -= value;
-            else if (action == '/') expectedAmount /= value;
+            }
+            else if (action == '/')
+            {
+                expectedAmount /= value;
+            }
+
             if (isAi)
             {
                 return expectedAmount;
@@ -62,17 +80,28 @@ namespace GameScene
 
         public IEnumerator StonesInBasketGenerate()
         {
-            for (var j = int.Parse(currentAmountOfStonesPanel.text);;
+            for (var j = int.Parse(currentAmountOfStonesPanel.text); ;
             )
             {
-                yield return new WaitForSeconds((float) 1 / (5 * Math.Abs(j - CurrentAmountOfStones)));
-                if (j > CurrentAmountOfStones) j--;
-                if (j < CurrentAmountOfStones) j++;
+                yield return new WaitForSeconds((float)1 / (5 * Math.Abs(j - CurrentAmountOfStones)));
+                if (j > CurrentAmountOfStones)
+                {
+                    j--;
+                }
+
+                if (j < CurrentAmountOfStones)
+                {
+                    j++;
+                }
+
                 StartCoroutine(BasketAnimation(1f, 1.2f));
                 currentAmountOfStonesPanel.text = Convert.ToString(j);
 
 
-                if (j == CurrentAmountOfStones) break;
+                if (j == CurrentAmountOfStones)
+                {
+                    break;
+                }
             }
 
             StartCoroutine(BasketAnimation(1.2f, 1f));

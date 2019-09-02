@@ -1,5 +1,5 @@
-using System.Collections;
 using JetBrains.Annotations;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +20,10 @@ namespace GameScene
         public void AiStep()
         {
             var stopgame = FindObjectOfType<PlayingGame>().StopGame;
-            if (stopgame) return;
+            if (stopgame)
+            {
+                return;
+            }
 
             StartCoroutine(AiChoice());
         }

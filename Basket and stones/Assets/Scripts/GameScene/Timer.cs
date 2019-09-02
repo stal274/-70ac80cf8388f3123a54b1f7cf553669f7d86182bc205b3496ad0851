@@ -10,7 +10,7 @@ namespace GameScene
         public Text timer;
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
         }
 
@@ -20,7 +20,7 @@ namespace GameScene
             minusSecond();
         }
 
-        void minusSecond()
+        private void minusSecond()
         {
             coolTimer -= Time.deltaTime;
             if (coolTimer > 0)

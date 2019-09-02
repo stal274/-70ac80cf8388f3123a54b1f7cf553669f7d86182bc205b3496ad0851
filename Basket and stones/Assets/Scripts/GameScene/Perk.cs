@@ -30,7 +30,11 @@ namespace GameScene
         private void PerkActivation()
         {
             var pg = FindObjectOfType<PlayingGame>();
-            if (pg.WhoseTurn == "Computer") return;
+            if (pg.WhoseTurn == "Computer")
+            {
+                return;
+            }
+
             image.fillAmount = 0f;
             switch (name)
             {
@@ -69,27 +73,39 @@ namespace GameScene
         private IEnumerator FillAmount()
         {
             for (var i = image.fillAmount;
-                Math.Abs(i - (float) progressOfcooldown / cooldown) >
-                (float) 1 / (60 * cooldown);
+                Math.Abs(i - (float)progressOfcooldown / cooldown) >
+                (float)1 / (60 * cooldown);
                 i +=
-                    (float) 1 / (60 * cooldown))
+                    (float)1 / (60 * cooldown))
             {
-                yield return new WaitForSeconds((float) 1 / (60 * cooldown));
+                yield return new WaitForSeconds((float)1 / (60 * cooldown));
                 image.fillAmount = i;
-                if (!(Math.Abs(i - (1f - (float) 1 / (60 * cooldown))) < (float) 1 / (60 * cooldown))) continue;
+                if (!(Math.Abs(i - (1f - (float)1 / (60 * cooldown))) < (float)1 / (60 * cooldown)))
+                {
+                    continue;
+                }
+
                 image.fillAmount = 1f;
                 break;
             }
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (image.fillAmount != 1f) yield break;
+            if (image.fillAmount != 1f)
+            {
+                yield break;
+            }
+
             IsActive = !IsActive;
             progressOfcooldown = 0;
         }
 
         public void Cooldown()
         {
-            if (IsActive) return;
+            if (IsActive)
+            {
+                return;
+            }
+
             CheckOfWork();
             if (progressOfcooldown != cooldown)
             {
@@ -110,7 +126,11 @@ namespace GameScene
                 stepsIsWorkTick = stepsIsWork;
             }
 
-            if (stepsIsWorkTick != 0 || gameObject.name != "Frost") return;
+            if (stepsIsWorkTick != 0 || gameObject.name != "Frost")
+            {
+                return;
+            }
+
             foreach (var VARIABLE in ai.buttonsAi)
             {
                 VARIABLE.interactable = true;

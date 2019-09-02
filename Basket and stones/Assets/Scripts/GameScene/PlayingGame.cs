@@ -82,7 +82,11 @@ namespace GameScene
                 tick = 0;
             }
 
-            if (basket.CurrentAmountOfStones != basket.StonesToWin) return;
+            if (basket.CurrentAmountOfStones != basket.StonesToWin)
+            {
+                return;
+            }
+
             winOrLosePanel.SetActive(true);
             StopGame = true;
             switch (whoseTurn)
@@ -101,7 +105,11 @@ namespace GameScene
             }
 
             winOrLosePanel.GetComponentInChildren<UnityEngine.Animation>().Play();
-            if (!StopGame) return;
+            if (!StopGame)
+            {
+                return;
+            }
+
             {
                 var wallet = gameObject.AddComponent<Wallet>();
                 wallet.FireCoins += Random.Range(15, 25 * difficulty);

@@ -6,7 +6,8 @@ namespace MainScene
 {
     public class Buttons : MonoBehaviour
     {
-        [SerializeField] private GameObject settingsWindow,
+        [SerializeField]
+        private GameObject settingsWindow,
             mainMenuWindow,
             difficultyWindow,
             studyBoard,

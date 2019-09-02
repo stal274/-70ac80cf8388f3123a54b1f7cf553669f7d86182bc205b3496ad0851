@@ -8,8 +8,15 @@ public class ClickToExit : MonoBehaviour, IPointerDownHandler, IPhoneButtons
 
     private void Update()
     {
-        if (!gameObject.activeSelf) return;
-        if (Application.platform != RuntimePlatform.Android) return;
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
+        if (Application.platform != RuntimePlatform.Android)
+        {
+            return;
+        }
         // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
         HardwareButtons(KeyCode.Escape);
     }
@@ -21,10 +28,14 @@ public class ClickToExit : MonoBehaviour, IPointerDownHandler, IPhoneButtons
 
     public void HardwareButtons(KeyCode escapeButton)
     {
-        if (!Input.GetKeyDown(escapeButton)) return;
+        if (!Input.GetKeyDown(escapeButton))
+        {
+            return;
+        }
+
         Exit();
     }
-
+ 
     private void Exit()
     {
         gameObject.SetActive(!gameObject.activeSelf);

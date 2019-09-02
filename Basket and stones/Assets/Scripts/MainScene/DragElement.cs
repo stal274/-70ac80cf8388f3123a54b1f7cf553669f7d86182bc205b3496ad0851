@@ -19,7 +19,11 @@ namespace MainScene
         {
             for (var i = 0; i < GameObject.FindGameObjectsWithTag("PerkSlot").Length; i++)
             {
-                if (GameObject.FindGameObjectsWithTag("PerkSlot")[i].name != gameObject.name + "Slot") continue;
+                if (GameObject.FindGameObjectsWithTag("PerkSlot")[i].name != gameObject.name + "Slot")
+                {
+                    continue;
+                }
+
                 FirstParent = GameObject.FindGameObjectsWithTag("PerkSlot")[i].transform;
                 break;
             }
@@ -42,13 +46,19 @@ namespace MainScene
         public void OnDrag(PointerEventData eventData)
         {
             if (Camera.main != null)
+            {
                 transform.position =
                     Input.mousePosition;
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (transform.position == startPosition) return;
+            if (transform.position == startPosition)
+            {
+                return;
+            }
+
             if (!parentIsBackpack)
             {
                 transform.position = startPosition;

@@ -12,7 +12,11 @@ namespace MainScene
 
         public void OnDrop(PointerEventData eventData)
         {
-            if ((Item || DragElement.name != transform.name) && (Item || transform.name != "Backpack slot")) return;
+            if ((Item || DragElement.name != transform.name) && (Item || transform.name != "Backpack slot"))
+            {
+                return;
+            }
+
             DragElement.itemBeingDragged.transform.SetParent(transform);
             BackpackProgressBar.CheckBackPack();
             GameObject.Find("Drop" + Random.Range(0, 6)).GetComponent<AudioSource>().Play();

@@ -9,20 +9,27 @@ namespace MainScene
 
         private void Update()
         {
-            if (Application.platform != RuntimePlatform.Android) return;
+            if (Application.platform != RuntimePlatform.Android)
+            {
+                return;
+            }
+
             HardwareButtons(KeyCode.Escape);
         }
 
         public void HardwareButtons(KeyCode escapeButton)
         {
-            if (!Input.GetKeyDown(escapeButton)) return;
-            /*for (var i = 0; i < Windows.Length; i++)
+            if (!Input.GetKeyDown(escapeButton))
             {
-                if (!Windows[i].activeSelf || i <= 0) continue;
-                Windows[i - 1].SetActive(true);
-                Windows[i].SetActive(false);
-                break;
-            }*/
+                return;
+            }
+            /*for (var i = 0; i < Windows.Length; i++)
+{
+   if (!Windows[i].activeSelf || i <= 0) continue;
+   Windows[i - 1].SetActive(true);
+   Windows[i].SetActive(false);
+   break;
+}*/
 
             if (Windows[1].activeSelf)
 
