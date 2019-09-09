@@ -7,10 +7,9 @@ using UnityEngine.UI;
 
 namespace GameScene
 {
-    public class PlayingGame : MonoBehaviour, IPhoneButtons, IPointerDownHandler, IPointerUpHandler
+    public class GameplayStepsControl : MonoBehaviour, IPhoneButtons, IPointerDownHandler, IPointerUpHandler
     {
-        public GameObject buttonPanel, winOrLosePanel;
-        [SerializeField] private Text victoryPanel;
+        [SerializeField] private GameObject[] objectsToHide, objectsOfEndGame;
         private Animation Anim;
 
         public string WhoseTurn
@@ -19,7 +18,6 @@ namespace GameScene
             set
             {
                 whoseTurn = value;
-                IsVictory();
             }
         }
 
@@ -27,7 +25,9 @@ namespace GameScene
 
         [SerializeField] private string whoseTurn;
         [SerializeField] private Basket basket;
-        private readonly byte difficulty = MainMenu.Difficulty;
+        [SerializeField] private SafeDepositOfButtonActions bank;
+
+        private readonly byte difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private int tick, sTick;
 
 
@@ -51,8 +51,10 @@ namespace GameScene
                     sTick = 4;
                     break;
             }
-
-
+            if (bank != null)
+            {
+                bank.GenerateIndex();
+            }
             /*stones.GetComponent<Stones>();*/
         }
 
@@ -72,51 +74,54 @@ namespace GameScene
         }
 
 
-        private void IsVictory()
+        public void IsVictory(bool flag)
         {
+
+
             tick += 1;
             if (tick == sTick)
             {
-                var bank = FindObjectOfType<BankOfButtonActions>();
+                var bank = FindObjectOfType<SafeDepositOfButtonActions>();
                 bank.GenerateIndex();
                 tick = 0;
             }
 
-            if (basket.CurrentAmountOfStones != basket.StonesToWin)
+
+            if (flag)
             {
-                return;
+
+                foreach (var i in objectsOfEndGame)
+                {
+                    i.SetActive(true);
+                }
+                StopGame = true;
+                switch (WhoseTurn)
+                {
+                    case "Computer":
+                        objectsOfEndGame[1].GetComponent<Text>().color = new Color(0.1490196f, 0.7921569f, 0.8980392f);
+                        objectsOfEndGame[1].GetComponent<Text>().text = "Вы выиграли!";
+                        GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
+                        break;
+                    case "Human":
+                        objectsOfEndGame[1].GetComponent<Text>().color = new Color(0.6196079f, 0.1333333f, 0.1372549f);
+                        objectsOfEndGame[1].GetComponent<Text>().text = "Сожалею, но машина оказалась умней!";
+                        GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
+                        break;
+
+                }
+
+                // objectsOfEndGame[0].GetComponentInChildren<UnityEngine.Animation>().Play();
+
+
+                 var wallet = gameObject.AddComponent<Wallet>();
+                 wallet.FireCoins += Random.Range(15, 25 * difficulty)+ PlayerPrefs.GetInt("Wallet");
+                PlayerPrefs.SetInt("Wallet", wallet.FireCoins);
+
+                foreach (var i in objectsToHide)
+                {
+                    i.SetActive(false);
+                }
             }
-
-            winOrLosePanel.SetActive(true);
-            StopGame = true;
-            switch (whoseTurn)
-            {
-                case "Computer":
-                    victoryPanel.text = "Вы выиграли!";
-                    GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
-                    break;
-                case "Human":
-                    victoryPanel.text = "Сожалею, но машина оказалась умней!";
-                    GameObject.Find("SFX_Lose").GetComponent<AudioSource>().Play();
-                    break;
-                default:
-                    Debug.Log("Ошибка");
-                    break;
-            }
-
-            winOrLosePanel.GetComponentInChildren<UnityEngine.Animation>().Play();
-            if (!StopGame)
-            {
-                return;
-            }
-
-            {
-                var wallet = gameObject.AddComponent<Wallet>();
-                wallet.FireCoins += Random.Range(15, 25 * difficulty);
-            }
-
-
-            buttonPanel.SetActive(false);
         }
 
 
