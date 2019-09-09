@@ -29,7 +29,7 @@ namespace GameScene
 
         private void PerkActivation()
         {
-            var pg = FindObjectOfType<GameplayStepsControl>();
+            var pg = FindObjectOfType<PlayingGame>();
             if (pg.WhoseTurn == "Computer")
             {
                 return;
@@ -53,7 +53,7 @@ namespace GameScene
                     basket.Calculate('-', inti, false);
                     break;
                 case "Replacement":
-                    var bank = FindObjectOfType<SafeDepositOfButtonActions>();
+                    var bank = FindObjectOfType<BankOfButtonActions>();
                     bank.GenerateIndex();
 
                     break;

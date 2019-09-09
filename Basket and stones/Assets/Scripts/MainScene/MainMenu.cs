@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace MainScene
 {
-    public class ChangeDifficultyLevel : MonoBehaviour
+    public class MainMenu : MonoBehaviour
 
     {
         public Text difficultLevelLabel;

@@ -10,31 +10,34 @@ namespace GameScene
         public int Value
         {
             get { return value; }
-            set { this.value = value; }
+            private set { this.value = value; }
         }
 
-        public char Action { get { return action; } set { action = value; } }
+        public char Action { get; private set; }
 
-        public int NumberOfGameButton { get; private set; }
-
-
+        public int Index
+        {
+            set
+            {
+                index = value;
+                ButtonsValueGenerate();
+            }
+        }
 
         [SerializeField] private int value;
         [SerializeField] private char action;
+        [SerializeField] private int index;
+        [SerializeField] private BankOfButtonActions bank;
 
         private void Start()
         {
-            
-                NumberOfGameButton = Array.IndexOf(GameObject.FindObjectsOfType<GameButton>(), gameObject.GetComponent<GameButton>());
-               
-            
-
+            bank.GenerateIndex();
         }
 
 
         public void OnClick()
         {
-            var pg = FindObjectOfType<GameplayStepsControl>();
+            var pg = FindObjectOfType<PlayingGame>();
             GameObject.Find("SFX_Tern_button_" + Random.Range(1, 3)).GetComponent<AudioSource>().Play();
             foreach (var VARIABLE in FindObjectsOfType<GameButton>())
             {
@@ -45,10 +48,15 @@ namespace GameScene
         }
 
 
-        public void ButtonsValueGenerate()
+        private void ButtonsValueGenerate()
         {
+            var leftOrRight = gameObject.name == "LeftChoice_Button" ? 0 : 1;
+            action = bank.Actions[leftOrRight, index];
+            value = bank.ButtonsActionNumericalValue[leftOrRight, index];
             gameObject.GetComponentInChildren<Text>().text =
-             Action + Convert.ToString(Value);
+                action + Convert.ToString(value);
+            Action = action;
+            Value = value;
         }
     }
 }
