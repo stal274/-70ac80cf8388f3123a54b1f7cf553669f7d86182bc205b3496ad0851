@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
+using StudyGameScene;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-namespace GameScene
+namespace StudyGameScene
 {
     public class Perk : MonoBehaviour
     {
@@ -40,21 +40,16 @@ namespace GameScene
             {
                 case "Frost":
 
-                    ai.buttonsAi[Random.Range(0, 2)].interactable = false;
+
                     break;
                 case "Shake":
 
-                    var inti = Random.Range(1, 11);
-                    while (basket.CurrentAmountOfStones - inti <= 0)
-                    {
-                        inti = Random.Range(1, 11);
-                    }
 
-                    basket.Calculate('-', inti, false);
+
+                    basket.Calculate('-', 5, false);
                     break;
                 case "Replacement":
-                    var bank = FindObjectOfType<SafeDepositOfButtonActions>();
-                    bank.GenerateIndex();
+
 
                     break;
             }

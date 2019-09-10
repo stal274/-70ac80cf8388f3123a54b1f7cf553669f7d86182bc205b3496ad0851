@@ -1,18 +1,15 @@
 using System;
 using System.Collections;
-using MainScene;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-namespace GameScene
+namespace StudyGameScene
 {
     public class Basket : MonoBehaviour
     {
-        private readonly byte Difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private Text currentAmountOfStonesPanel, stonesToWinPanel;
-        [SerializeField] private int currentAmountOfStones, stonesToWin;
-        public int StonesToWin { get { return stonesToWin; } private set { stonesToWin = value; } }
+        [SerializeField] private int currentAmountOfStones;
+        public int StonesToWin { get; private set; }
 
         public int CurrentAmountOfStones
         {
@@ -23,25 +20,9 @@ namespace GameScene
         private void Start()
         {
 
-            var i = 0;
-            if (Difficulty == 0)
-            {
-                i = Random.Range(10, 26);
-            }
-            else if (Difficulty == 1)
-            {
-                i = Random.Range(26, 40);
-            }
-            else if (Difficulty == 2)
-            {
-                i = Random.Range(41, 56);
-            }
+            CurrentAmountOfStones = int.Parse(GameObject.Find("StonesInBasket_Text").GetComponent<Text>().text);
+            StonesToWin = int.Parse(stonesToWinPanel.text);
 
-            CurrentAmountOfStones = i;
-            float min = i * 1.3f;
-            float max = i * 2.2f;
-            StonesToWin = Convert.ToInt32(Random.Range(min, max));
-            stonesToWinPanel.text = Convert.ToString(StonesToWin);
 
             StartCoroutine(StonesInBasketGenerate());
 
@@ -83,6 +64,7 @@ namespace GameScene
         public void Calculate(GameButton button)
         {
             Calculate(button.Action, button.Value, false);
+            
         }
 
         public IEnumerator StonesInBasketGenerate()
@@ -107,8 +89,6 @@ namespace GameScene
 
                 if (j == CurrentAmountOfStones)
                 {
-                    var controller = GameObject.FindObjectOfType<GameplayStepsControl>();
-                    controller.IsVictory(StonesToWin == CurrentAmountOfStones);
                     break;
                 }
             }
