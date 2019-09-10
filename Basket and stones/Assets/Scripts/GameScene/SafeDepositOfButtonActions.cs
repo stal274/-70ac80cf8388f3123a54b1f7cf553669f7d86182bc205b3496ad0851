@@ -24,7 +24,6 @@ namespace GameScene
             index = Random.Range(0, Values.GetLength(1));
             foreach (var variable in button)
             {
-                
                 variable.Action = Actions[variable.NumberOfGameButton, index];
                 variable.Value = Values[variable.NumberOfGameButton, index];
                 variable.ButtonsValueGenerate();
