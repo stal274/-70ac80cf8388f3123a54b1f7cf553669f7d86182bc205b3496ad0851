@@ -8,7 +8,7 @@ namespace StudyGameScene
 {
     public class Perk : MonoBehaviour
     {
-        public string name;
+        public string perkName;
         [SerializeField] private int cooldown, progressOfcooldown, stepsIsWork;
         [SerializeField] private int stepsIsWorkTick;
         [SerializeField] private Image image;
@@ -19,7 +19,7 @@ namespace StudyGameScene
 
         private void Start()
         {
-            name = gameObject.name;
+            perkName = gameObject.name;
             image = gameObject.GetComponent<Image>();
             ai = FindObjectOfType<Ai>();
             stepsIsWorkTick = stepsIsWork;
@@ -36,7 +36,7 @@ namespace StudyGameScene
             }
 
             image.fillAmount = 0f;
-            switch (name)
+            switch (perkName)
             {
                 case "Frost":
 

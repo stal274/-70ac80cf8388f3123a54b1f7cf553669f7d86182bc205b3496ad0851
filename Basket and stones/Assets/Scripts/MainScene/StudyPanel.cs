@@ -9,7 +9,7 @@ public class StudyPanel : MonoBehaviour
     private void Start()
     {
         mainMenuWindow = GameObject.Find("MainMenuWindow");
-        PlayerPrefs.SetInt("IsStudy", 0);
+        
     }
     private void OnEnable()
     {

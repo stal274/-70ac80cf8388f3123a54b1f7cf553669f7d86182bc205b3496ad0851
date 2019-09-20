@@ -10,7 +10,7 @@ namespace MainScene
     {
         public static GameObject itemBeingDragged;
         private Vector3 startPosition;
-        public static string name;
+        public static string elementName;
         private Transform FirstParent;
 
         private bool parentIsBackpack;
@@ -31,7 +31,7 @@ namespace MainScene
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            name = gameObject.name;
+            elementName = gameObject.name;
             itemBeingDragged = gameObject;
             startPosition = transform.position;
             parentIsBackpack = Math.Abs(itemBeingDragged.GetComponentInParent<GridLayoutGroup>().cellSize.x - 72) <

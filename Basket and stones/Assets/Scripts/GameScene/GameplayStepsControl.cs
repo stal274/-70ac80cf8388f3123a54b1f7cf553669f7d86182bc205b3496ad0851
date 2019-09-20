@@ -24,9 +24,8 @@ namespace GameScene
         public bool StopGame { get; private set; }
 
         [SerializeField] private string whoseTurn;
-        [SerializeField] private Basket basket;
         [SerializeField] private SafeDepositOfButtonActions bank;
-
+        [SerializeField] private Basket basket;
         private readonly byte difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private int tick, sTick;
 
@@ -98,7 +97,7 @@ namespace GameScene
                 switch (WhoseTurn)
                 {
                     case "Computer":
-                        objectsOfEndGame[1].GetComponent<Text>().color = new Color(0.1490196f, 0.7921569f, 0.8980392f);
+                        objectsOfEndGame[1].GetComponent<Text>().color = new Color(0.6196079f, 0.1333333f, 0.1372549f);
                         objectsOfEndGame[1].GetComponent<Text>().text = "Вы выиграли!";
                         GameObject.Find("SFX_Win").GetComponent<AudioSource>().Play();
                         break;

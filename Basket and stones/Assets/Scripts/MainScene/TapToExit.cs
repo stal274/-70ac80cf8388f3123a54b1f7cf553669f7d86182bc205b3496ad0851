@@ -30,8 +30,11 @@ namespace MainScene
    Windows[i].SetActive(false);
    break;
 }*/
-
-            if (Windows[1].activeSelf)
+            if (Windows[0].activeSelf)
+            {
+                Application.Quit();
+            }
+            else if (Windows[1].activeSelf)
 
             {
                 Windows[0].SetActive(true);
@@ -44,11 +47,10 @@ namespace MainScene
                 Windows[1].SetActive(true);
                 Windows[2].SetActive(false);
             }
+          
+            new WaitForSeconds(0.05f);
 
-            if (Windows[0].activeSelf)
-            {
-                Application.Quit();
-            }
+
         }
     }
 }

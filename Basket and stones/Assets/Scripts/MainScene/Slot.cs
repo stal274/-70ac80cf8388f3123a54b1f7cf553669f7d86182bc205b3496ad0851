@@ -12,7 +12,7 @@ namespace MainScene
 
         public void OnDrop(PointerEventData eventData)
         {
-            if ((Item || DragElement.name != transform.name) && (Item || transform.name != "Backpack slot"))
+            if ((Item || DragElement.elementName != transform.name) && (Item || transform.name != "Backpack slot"))
             {
                 return;
             }

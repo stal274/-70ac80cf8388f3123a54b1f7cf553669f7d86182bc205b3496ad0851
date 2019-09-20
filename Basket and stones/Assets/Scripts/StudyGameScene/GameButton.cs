@@ -22,7 +22,6 @@ namespace StudyGameScene
 
         private void Start()
         {
-            var leftOrRight = gameObject.name == "LeftChoice_Button" ? 0 : 1;
             Action = gameObject.GetComponentInChildren<Text>().text[0];
             Value = System.Convert.ToInt32(gameObject.GetComponentInChildren<Text>().text[1].ToString());
         }

@@ -17,7 +17,7 @@ namespace GameScene
         public int CurrentAmountOfStones
         {
             get { return currentAmountOfStones; }
-            private set { currentAmountOfStones = value; }
+            set { currentAmountOfStones = value; }
         }
 
         private void Start()
@@ -35,6 +35,10 @@ namespace GameScene
             else if (Difficulty == 2)
             {
                 i = Random.Range(41, 56);
+            }
+            else
+            {
+                i = Random.Range(26, 40);
             }
 
             CurrentAmountOfStones = i;
