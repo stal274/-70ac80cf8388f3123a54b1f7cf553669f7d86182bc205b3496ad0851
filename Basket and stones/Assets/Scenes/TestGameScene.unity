@@ -1985,7 +1985,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 709908721}
-          m_ObjectArgumentAssemblyTypeName: GameScene.GameButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: GameScene.GameButton, NewAssembly
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3919,7 +3919,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1665989381}
-          m_ObjectArgumentAssemblyTypeName: GameScene.GameButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: GameScene.GameButton, NewAssembly
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4266,8 +4266,8 @@ MonoBehaviour:
   - {fileID: 66249087}
   - {fileID: 1704333083}
   whoseTurn: 
-  basket: {fileID: 0}
   bank: {fileID: 1833727843}
+  basket: {fileID: 0}
   tick: 0
   sTick: 0
 --- !u!114 &1833727841
