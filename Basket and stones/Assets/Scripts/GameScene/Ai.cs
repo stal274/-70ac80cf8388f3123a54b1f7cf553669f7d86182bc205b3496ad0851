@@ -11,7 +11,16 @@ namespace GameScene
         [SerializeField] private GameButton[] gameButton;
         public Button[] buttonsAi;
         private Basket Basket;
-
+        public static Ai ai;
+        private void Awake()
+        {
+            if (ai != null)
+            {
+                Debug.LogWarning("Error");
+                return;
+            }
+            ai = this;
+        }
         private void Start()
         {
             Basket = FindObjectOfType<Basket>();
@@ -19,11 +28,7 @@ namespace GameScene
 
         public void AiStep()
         {
-            
                 StartCoroutine(AiChoice());
-            
-
-           
         }
         private void Update()
         {

@@ -24,24 +24,23 @@ namespace GameScene
 
         private void Start()
         {
-            
-                NumberOfGameButton = Array.IndexOf(GameObject.FindObjectsOfType<GameButton>(), gameObject.GetComponent<GameButton>());
-               
-            
 
+            NumberOfGameButton = Array.IndexOf(GameObject.FindObjectsOfType<GameButton>(), gameObject.GetComponent<GameButton>());
+            SafeDepositOfButtonActions.bank.GenerateIndex();
         }
 
 
         public void OnClick()
         {
-            var pg = FindObjectOfType<GameplayStepsControl>();
+
             GameObject.Find("SFX_Tern_button_" + Random.Range(1, 3)).GetComponent<AudioSource>().Play();
             foreach (var VARIABLE in FindObjectsOfType<GameButton>())
             {
                 VARIABLE.GetComponent<Button>().interactable = false;
             }
 
-            pg.WhoseTurn = "Computer";
+            GameplayStepsControl.stepsControl.WhoseTurn = "Computer";
+            GameplayStepsControl.stepsControl.Tick += 1;
         }
 
 

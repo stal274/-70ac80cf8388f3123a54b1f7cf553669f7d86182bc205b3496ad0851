@@ -37,6 +37,7 @@ namespace StudyGameScene
             if (i == StudyTexts.Length-1)
             {
                 PlayerPrefs.SetInt("IsStudy", 1);
+                Player.Wallet.wallet.FireCoins = 250;
                 SceneManager.LoadScene("Main menu");
                 return;
             }

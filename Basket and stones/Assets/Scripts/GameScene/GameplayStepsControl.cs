@@ -23,36 +23,65 @@ namespace GameScene
 
         public bool StopGame { get; private set; }
 
+        public int Tick
+        {
+            get
+            {
+                return tick;
+            }
+
+            set
+            {
+                tick = value;
+            }
+        }
+
+        public int STick
+        {
+            get
+            {
+                return sTick;
+            }
+
+            set
+            {
+                sTick = value;
+            }
+        }
+
         [SerializeField] private string whoseTurn;
-        [SerializeField] private SafeDepositOfButtonActions bank;
-        [SerializeField] private Basket basket;
         private readonly byte difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private int tick, sTick;
 
+        public static GameplayStepsControl stepsControl;
 
         /*private Stones stones;*/
 
+        private void Awake()
+        {
+            if (stepsControl != null)
+            {
+                Debug.LogWarning("Error");
+                return;
+            }
+            stepsControl = this;
+        }
         private void Start()
         {
-            basket = FindObjectOfType<Basket>();
             switch (difficulty)
             {
                 case 0:
-                    sTick = 8;
+                    STick = 2;
                     break;
                 case 1:
-                    sTick = 6;
+                    STick = 3;
                     break;
                 case 2:
-                    sTick = 4;
+                    STick = 4;
                     break;
                 default:
-                    sTick = 4;
+                    STick = 4;
                     break;
-            }
-            if (bank != null)
-            {
-                bank.GenerateIndex();
             }
             /*stones.GetComponent<Stones>();*/
         }
@@ -77,12 +106,11 @@ namespace GameScene
         {
 
 
-            tick += 1;
-            if (tick == sTick)
+
+            if (Tick == STick)
             {
-                var bank = FindObjectOfType<SafeDepositOfButtonActions>();
-                bank.GenerateIndex();
-                tick = 0;
+                SafeDepositOfButtonActions.bank.GenerateIndex();
+                Tick = 0;
             }
 
 
@@ -112,9 +140,11 @@ namespace GameScene
                 // objectsOfEndGame[0].GetComponentInChildren<UnityEngine.Animation>().Play();
 
 
-                 var wallet = gameObject.AddComponent<Wallet>();
-                 wallet.FireCoins += Random.Range(15, 25 * difficulty)+ PlayerPrefs.GetInt("Wallet");
-                PlayerPrefs.SetInt("Wallet", wallet.FireCoins);
+                var wallet = gameObject.AddComponent<Wallet>();
+                var money = Random.Range(15, 25 * (difficulty + 1));
+                Debug.Log(money);
+                wallet.FireCoins += money;
+                Debug.Log(wallet.FireCoins);
 
                 foreach (var i in objectsToHide)
                 {

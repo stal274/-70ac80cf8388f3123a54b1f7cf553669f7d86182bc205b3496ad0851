@@ -12,7 +12,9 @@ namespace GameScene
         private readonly byte Difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private Text currentAmountOfStonesPanel, stonesToWinPanel;
         [SerializeField] private int currentAmountOfStones, stonesToWin;
+        public static Basket basket;
         public int StonesToWin { get { return stonesToWin; } private set { stonesToWin = value; } }
+
 
         public int CurrentAmountOfStones
         {
@@ -20,6 +22,15 @@ namespace GameScene
             set { currentAmountOfStones = value; }
         }
 
+        private void Awake()
+        {
+            if (basket != null)
+            {
+                Debug.LogWarning("Error");
+                return;
+            }
+            basket = this;
+        }
         private void Start()
         {
 

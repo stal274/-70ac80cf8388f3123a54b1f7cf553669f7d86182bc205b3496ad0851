@@ -14,10 +14,18 @@ namespace GameScene
         };
         private int index;
 
+        public static SafeDepositOfButtonActions bank;
 
 
-
-
+        private void Awake()
+        {
+            if (bank != null)
+            {
+                Debug.LogWarning("Something Wrong!");
+                return;
+            }
+            bank = this;
+        }
         public void GenerateIndex()
         {
             var button = FindObjectsOfType<GameButton>();

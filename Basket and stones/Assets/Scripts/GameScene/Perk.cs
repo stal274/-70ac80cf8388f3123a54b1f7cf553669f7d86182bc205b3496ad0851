@@ -13,24 +13,19 @@ namespace GameScene
         [SerializeField] private int stepsIsWorkTick;
         [SerializeField] private Image image;
         [SerializeField] private bool IsActive = true;
-        [SerializeField] private Ai ai;
         [SerializeField] private GameButton[] GameButton;
-        [SerializeField] private Basket basket;
 
-        private void Start()
+        private void Awake()
         {
             perkName = gameObject.name;
             image = gameObject.GetComponent<Image>();
-            ai = FindObjectOfType<Ai>();
             stepsIsWorkTick = stepsIsWork;
             GameButton = FindObjectsOfType<GameButton>();
-            basket = FindObjectOfType<Basket>();
         }
 
         private void PerkActivation()
         {
-            var pg = FindObjectOfType<GameplayStepsControl>();
-            if (pg.WhoseTurn == "Computer")
+            if (GameplayStepsControl.stepsControl.WhoseTurn == "Computer")
             {
                 return;
             }
@@ -40,17 +35,17 @@ namespace GameScene
             {
                 case "Frost":
 
-                    ai.buttonsAi[Random.Range(0, 2)].interactable = false;
+                    Ai.ai.buttonsAi[Random.Range(0, 2)].interactable = false;
                     break;
                 case "Shake":
 
                     var inti = Random.Range(1, 11);
-                    while (basket.CurrentAmountOfStones - inti <= 0)
+                    while (Basket.basket.CurrentAmountOfStones - inti <= 0)
                     {
                         inti = Random.Range(1, 11);
                     }
 
-                    basket.Calculate('-', inti, false);
+                    Basket.basket.Calculate('-', inti, false);
                     break;
                 case "Replacement":
                     var bank = FindObjectOfType<SafeDepositOfButtonActions>();
@@ -131,7 +126,7 @@ namespace GameScene
                 return;
             }
 
-            foreach (var VARIABLE in ai.buttonsAi)
+            foreach (var VARIABLE in Ai.ai.buttonsAi)
             {
                 VARIABLE.interactable = true;
             }

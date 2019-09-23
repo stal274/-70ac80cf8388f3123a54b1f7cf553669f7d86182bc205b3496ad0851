@@ -7,7 +7,7 @@ namespace MainScene
 {
     public class TimerToStartGame : MonoBehaviour
     {
-        [SerializeField] private GameObject Timer;
+
         [SerializeField] private Text Text;
 
         public bool StartTick { private get; set; }
@@ -30,7 +30,7 @@ namespace MainScene
         // Update is called once per frame
         private void Start()
         {
-            Timer = GameObject.Find("Timer");
+            var Timer = GameObject.Find("Timer");
             Text = Timer.GetComponent<Text>();
         }
 
