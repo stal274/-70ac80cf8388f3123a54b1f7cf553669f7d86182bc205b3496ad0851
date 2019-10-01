@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 2867727717311420185}
   m_Layer: 0
   m_Name: Perk
-  m_TagString: Untagged
+  m_TagString: Perk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,6 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207f70d0eabfde640be94e0ced919818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstParent: {fileID: 0}
+  parentIsBackpack: 0
 --- !u!225 &8123369785083123301
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -317,15 +319,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b03b3c0eda2154b8b834f105debad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Image
+  perkName: 
   cooldown: 0
-  progressOfcooldown: 0
-  stepsIsWork: 0
-  stepsIsWorkTick: 0
+  skillIsValidFor: 0
   image: {fileID: 0}
   IsActive: 1
-  ai: {fileID: 0}
-  PG: {fileID: 0}
 --- !u!114 &2867727717311420185
 MonoBehaviour:
   m_ObjectHideFlags: 0
