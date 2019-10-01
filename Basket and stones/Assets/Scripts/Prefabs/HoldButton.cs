@@ -7,12 +7,20 @@ namespace Prefabs
 {
     public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
     {
-        private bool flag;
-        private int timer;
+        private bool _flag;
+        private int _timer;
         [SerializeField] private Text descriptionText, actionText;
         [SerializeField] private GameObject panelOfDescription;
         [SerializeField] private GameObject[] objectsToVisible;
+        private Text[] _texts;
+        private Text[] _texts1;
 
+
+        private void Start()
+        {
+            _texts1 = gameObject.GetComponentsInChildren<Text>();
+            _texts = gameObject.GetComponentsInChildren<Text>();
+        }
 
         private IEnumerator OnHold()
         {
@@ -23,8 +31,8 @@ namespace Prefabs
 
         private void DescriptionActivation()
         {
-            descriptionText.text = gameObject.GetComponentsInChildren<Text>()[0].text;
-            actionText.text = gameObject.GetComponentsInChildren<Text>()[1].text;
+            descriptionText.text = _texts[0].text;
+            actionText.text = _texts1[1].text;
             panelOfDescription.SetActive(true);
 
 

@@ -1,15 +1,28 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MainScene
 {
     public class BackpackProgressBar : MonoBehaviour
     {
-        [SerializeField] private Image progressBar;
-        [SerializeField] private float startFloat;
+        [FormerlySerializedAs("progressBar")] [SerializeField]
+        private Image progressBarImage;
 
+        [SerializeField] private float startFloat;
+        private static BackpackProgressBar progressBar;
+
+        private void Awake()
+        {
+            if (progressBar != null)
+            {
+            }
+
+            progressBar = this;
+        }
 
         private float EndFloat { get; set; }
 
@@ -40,36 +53,28 @@ namespace MainScene
                 if (Math.Abs(i - (1f - 2 / 60f)) < 0.01f && Math.Abs(EndFloat - 1f) < 0.01)
                 {
                     i = 1f;
-                    progressBar.fillAmount = i;
+                    progressBarImage.fillAmount = i;
                     break;
                 }
 
-                progressBar.fillAmount = i;
+                progressBarImage.fillAmount = i;
             }
         }
 
         public static void CheckBackPack()
         {
-            var I = 0;
-            for (var i = 0; i < GameObject.FindGameObjectsWithTag("BackpackSlot").Length; i++)
-            {
-                if (GameObject.FindGameObjectsWithTag("BackpackSlot")[i].GetComponentsInChildren<Image>().Length == 2)
-                {
-                    I++;
-                }
-            }
-
-            var script = FindObjectOfType<BackpackProgressBar>();
+            var I = GameObject.FindGameObjectsWithTag("BackpackSlot")
+                .Count(variable => variable.GetComponentsInChildren<Image>().Length >= 2);
             var timer = FindObjectOfType<TimerToStartGame>();
             timer.StartTick = I == 3;
             timer.StartTicker();
             switch (I)
             {
                 case 0:
-                    script.EndFloat = 0f;
+                    progressBar.EndFloat = 0f;
                     break;
                 case 3:
-                    script.EndFloat = 1f;
+                    progressBar.EndFloat = 1f;
                     for (var i = 0; i < GameObject.FindGameObjectsWithTag("BackpackSlot").Length; i++)
                     {
                         PlayerPrefs.SetString("BackpackSlot" + i,
@@ -79,11 +84,11 @@ namespace MainScene
 
                     break;
                 default:
-                    script.EndFloat = I / 3f;
+                    progressBar.EndFloat = I / 3f;
                     break;
             }
 
-            script.LoadingBackpack();
+            progressBar.LoadingBackpack();
             if (I != 0)
             {
                 GameObject.Find("ProgressBarAudio").GetComponents<AudioSource>()[I - 1].Play();

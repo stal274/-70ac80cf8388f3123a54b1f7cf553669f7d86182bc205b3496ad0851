@@ -9,18 +9,17 @@ namespace GameScene
     public class Perk : MonoBehaviour
     {
         public string perkName;
-        [SerializeField] private int cooldown, progressOfcooldown, stepsIsWork;
-        [SerializeField] private int stepsIsWorkTick;
+        [SerializeField] private int cooldown, skillIsValidFor;
+        private int skillProgress, progressOfcooldown;
         [SerializeField] private Image image;
         [SerializeField] private bool IsActive = true;
-        [SerializeField] private GameButton[] GameButton;
 
         private void Awake()
         {
             perkName = gameObject.name;
             image = gameObject.GetComponent<Image>();
-            stepsIsWorkTick = stepsIsWork;
-            GameButton = FindObjectsOfType<GameButton>();
+            skillProgress = skillIsValidFor;
+           
         }
 
         private void PerkActivation()
@@ -50,7 +49,14 @@ namespace GameScene
                 case "Replacement":
                     var bank = FindObjectOfType<SafeDepositOfButtonActions>();
                     bank.GenerateIndex();
+                    break;
+                case "Coffee":
 
+                    foreach (var perks in PerksOnBackPack.Instance.PerksOnBackPackArray)
+                    {
+                        perks.cooldown = Convert.ToInt32(perks.cooldown * 0.66);
+                    }
+                    this.cooldown = Convert.ToInt32(cooldown / 0.66);
                     break;
             }
 
@@ -64,7 +70,26 @@ namespace GameScene
                 IsActive = !IsActive;
             }
         }
+        private void PerkDeactivation()
+        {
+            switch (perkName)
+            {
+                case "Frost":
+                    foreach (var VARIABLE in Ai.ai.buttonsAi)
+                    {
+                        VARIABLE.interactable = true;
+                    }
+                    break;
+                case "Coffee":
 
+                    foreach (var perks in PerksOnBackPack.Instance.PerksOnBackPackArray)
+                    {
+                        perks.cooldown = Convert.ToInt32(perks.cooldown / 0.66);
+                    }
+                    this.cooldown = Convert.ToInt32(cooldown * 0.66);
+                    break;
+            }
+        }
         private IEnumerator FillAmount()
         {
             for (var i = image.fillAmount;
@@ -84,7 +109,7 @@ namespace GameScene
                 break;
             }
 
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
+          
             if (image.fillAmount != 1f)
             {
                 yield break;
@@ -107,29 +132,23 @@ namespace GameScene
                 progressOfcooldown++;
             }
 
+
             StartCoroutine(FillAmount());
         }
 
         private void CheckOfWork()
         {
-            if (stepsIsWorkTick > 0)
+            if (skillProgress > 0)
             {
-                stepsIsWorkTick--;
+                skillProgress--;
             }
-            else if (stepsIsWorkTick == 0)
+            else if (skillProgress == 0)
             {
-                stepsIsWorkTick = stepsIsWork;
+                skillProgress = skillIsValidFor;
+                PerkDeactivation();
+
             }
 
-            if (stepsIsWorkTick != 0 || gameObject.name != "Frost")
-            {
-                return;
-            }
-
-            foreach (var VARIABLE in Ai.ai.buttonsAi)
-            {
-                VARIABLE.interactable = true;
-            }
         }
 
         public void PerkOnClick()

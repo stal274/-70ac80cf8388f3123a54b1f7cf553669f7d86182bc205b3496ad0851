@@ -14,7 +14,7 @@ namespace MainScene
             studyTrigger,
             backpackWindow;
 
-
+        [SerializeField] private GameObject[] windowsArray;
         public void OnMouseUpAsButton()
         {
             switch (gameObject.name)

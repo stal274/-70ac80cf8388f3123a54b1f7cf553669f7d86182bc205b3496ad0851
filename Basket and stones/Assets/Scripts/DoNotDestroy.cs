@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class DoNotDestroy : MonoBehaviour
 {
-    private GameObject[] AudioArray;
+    private GameObject[] audioArray;
 
     private void Start()
     {
-        AudioArray = GameObject.FindGameObjectsWithTag("GameAudio");
+        audioArray = GameObject.FindGameObjectsWithTag("GameAudio");
         if (gameObject.CompareTag("Audio"))
         {
             DontDestroyOnLoad(gameObject);
         }
-        else if (!gameObject.CompareTag("GameAudio") || AudioArray.Length > 1)
+        else if (!gameObject.CompareTag("GameAudio") || audioArray.Length > 1)
         {
-            Destroy(AudioArray.Last());
+            Destroy(audioArray.Last());
         }
     }
 }

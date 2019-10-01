@@ -31,11 +31,9 @@ namespace Comics
 
             }
         }
-
-
         public void OnBeginDrag(PointerEventData eventData)
         {
-            length = transform.position.y -startY ;
+            length = transform.position.y - startY;
         }
     }
 }

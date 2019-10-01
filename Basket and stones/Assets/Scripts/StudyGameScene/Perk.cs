@@ -38,19 +38,10 @@ namespace StudyGameScene
             image.fillAmount = 0f;
             switch (perkName)
             {
-                case "Frost":
-
-
-                    break;
                 case "Shake":
 
 
-
                     basket.Calculate('-', 5, false);
-                    break;
-                case "Replacement":
-
-
                     break;
             }
 
@@ -68,14 +59,14 @@ namespace StudyGameScene
         private IEnumerator FillAmount()
         {
             for (var i = image.fillAmount;
-                Math.Abs(i - (float)progressOfcooldown / cooldown) >
-                (float)1 / (60 * cooldown);
+                Math.Abs(i - (float) progressOfcooldown / cooldown) >
+                (float) 1 / (60 * cooldown);
                 i +=
-                    (float)1 / (60 * cooldown))
+                    (float) 1 / (60 * cooldown))
             {
-                yield return new WaitForSeconds((float)1 / (60 * cooldown));
+                yield return new WaitForSeconds((float) 1 / (60 * cooldown));
                 image.fillAmount = i;
-                if (!(Math.Abs(i - (1f - (float)1 / (60 * cooldown))) < (float)1 / (60 * cooldown)))
+                if (!(Math.Abs(i - (1f - (float) 1 / (60 * cooldown))) < (float) 1 / (60 * cooldown)))
                 {
                     continue;
                 }

@@ -1,32 +1,32 @@
 ﻿using System.Collections;
-using StudyGameScene;
 using UnityEngine;
 
-public class VisualisingObjectContract : MonoBehaviour
+namespace StudyGameScene
 {
-    private GameObject obj;
-    
-    public void ObjectVisibleAfter1Second(GameObject obj)
+    public class VisualisingObjectContract : MonoBehaviour
     {
-        this.obj = obj;
-        this.obj.SetActive(false);
-    
-        StartCoroutine(CheckingAnimations());
+        private GameObject _obj;
 
-
-    }
-    private IEnumerator CheckingAnimations()
-    {
-        if (FindObjectOfType<GameplayStepsControl>().StopGame)
+        public void ObjectVisibleAfter1Second(GameObject obj)
         {
-            yield return null;
-           
-        }
-      var  basket = GameObject.FindObjectOfType<Basket>();
-        yield return StartCoroutine(basket.StonesInBasketGenerate());
-        
-        yield return new WaitForSeconds(2f);
-        obj.SetActive(true);
+            this._obj = obj;
+            this._obj.SetActive(false);
 
+            StartCoroutine(CheckingAnimations());
+        }
+
+        private IEnumerator CheckingAnimations()
+        {
+            if (FindObjectOfType<GameplayStepsControl>().StopGame)
+            {
+                yield return null;
+            }
+
+            var basket = GameObject.FindObjectOfType<Basket>();
+            yield return StartCoroutine(basket.StonesInBasketGenerate());
+
+            yield return new WaitForSeconds(2f);
+            _obj.SetActive(true);
+        }
     }
 }

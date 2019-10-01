@@ -6,8 +6,8 @@ namespace MainScene
     public class ChangeDifficultyLevel : MonoBehaviour
 
     {
-        public Text difficultLevelLabel;
-        public Slider difficultSlider;
+        [SerializeField] private Text difficultLevelLabel;
+        [SerializeField] private Slider difficultSlider;
         public static byte Difficulty;
 
 

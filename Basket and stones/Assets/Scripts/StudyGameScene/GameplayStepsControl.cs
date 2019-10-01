@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace StudyGameScene
 {
     public class GameplayStepsControl : MonoBehaviour, GameScene.IPhoneButtons, IPointerDownHandler, IPointerUpHandler
     {
-
         [SerializeField] private Text victoryPanel, whoseTurnInfo;
 
-        [SerializeField] private GameObject[] ObjectsToHide;
-        private Animation Anim;
+        [FormerlySerializedAs("ObjectsToHide")] [SerializeField]
+        private GameObject[] objectsToHide;
+
+        private Animation _anim;
 
         public string WhoseTurn
         {
@@ -28,8 +30,7 @@ namespace StudyGameScene
 
         [SerializeField] private string whoseTurn;
         [SerializeField] private Basket basket;
-        private GameObject studyMask;
-
+        private GameObject _studyMask;
 
 
         /*private Stones stones;*/
@@ -37,25 +38,20 @@ namespace StudyGameScene
         private void Start()
         {
             basket = FindObjectOfType<Basket>();
-            studyMask = GameObject.Find("StudyMask");
+            _studyMask = GameObject.Find("StudyMask");
         }
 
         private void WhoseTurnInfoText()
         {
-            switch (whoseTurn)
+            if (whoseTurn == "Human")
             {
-                case "Human":
-                    whoseTurnInfo.text = "Ваш ход";
-                    break;
-                case "Computer":
-                    whoseTurnInfo.text = "Ход компьютера";
-                    break;
+                whoseTurnInfo.text = "Ваш ход";
             }
+            else if (whoseTurn == "Computer") whoseTurnInfo.text = "Ход компьютера";
         }
+
         private void IsVictory()
         {
-
-
             if (basket.CurrentAmountOfStones != basket.StonesToWin)
             {
                 return;
@@ -85,7 +81,7 @@ namespace StudyGameScene
                 return;
             }
 
-            foreach (var i in ObjectsToHide)
+            foreach (var i in objectsToHide)
             {
                 i.SetActive(false);
             }
@@ -98,7 +94,8 @@ namespace StudyGameScene
             {
                 HardwareButtons(KeyCode.Escape);
             }
-            if (studyMask.activeSelf || StopGame)
+
+            if (_studyMask.activeSelf || StopGame)
             {
                 whoseTurnInfo.gameObject.SetActive(false);
             }

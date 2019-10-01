@@ -1,114 +1,109 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace StudyGameScene
 {
     public class StudyingScript : MonoBehaviour, IPointerDownHandler
     {
-        [SerializeField] private Transform ClickableObject;
-        [SerializeField] private Transform[] FirstParent;
-        private bool Clickable = true;
-        [SerializeField] private byte i = 0;
-        [SerializeField] private GameObject[] ObjectsToStudy, StudyTexts;
-        private Basket Basket;
+        [SerializeField] private Transform clickableObject;
+        [SerializeField] private Transform[] firstParent;
+#pragma warning disable 414
+        private bool _clickable = true;
+#pragma warning restore 414
+        [FormerlySerializedAs("i")] [SerializeField] private byte studyTextCount = 0;
+        [SerializeField] private GameObject[] objectsToStudy, studyTexts;
+        private Basket _basket;
 
         private void OnEnable()
         {
-            if (i == 0)
+            if (studyTextCount == 0)
             {
                 return;
             }
 
-           
+
             StudyStepActivation();
         }
+
         private void Start()
         {
-           
-            StudyTexts[0].SetActive(true);
-            Basket = FindObjectOfType<Basket>();
-
-
+            studyTexts[0].SetActive(true);
+            _basket = FindObjectOfType<Basket>();
         }
+
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (i == StudyTexts.Length-1)
+            if (studyTextCount == studyTexts.Length - 1)
             {
                 PlayerPrefs.SetInt("IsStudy", 1);
                 Player.Wallet.wallet.FireCoins = 250;
                 SceneManager.LoadScene("Main menu");
                 return;
             }
+
             if (GameObject.Find("StudyMask").GetComponentsInChildren<Button>().Length > 0)
             {
                 return;
             }
+
             Restoration();
             StudyStepActivation();
-
-
-
         }
+
         public void OnClick()
         {
-
-
             Restoration();
-            ObjectsToStudy[i - 1].transform.SetParent(FirstParent[i - 1]);
-            StudyTexts[i].SetActive(false);
-
-
+            objectsToStudy[studyTextCount - 1].transform.SetParent(firstParent[studyTextCount - 1]);
+            studyTexts[studyTextCount].SetActive(false);
         }
 
         private void StudyStepActivation()
         {
-            if (i < ObjectsToStudy.Length)
+            if (studyTextCount < objectsToStudy.Length)
             {
-                if (ObjectsToStudy[i] != null)
+                if (objectsToStudy[studyTextCount] != null)
                 {
-                    ObjectsToStudy[i].transform.SetParent(ClickableObject);
+                    objectsToStudy[studyTextCount].transform.SetParent(clickableObject);
 
-                    foreach (var i in ObjectsToStudy[i].GetComponentsInChildren<Animation>())
+                    foreach (var variable in objectsToStudy[studyTextCount].GetComponentsInChildren<Animation>())
                     {
-                        i.Play();
+                        variable.Play();
                     }
-
-
                 }
-
-
             }
-            StudyTexts[i].SetActive(false); 
-            StudyTexts[i + 1].SetActive(true);
-            i++;
 
-
+            studyTexts[studyTextCount].SetActive(false);
+            studyTexts[studyTextCount + 1].SetActive(true);
+            studyTextCount++;
         }
+
         private void Restoration()
         {
-            if (i > 0)
+            if (studyTextCount <= 0) return;
+            if (studyTextCount + 1 > objectsToStudy.Length || objectsToStudy[studyTextCount - 1] == null) return;
+            objectsToStudy[studyTextCount - 1].transform.SetParent(firstParent[studyTextCount - 1]);
+            foreach (var variable in objectsToStudy[studyTextCount - 1].GetComponentsInChildren<Animation>())
             {
-                if (i + 1 <= ObjectsToStudy.Length && ObjectsToStudy[i - 1] != null)
-                {
-                    ObjectsToStudy[i - 1].transform.SetParent(FirstParent[i - 1]);
-                    foreach (var i in ObjectsToStudy[i - 1].GetComponentsInChildren<Animation>())
-                    {
-                        i.Stop();
+                variable.Stop();
+            }
 
-                    }
-                    foreach (var i in ObjectsToStudy[i - 1].GetComponentsInChildren<Image>())
-                    {
-                        i.color = new Color(i.color.r, i.color.g, i.color.b, 1f);
-                    }
-                    foreach (var i in ObjectsToStudy[i - 1].GetComponentsInChildren<Text>())
-                    {
-                        i.color = new Color(i.color.r, i.color.g, i.color.b, 1f);
-                    }
-                }
+            foreach (var variable in objectsToStudy[studyTextCount - 1].GetComponentsInChildren<Image>())
+            {
+                var color = variable.color;
+                color = new Color(color.r, color.g, color.b, 1f);
+                variable.color = color;
+            }
+
+            foreach (var variable in objectsToStudy[studyTextCount - 1].GetComponentsInChildren<Text>())
+            {
+                var color = variable.color;
+                color = new Color(color.r, color.g, color.b, 1f);
+                variable.color = color;
             }
         }
-
     }
 }

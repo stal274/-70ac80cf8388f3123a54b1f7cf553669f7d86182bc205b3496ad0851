@@ -11,7 +11,7 @@ namespace MainScene
             for (var i = 0; i < GameObject.FindGameObjectsWithTag("BackpackSlot").Length; i++)
             {
                 if (GameObject.FindGameObjectsWithTag("BackpackSlot")[i].GetComponentsInChildren<Image>().Length !=
-                    1)
+                    1) 
                 {
                     continue;
                 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MainScene
@@ -8,7 +9,7 @@ namespace MainScene
     public class TimerToStartGame : MonoBehaviour
     {
 
-        [SerializeField] private Text Text;
+        [FormerlySerializedAs("Text")] [SerializeField] private Text text;
 
         public bool StartTick { private get; set; }
 
@@ -16,7 +17,7 @@ namespace MainScene
         {
             for (var i = 5; i >= 0; i--)
             {
-                Text.text = "0:0" + i;
+                text.text = "0:0" + i;
                 if (i == 0)
                 {
                     new WaitForSeconds(0.5f);
@@ -27,11 +28,11 @@ namespace MainScene
             }
         }
 
-        // Update is called once per frame
+    
         private void Start()
         {
-            var Timer = GameObject.Find("Timer");
-            Text = Timer.GetComponent<Text>();
+            var timer = GameObject.Find("Timer");
+            text = timer.GetComponent<Text>();
         }
 
         private void OnEnable()
@@ -47,7 +48,7 @@ namespace MainScene
             }
             else
             {
-                Text.text = "0:05";
+                text.text = "0:05";
                 StopAllCoroutines();
             }
         }

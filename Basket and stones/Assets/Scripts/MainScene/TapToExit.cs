@@ -1,11 +1,13 @@
 using GameScene;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MainScene
 {
     public class TapToExit : MonoBehaviour, IPhoneButtons
     {
-        [SerializeField] private GameObject[] Windows;
+        [FormerlySerializedAs("Windows")] [SerializeField]
+        private GameObject[] windows;
 
         private void Update()
         {
@@ -23,34 +25,25 @@ namespace MainScene
             {
                 return;
             }
-            /*for (var i = 0; i < Windows.Length; i++)
-{
-   if (!Windows[i].activeSelf || i <= 0) continue;
-   Windows[i - 1].SetActive(true);
-   Windows[i].SetActive(false);
-   break;
-}*/
-            if (Windows[0].activeSelf)
+            if (windows[0].activeSelf)
             {
                 Application.Quit();
             }
-            else if (Windows[1].activeSelf)
+            else if (windows[1].activeSelf)
 
             {
-                Windows[0].SetActive(true);
-                Windows[1].SetActive(false);
+                windows[0].SetActive(true);
+                windows[1].SetActive(false);
             }
 
-            else if (Windows[2].activeSelf)
+            else if (windows[2].activeSelf)
 
             {
-                Windows[1].SetActive(true);
-                Windows[2].SetActive(false);
+                windows[1].SetActive(true);
+                windows[2].SetActive(false);
             }
-          
+
             new WaitForSeconds(0.05f);
-
-
         }
     }
 }

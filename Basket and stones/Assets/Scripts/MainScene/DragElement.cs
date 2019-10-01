@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -11,22 +14,18 @@ namespace MainScene
         public static GameObject itemBeingDragged;
         private Vector3 startPosition;
         public static string elementName;
-        private Transform FirstParent;
 
-        private bool parentIsBackpack;
+        [FormerlySerializedAs("FirstParent")] [SerializeField]
+        private Transform firstParent;
 
-        private void Start()
+        [SerializeField] private bool parentIsBackpack;
+
+        private void OnEnable()
         {
-            for (var i = 0; i < GameObject.FindGameObjectsWithTag("PerkSlot").Length; i++)
-            {
-                if (GameObject.FindGameObjectsWithTag("PerkSlot")[i].name != gameObject.name + "Slot")
-                {
-                    continue;
-                }
-
-                FirstParent = GameObject.FindGameObjectsWithTag("PerkSlot")[i].transform;
-                break;
-            }
+            var arrayOfPerkSlot = GameObject.FindGameObjectsWithTag("PerkSlot");
+            var arrayOfPerkSlotsName = arrayOfPerkSlot.Select(@object => @object.name).ToList();
+            var index = arrayOfPerkSlotsName.IndexOf(gameObject.name + "Slot");
+            firstParent = arrayOfPerkSlot[index].GetComponent<Transform>();
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -56,6 +55,7 @@ namespace MainScene
         {
             if (transform.position == startPosition)
             {
+                Debug.LogWarning("������� �� ����������!");
                 return;
             }
 
@@ -65,8 +65,8 @@ namespace MainScene
             }
             else
             {
-                transform.position = FirstParent.position;
-                gameObject.transform.SetParent(FirstParent);
+                transform.position = firstParent.position;
+                gameObject.transform.SetParent(firstParent);
             }
 
             itemBeingDragged = null;
