@@ -9,11 +9,16 @@ namespace GameScene
 {
     public class Basket : MonoBehaviour
     {
-        private readonly byte Difficulty = ChangeDifficultyLevel.Difficulty;
+        private readonly byte _difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private Text currentAmountOfStonesPanel, stonesToWinPanel;
         [SerializeField] private int currentAmountOfStones, stonesToWin;
         public static Basket basket;
-        public int StonesToWin { get { return stonesToWin; } private set { stonesToWin = value; } }
+
+        public int StonesToWin
+        {
+            get { return stonesToWin; }
+            private set { stonesToWin = value; }
+        }
 
 
         public int CurrentAmountOfStones
@@ -29,21 +34,22 @@ namespace GameScene
                 Debug.LogWarning("Error");
                 return;
             }
+
             basket = this;
         }
+
         private void Start()
         {
-
             var i = 0;
-            if (Difficulty == 0)
+            if (_difficulty == 0)
             {
                 i = Random.Range(10, 26);
             }
-            else if (Difficulty == 1)
+            else if (_difficulty == 1)
             {
                 i = Random.Range(26, 40);
             }
-            else if (Difficulty == 2)
+            else if (_difficulty == 2)
             {
                 i = Random.Range(41, 56);
             }
@@ -53,59 +59,48 @@ namespace GameScene
             }
 
             CurrentAmountOfStones = i;
-            float min = i * 1.3f;
-            float max = i * 2.2f;
+            var min = i * 1.3f;
+            var max = i * 2.2f;
             StonesToWin = Convert.ToInt32(Random.Range(min, max));
             stonesToWinPanel.text = Convert.ToString(StonesToWin);
 
-            StartCoroutine(StonesInBasketGenerate());
-
-
+            StartCoroutine(StonesInBasketEditing());
         }
 
 
-        public int Calculate(char action, int value, bool isAi)
+        public int Calculate(char action, int value, string name)
         {
-
             var expectedAmount = CurrentAmountOfStones;
-            if (action == '*')
-            {
-                expectedAmount *= value;
-            }
-            else if (action == '+')
-            {
-                expectedAmount += value;
-            }
-            else if (action == '-')
-            {
-                expectedAmount -= value;
-            }
-            else if (action == '/')
-            {
-                expectedAmount /= value;
-            }
+            if (action == '*') expectedAmount *= value;
+            else if (action == '+') expectedAmount += value;
+            else if (action == '-') expectedAmount -= value;
+            else if (action == '/') expectedAmount /= value;
 
-            if (isAi)
-            {
-                return expectedAmount;
-            }
+
+            if (name == "Ai") return expectedAmount;
+
 
             CurrentAmountOfStones = expectedAmount;
-            StartCoroutine(StonesInBasketGenerate());
+            StartCoroutine(StonesInBasketEditing());
             return CurrentAmountOfStones;
         }
 
         public void Calculate(GameButton button)
         {
-            Calculate(button.Action, button.Value, false);
+            Calculate(button.Action, button.Value, "GameButtonOfPlayer");
         }
 
-        public IEnumerator StonesInBasketGenerate()
+        public int Calculate(GameButton button, string name)
         {
-            for (var j = int.Parse(currentAmountOfStonesPanel.text); ;
+            return Calculate(button.Action, button.Value, name);
+        }
+
+        public IEnumerator StonesInBasketEditing()
+        {
+            for (var j = int.Parse(currentAmountOfStonesPanel.text);;
             )
             {
-                yield return new WaitForSeconds((float)1 / (5 * Math.Abs(j - CurrentAmountOfStones)));
+                yield return new WaitForSeconds((float) 1 / (5 * Math.Abs(j - CurrentAmountOfStones)));
                 if (j > CurrentAmountOfStones)
                 {
                     j--;
@@ -120,12 +115,9 @@ namespace GameScene
                 currentAmountOfStonesPanel.text = Convert.ToString(j);
 
 
-                if (j == CurrentAmountOfStones)
-                {
-                    var controller = GameObject.FindObjectOfType<GameplayStepsControl>();
-                    controller.IsVictory(StonesToWin == CurrentAmountOfStones);
-                    break;
-                }
+                if (j != CurrentAmountOfStones) continue;
+                GameplayStepsController.StepsController.IsVictory(StonesToWin == CurrentAmountOfStones);
+                break;
             }
 
             StartCoroutine(BasketAnimation(1.2f, 1f));

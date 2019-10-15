@@ -1,5 +1,4 @@
 using System.Collections;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,63 +6,64 @@ namespace GameScene
 {
     public class Ai : MonoBehaviour
     {
-        [NotNull] private string choice;
+        private string _choice;
         [SerializeField] private GameButton[] gameButton;
         public Button[] buttonsAi;
-        private Basket Basket;
-        public static Ai ai;
+
+        public static Ai Computer;
+
         private void Awake()
         {
-            if (ai != null)
+            if (Computer != null)
             {
                 Debug.LogWarning("Error");
                 return;
             }
-            ai = this;
+
+            Computer = this;
         }
+
         private void Start()
         {
-            Basket = FindObjectOfType<Basket>();
+            Basket.basket = FindObjectOfType<Basket>();
         }
 
         public void AiStep()
         {
-                StartCoroutine(AiChoice());
+            StartCoroutine(AiChoice());
         }
+
         private void Update()
         {
-            var stopgame = FindObjectOfType<GameplayStepsControl>().StopGame;
-            if (stopgame)
-            {
-                StopAllCoroutines();
-                return;
-            }
+            if (!GameplayStepsController.StepsController.StopGame) return;
+            StopAllCoroutines();
         }
+
         private IEnumerator AiChoice()
         {
-
-            yield return StartCoroutine(Basket.StonesInBasketGenerate());
+            yield return StartCoroutine(Basket.basket.StonesInBasketEditing());
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
-            choice =
-            Mathf.Abs(Basket.Calculate(gameButton[0].Action, gameButton[0].Value, true) - Basket.StonesToWin) <=
-            Mathf.Abs(Basket.Calculate(gameButton[1].Action, gameButton[1].Value, true) - Basket.StonesToWin)
-                ? "Left"
-                : "Right";
+            _choice =
+                Mathf.Abs(Basket.basket.Calculate(gameButton[0], "Ai") -
+                          Basket.basket.StonesToWin) <=
+                Mathf.Abs(Basket.basket.Calculate(gameButton[1], "Ai") -
+                          Basket.basket.StonesToWin)
+                    ? "Left"
+                    : "Right";
 
             // ReSharper disable once ConvertIfStatementToSwitchStatement
-            if (choice == "Left" && buttonsAi[0].IsInteractable() ||
-                choice == "Right" && !buttonsAi[1].IsInteractable())
+            if (_choice == "Left" && buttonsAi[0].IsInteractable() ||
+                _choice == "Right" && !buttonsAi[1].IsInteractable())
             {
-                Basket.Calculate(gameButton[0]);
+                Basket.basket.Calculate(gameButton[0]);
             }
-            else if (choice == "Right" && buttonsAi[1].IsInteractable() ||
-                     choice == "Left" && !buttonsAi[0].IsInteractable())
+            else if (_choice == "Right" && buttonsAi[1].IsInteractable() ||
+                     _choice == "Left" && !buttonsAi[0].IsInteractable())
             {
-                Basket.Calculate(gameButton[1]);
+                Basket.basket.Calculate(gameButton[1]);
             }
 
             // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-
 
 
             foreach (var variable in gameButton)
@@ -71,9 +71,9 @@ namespace GameScene
                 // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                 variable.GetComponent<Button>().interactable = true;
             }
+
             GameObject.Find("SFX_Tern_button_" + Random.Range(3, 5)).GetComponent<AudioSource>().Play();
-            var pg = FindObjectOfType<GameplayStepsControl>();
-            pg.WhoseTurn = "Human";
+            GameplayStepsController.StepsController.WhoseTurn = "Human";
         }
     }
 }

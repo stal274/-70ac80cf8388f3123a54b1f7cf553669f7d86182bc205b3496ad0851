@@ -1,16 +1,15 @@
 ﻿using MainScene;
 using Player;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace GameScene
 {
-    public class GameplayStepsControl : MonoBehaviour, IPhoneButtons
+    public class GameplayStepsController : MonoBehaviour, IPhoneButtons
     {
         [SerializeField] private GameObject[] objectsToHide, objectsOfEndGame;
-        private Animation Anim;
+        private Animation _anim;
 
         public string WhoseTurn
         {
@@ -38,19 +37,19 @@ namespace GameScene
         private readonly byte _difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private int tick, sTick;
 
-        public static GameplayStepsControl StepsControl;
+        public static GameplayStepsController StepsController;
 
         /*private Stones stones;*/
 
         private void Awake()
         {
-            if (StepsControl != null)
+            if (StepsController != null)
             {
                 Debug.LogWarning("Error");
                 return;
             }
 
-            StepsControl = this;
+            StepsController = this;
         }
 
         private void Start()
@@ -95,7 +94,7 @@ namespace GameScene
 
         public void IsVictory(bool flag)
         {
-            ButtonActionChanging();
+            ButtonsActionCountingAndEdit();
             if (!flag) return;
             StopGame = true;
             foreach (var i in objectsOfEndGame)
@@ -135,7 +134,7 @@ namespace GameScene
             wallet.FireCoins += money;
         }
 
-        private void ButtonActionChanging()
+        private void ButtonsActionCountingAndEdit()
         {
             if (Tick != STick) return;
             SafeDepositOfButtonActions.Bank.GenerateIndex();

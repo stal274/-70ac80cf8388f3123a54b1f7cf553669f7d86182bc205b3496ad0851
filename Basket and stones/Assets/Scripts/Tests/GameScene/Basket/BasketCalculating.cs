@@ -8,62 +8,65 @@ namespace Tests
 {
     public class BasketCalculating
     {
-        private Basket basket;
+        private Basket _basket;
+
         // A Test behaves as an ordinary method
         [SetUp]
         public void Setup()
         {
-            basket = new Basket();
+            _basket = new Basket();
         }
+
         [TearDown]
         public void Teardown()
         {
-            Object.Destroy(basket);
+            Object.Destroy(_basket);
         }
+
         [UnityTest]
         public IEnumerator BasketCalculateSumm()
         {
-
-            int value = 10;
-            char action = '+';
-            int stonesBeforeTest = 5;
-            basket.CurrentAmountOfStones = stonesBeforeTest;
-            int stonesAfterTest = basket.Calculate(action, value, true);
+            const int value = 10;
+            const char action = '+';
+            const int stonesBeforeTest = 5;
+            _basket.CurrentAmountOfStones = stonesBeforeTest;
+            var stonesAfterTest = _basket.Calculate(action, value, "Test");
             Assert.AreEqual(stonesBeforeTest + 10, stonesAfterTest);
             yield return null;
         }
+
         [UnityTest]
         public IEnumerator BasketCalculateProd()
         {
-            int value = 10;
-            char action = '*';
-            int stonesBeforeTest = 5;
-            basket.CurrentAmountOfStones = stonesBeforeTest;
-            int stonesAfterTest = basket.Calculate(action, value, true);
+            const int value = 10;
+            const char action = '*';
+            const int stonesBeforeTest = 5;
+            _basket.CurrentAmountOfStones = stonesBeforeTest;
+            var stonesAfterTest = _basket.Calculate(action, value, "Test");
             Assert.AreEqual(stonesBeforeTest * 10, stonesAfterTest);
             yield return null;
         }
+
         [UnityTest]
         public IEnumerator BasketCalculateDiff()
         {
-
-            int value = 10;
-            char action = '-';
-            int stonesBeforeTest = 5;
-            basket.CurrentAmountOfStones = stonesBeforeTest;
-            int stonesAfterTest = basket.Calculate(action, value, true);
+            const int value = 10;
+            const char action = '-';
+            const int stonesBeforeTest = 5;
+            _basket.CurrentAmountOfStones = stonesBeforeTest;
+            var stonesAfterTest = _basket.Calculate(action, value, "Test");
             Assert.AreEqual(stonesBeforeTest - 10, stonesAfterTest);
             yield return null;
         }
+
         [UnityTest]
         public IEnumerator BasketCalculateDiv()
         {
-
-            int value = 10;
-            char action = '/';
-            int stonesBeforeTest = 5;
-            basket.CurrentAmountOfStones = stonesBeforeTest;
-            int stonesAfterTest = basket.Calculate(action, value, true);
+            const int value = 10;
+            const char action = '/';
+            const int stonesBeforeTest = 5;
+            _basket.CurrentAmountOfStones = stonesBeforeTest;
+            var stonesAfterTest = _basket.Calculate(action, value, "Test");
             Assert.AreEqual(stonesBeforeTest / 10, stonesAfterTest);
             yield return null;
         }
