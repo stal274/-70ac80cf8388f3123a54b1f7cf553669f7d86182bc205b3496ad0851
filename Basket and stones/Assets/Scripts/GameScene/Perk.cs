@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -10,31 +11,27 @@ namespace GameScene
     {
         public string perkName;
         [SerializeField] private int cooldown, skillIsValidFor;
-        private int skillProgress, progressOfcooldown;
+        private int _skillProgress, _progressOfcooldown;
         [SerializeField] private Image image;
-        [SerializeField] private bool IsActive = true;
+
+        [FormerlySerializedAs("IsActive")] [SerializeField]
+        private bool isActive = true;
 
         private void Awake()
         {
             perkName = gameObject.name;
             image = gameObject.GetComponent<Image>();
-            skillProgress = skillIsValidFor;
-           
+            _skillProgress = skillIsValidFor;
         }
 
         private void PerkActivation()
         {
-            if (GameplayStepsControl.stepsControl.WhoseTurn == "Computer")
-            {
-                return;
-            }
-
-            image.fillAmount = 0f;
+            if (GameplayStepsController.StepsController.WhoseTurn == "Computer") return;
             switch (perkName)
             {
                 case "Frost":
 
-                    Ai.ai.buttonsAi[Random.Range(0, 2)].interactable = false;
+                    Ai.Computer.buttonsAi[Random.Range(0, 2)].interactable = false;
                     break;
                 case "Shake":
 
@@ -44,7 +41,7 @@ namespace GameScene
                         inti = Random.Range(1, 11);
                     }
 
-                    Basket.basket.Calculate('-', inti, false);
+                    Basket.basket.Calculate('-', inti, "Basket");
                     break;
                 case "Replacement":
                     var bank = FindObjectOfType<SafeDepositOfButtonActions>();
@@ -56,7 +53,11 @@ namespace GameScene
                     {
                         perks.cooldown = Convert.ToInt32(perks.cooldown * 0.66);
                     }
-                    this.cooldown = Convert.ToInt32(cooldown / 0.66);
+
+                    cooldown = Convert.ToInt32(cooldown / 0.66);
+                    break;
+                default:
+                    Debug.LogWarning("Something wrong!");
                     break;
             }
 
@@ -65,20 +66,23 @@ namespace GameScene
                 gameObject.GetComponent<AudioSource>().Play();
             }
 
-            if (IsActive)
+            image.fillAmount = 0f;
+            if (isActive)
             {
-                IsActive = !IsActive;
+                isActive = false;
             }
         }
+
         private void PerkDeactivation()
         {
             switch (perkName)
             {
                 case "Frost":
-                    foreach (var VARIABLE in Ai.ai.buttonsAi)
+                    foreach (var VARIABLE in Ai.Computer.buttonsAi)
                     {
                         VARIABLE.interactable = true;
                     }
+
                     break;
                 case "Coffee":
 
@@ -86,21 +90,23 @@ namespace GameScene
                     {
                         perks.cooldown = Convert.ToInt32(perks.cooldown / 0.66);
                     }
-                    this.cooldown = Convert.ToInt32(cooldown * 0.66);
+
+                    cooldown = Convert.ToInt32(cooldown * 0.66);
                     break;
             }
         }
+
         private IEnumerator FillAmount()
         {
             for (var i = image.fillAmount;
-                Math.Abs(i - (float)progressOfcooldown / cooldown) >
-                (float)1 / (60 * cooldown);
+                Math.Abs(i - (float) _progressOfcooldown / cooldown) >
+                (float) 1 / (60 * cooldown);
                 i +=
-                    (float)1 / (60 * cooldown))
+                    (float) 1 / (60 * cooldown))
             {
-                yield return new WaitForSeconds((float)1 / (60 * cooldown));
+                yield return new WaitForSeconds((float) 1 / (60 * cooldown));
                 image.fillAmount = i;
-                if (!(Math.Abs(i - (1f - (float)1 / (60 * cooldown))) < (float)1 / (60 * cooldown)))
+                if (!(Math.Abs(i - (1f - (float) 1 / (60 * cooldown))) < (float) 1 / (60 * cooldown)))
                 {
                     continue;
                 }
@@ -109,53 +115,36 @@ namespace GameScene
                 break;
             }
 
-          
-            if (image.fillAmount != 1f)
-            {
-                yield break;
-            }
 
-            IsActive = !IsActive;
-            progressOfcooldown = 0;
+            if (image.fillAmount != 1f) yield break;
+
+
+            isActive = !isActive;
+            _progressOfcooldown = 0;
         }
 
         public void Cooldown()
         {
-            if (IsActive)
-            {
-                return;
-            }
-
+            if (isActive) return;
             CheckOfWork();
-            if (progressOfcooldown != cooldown)
+            if (_progressOfcooldown != cooldown)
             {
-                progressOfcooldown++;
+                _progressOfcooldown++;
             }
-
 
             StartCoroutine(FillAmount());
         }
 
         private void CheckOfWork()
         {
-            if (skillProgress > 0)
+            if (_skillProgress > 0)
             {
-                skillProgress--;
+                _skillProgress--;
             }
-            else if (skillProgress == 0)
+            else if (_skillProgress == 0)
             {
-                skillProgress = skillIsValidFor;
+                _skillProgress = skillIsValidFor;
                 PerkDeactivation();
-
-            }
-
-        }
-
-        public void PerkOnClick()
-        {
-            if (IsActive)
-            {
-                PerkActivation();
             }
         }
     }
