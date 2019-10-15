@@ -2150,6 +2150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   action: 0
+  actionAndValueText: {fileID: 0}
 --- !u!111 &709908722
 Animation:
   m_ObjectHideFlags: 0
@@ -4107,6 +4108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   action: 0
+  actionAndValueText: {fileID: 0}
 --- !u!111 &1665989382
 Animation:
   m_ObjectHideFlags: 0
