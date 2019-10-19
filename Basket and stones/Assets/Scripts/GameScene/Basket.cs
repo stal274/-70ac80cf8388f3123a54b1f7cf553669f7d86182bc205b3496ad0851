@@ -40,18 +40,25 @@ namespace GameScene
 
         private void Start()
         {
-            var i = 0;
-            if (_difficulty == 0)
+            int minStonesInBasket, maxStonesInBasket;
+            switch (_difficulty)
             {
-                i = Random.Range(10, 26);
-            }
-            else if (_difficulty == 1)
-            {
-                i = Random.Range(26, 40);
-            }
-            else if (_difficulty == 2)
-            {
-                i = Random.Range(41, 56);
+                case 0:
+                    minStonesInBasket = 10;
+                    maxStonesInBasket = 26;
+                    break;
+                case 1:
+                    minStonesInBasket = 26;
+                    maxStonesInBasket = 40;
+                    break;
+                case 2:
+                    minStonesInBasket = 41;
+                    maxStonesInBasket = 56;
+                    break;
+                default:
+                    minStonesInBasket = 26;
+                    maxStonesInBasket = 40;
+                    break;
             }
             else
             {
