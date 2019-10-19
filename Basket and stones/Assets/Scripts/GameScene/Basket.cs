@@ -80,9 +80,7 @@ namespace GameScene
             else if (action == '-') expectedAmount -= value;
             else if (action == '/') expectedAmount /= value;
 
-
             if (name == "Ai") return expectedAmount;
-
 
             CurrentAmountOfStones = expectedAmount;
             StartCoroutine(StonesInBasketEditing());
@@ -105,20 +103,10 @@ namespace GameScene
             )
             {
                 yield return new WaitForSeconds((float) 1 / (5 * Math.Abs(j - CurrentAmountOfStones)));
-                if (j > CurrentAmountOfStones)
-                {
-                    j--;
-                }
-
-                if (j < CurrentAmountOfStones)
-                {
-                    j++;
-                }
-
+                if (j > CurrentAmountOfStones) j--;
+                if (j < CurrentAmountOfStones) j++;
                 StartCoroutine(BasketAnimation(1f, 1.2f));
                 currentAmountOfStonesPanel.text = Convert.ToString(j);
-
-
                 if (j != CurrentAmountOfStones) continue;
                 GameplayStepsController.StepsController.IsVictory(StonesToWin == CurrentAmountOfStones);
                 break;
