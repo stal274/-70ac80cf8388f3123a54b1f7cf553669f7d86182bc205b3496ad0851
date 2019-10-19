@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace GameScene
 {
     public class Ai : MonoBehaviour
     {
-        private string _choice;
+        [SerializeField] private int _choice;
         [SerializeField] private GameButton[] gameButton;
         public Button[] buttonsAi;
-
+        public string DebuffName { private get; set; }
         public static Ai Computer;
 
         private void Awake()
@@ -25,11 +28,6 @@ namespace GameScene
             Computer = this;
         }
 
-        private void Start()
-        {
-            Basket.basket = FindObjectOfType<Basket>();
-        }
-
         public void AiStep()
         {
             StartCoroutine(AiChoice());
@@ -43,6 +41,23 @@ namespace GameScene
         private IEnumerator AiChoice()
         {
             yield return StartCoroutine(Basket.basket.StonesInBasketEditing());
+            if (Computer.DebuffName == "Stun")
+            {
+                yield return new WaitForSeconds(0.8f);
+                RestorePlayerButtons();
+                yield break;
+            }
+
+            var resultArray = gameButton
+                .Select(variable => Math.Abs(Basket.basket.Calculate(variable, "Ai") - Basket.basket.StonesToWin))
+                .ToList();
+            _choice = resultArray.IndexOf(Math.Min(resultArray[0], resultArray[1]));
+            if (!buttonsAi[_choice].interactable)
+            {
+                var intractableArray = buttonsAi.Select(variable => variable.interactable).ToList();
+                _choice = intractableArray.IndexOf(true);
+            }
+
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
             Basket.basket.Calculate(gameButton[_choice]);
             RestorePlayerButtons();
