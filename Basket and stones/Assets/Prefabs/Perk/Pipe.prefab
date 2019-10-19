@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8083685864929975712, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_Name
-      value: Perk
+      value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
@@ -116,6 +116,35 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676895230704156578, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676895230704156578, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_FillMethod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676895230704156578, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 878799a5af0aa9e40896c2dcbfadeda8,
+        type: 3}
+    - target: {fileID: 3298268308889944140, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Text
+      value: "\"\u0414\u0430\u0436\u0435 \u041A\u0430\u043A\u0430\u0444\u043E\u043D\u0438\u043A\u0441
+        \u0438\u0433\u0440\u0430\u043B \u0431\u044B \u043B\u0443\u0447\u0448\u0435!\"\t\t\u0410\u0432\u0442\u043E\u0440
+        \u043D\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u0435\u043D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684006665514463831, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u041F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A \u043E\u0433\u043B\u0443\u0448\u0435\u043D
+        \u043D\u0430 \u0434\u0432\u0430 \u0445\u043E\u0434\u0430"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
