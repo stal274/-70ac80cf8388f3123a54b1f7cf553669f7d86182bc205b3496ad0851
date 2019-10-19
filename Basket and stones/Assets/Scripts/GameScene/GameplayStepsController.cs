@@ -1,5 +1,4 @@
-using MainScene;
-using Player;
+﻿using MainScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,7 +16,6 @@ namespace GameScene
             set { whoseTurn = value; }
         }
 
-        public bool StopGame { get; private set; }
 
         public int Tick
         {
@@ -117,10 +115,7 @@ namespace GameScene
 
         private void Update()
         {
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                HardwareButtons(KeyCode.Escape);
-            }
+            if (Application.platform == RuntimePlatform.Android) HardwareButtons(KeyCode.Escape);
         }
 
         public void HardwareButtons(KeyCode escapeButton)
