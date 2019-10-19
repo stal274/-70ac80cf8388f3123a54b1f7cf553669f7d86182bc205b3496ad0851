@@ -28,9 +28,8 @@ namespace GameScene
 
         private void Start()
         {
-            NumberOfGameButton = Array.IndexOf(GameObject.FindObjectsOfType<GameButton>(),
+            NumberOfGameButton = Array.IndexOf(FindObjectsOfType<GameButton>(),
                 gameObject.GetComponent<GameButton>());
-            actionAndValueText = gameObject.GetComponentInChildren<Text>();
             SafeDepositOfButtonActions.Bank.GenerateIndex();
         }
 
