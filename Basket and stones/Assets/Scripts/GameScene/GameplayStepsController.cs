@@ -101,19 +101,10 @@ namespace GameScene
                     break;
             }
 
-            // objectsOfEndGame[0].GetComponentInChildren<UnityEngine.Animation>().Play();
-            //IncreaseInEarningsOfFireCoins();
             foreach (var i in objectsToHide)
             {
                 i.SetActive(false);
             }
-        }
-
-        private void IncreaseInEarningsOfFireCoins()
-        {
-            var wallet = gameObject.AddComponent<Wallet>();
-            var money = Random.Range(15, 25 * (_difficulty + 1));
-            wallet.FireCoins += money;
         }
 
         private void ButtonsActionCountingAndEdit()
