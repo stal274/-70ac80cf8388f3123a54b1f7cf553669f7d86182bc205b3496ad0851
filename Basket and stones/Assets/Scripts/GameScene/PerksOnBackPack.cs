@@ -1,18 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameScene
 {
     public class PerksOnBackPack : MonoBehaviour
     {
-        private Perk[] _perksOnBackPackArray = new Perk[3];
         public static PerksOnBackPack Instance;
 
-        public Perk[] PerksOnBackPackArray
-        {
-            get { return _perksOnBackPackArray; }
-
-            set { _perksOnBackPackArray = value; }
-        }
+        public List<Perk> PerksOnBackPackArray;
 
         private void Awake()
         {
@@ -26,18 +21,18 @@ namespace GameScene
 
         private void Start()
         {
-            var perksOnBackPackArray = gameObject.GetComponentsInChildren<Perk>();
-            for (int i = 0; i < PerksOnBackPackArray.Length; i++)
+            var perksOnBackpackArray = gameObject.GetComponentsInChildren<Perk>();
+            foreach (var variable in perksOnBackpackArray)
             {
-                PerksOnBackPackArray[i] = perksOnBackPackArray[i];
+                PerksOnBackPackArray.Add(variable);
             }
         }
 
         public void CooldownOfPerks()
         {
-            foreach (var VARIABLE in PerksOnBackPackArray)
+            foreach (var variable in PerksOnBackPackArray)
             {
-                VARIABLE.Cooldown();
+                variable.Cooldown();
             }
         }
     }
