@@ -24,7 +24,7 @@ namespace GameScene
             _skillProgress = skillIsValidFor;
         }
 
-        private void PerkActivation()
+        public void PerkActivation()
         {
             if (GameplayStepsController.StepsController.WhoseTurn == "Computer") return;
             switch (perkName)
@@ -55,6 +55,10 @@ namespace GameScene
                     }
 
                     cooldown = Convert.ToInt32(cooldown / 0.66);
+                    break;
+                case "Pipe":
+                    Debug.Log(perkName);
+                    Ai.Computer.DebuffName = "Stun";
                     break;
                 default:
                     Debug.LogWarning("Something wrong!");
@@ -92,6 +96,9 @@ namespace GameScene
                     }
 
                     cooldown = Convert.ToInt32(cooldown * 0.66);
+                    break;
+                case "Pipe":
+                    Ai.Computer.DebuffName = null;
                     break;
             }
         }
