@@ -60,15 +60,12 @@ namespace GameScene
                     maxStonesInBasket = 40;
                     break;
             }
-            else
-            {
-                i = Random.Range(26, 40);
-            }
 
-            CurrentAmountOfStones = i;
-            var min = i * 1.3f;
-            var max = i * 2.2f;
-            StonesToWin = Convert.ToInt32(Random.Range(min, max));
+            CurrentAmountOfStones = Random.Range(minStonesInBasket, maxStonesInBasket);
+
+            var minStonesToWin = CurrentAmountOfStones * 1.3f;
+            var maxStonesToWin = CurrentAmountOfStones * 2.2f;
+            StonesToWin = Convert.ToInt32(Random.Range(minStonesToWin, maxStonesToWin));
             stonesToWinPanel.text = Convert.ToString(StonesToWin);
 
             StartCoroutine(StonesInBasketEditing());
