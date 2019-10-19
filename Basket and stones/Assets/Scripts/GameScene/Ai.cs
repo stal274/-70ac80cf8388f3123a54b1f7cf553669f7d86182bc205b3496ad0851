@@ -20,6 +20,8 @@ namespace GameScene
                 return;
             }
 
+            EventAggregator.GameIsOver.Subscribe(StopPlay);
+
             Computer = this;
         }
 
@@ -33,9 +35,8 @@ namespace GameScene
             StartCoroutine(AiChoice());
         }
 
-        private void Update()
+        private void StopPlay(Basket basket)
         {
-            if (!GameplayStepsController.StepsController.StopGame) return;
             StopAllCoroutines();
         }
 
@@ -43,29 +44,12 @@ namespace GameScene
         {
             yield return StartCoroutine(Basket.basket.StonesInBasketEditing());
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
-            _choice =
-                Mathf.Abs(Basket.basket.Calculate(gameButton[0], "Ai") -
-                          Basket.basket.StonesToWin) <=
-                Mathf.Abs(Basket.basket.Calculate(gameButton[1], "Ai") -
-                          Basket.basket.StonesToWin)
-                    ? "Left"
-                    : "Right";
+            Basket.basket.Calculate(gameButton[_choice]);
+            RestorePlayerButtons();
+        }
 
-            // ReSharper disable once ConvertIfStatementToSwitchStatement
-            if (_choice == "Left" && buttonsAi[0].IsInteractable() ||
-                _choice == "Right" && !buttonsAi[1].IsInteractable())
-            {
-                Basket.basket.Calculate(gameButton[0]);
-            }
-            else if (_choice == "Right" && buttonsAi[1].IsInteractable() ||
-                     _choice == "Left" && !buttonsAi[0].IsInteractable())
-            {
-                Basket.basket.Calculate(gameButton[1]);
-            }
-
-            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-
-
+        private void RestorePlayerButtons()
+        {
             foreach (var variable in gameButton)
             {
                 // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
