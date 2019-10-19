@@ -78,7 +78,7 @@ namespace GameScene
         {
             ButtonsActionCountingAndEdit();
             if (!flag) return;
-            StopGame = true;
+            EventAggregator.GameIsOver.Publish(Basket.basket);
             foreach (var i in objectsOfEndGame)
             {
                 i.SetActive(true);
