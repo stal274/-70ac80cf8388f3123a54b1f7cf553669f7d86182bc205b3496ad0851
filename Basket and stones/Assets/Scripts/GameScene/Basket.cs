@@ -68,7 +68,7 @@ namespace GameScene
             StonesToWin = Convert.ToInt32(Random.Range(minStonesToWin, maxStonesToWin));
             stonesToWinPanel.text = Convert.ToString(StonesToWin);
 
-            StartCoroutine(StonesInBasketEditing());
+            StartCoroutine(StonesInBasketEditing(1f, 1.2f));
         }
 
 
@@ -83,7 +83,7 @@ namespace GameScene
             if (name == "Ai") return expectedAmount;
 
             CurrentAmountOfStones = expectedAmount;
-            StartCoroutine(StonesInBasketEditing());
+            StartCoroutine(StonesInBasketEditing(1f, 1.2f));
             return CurrentAmountOfStones;
         }
 
