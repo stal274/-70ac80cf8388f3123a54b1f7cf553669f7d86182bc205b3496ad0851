@@ -19,10 +19,12 @@ namespace GameScene
 
         public void Publish(Basket basket)
         {
-            foreach (var VARIABLE in _callbacks)
+            foreach (var variable in _callbacks)
             {
-                VARIABLE(basket);
+                variable(basket);
             }
+
+            _callbacks.Clear();
         }
     }
 }

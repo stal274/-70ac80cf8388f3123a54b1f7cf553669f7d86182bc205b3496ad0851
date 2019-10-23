@@ -1,4 +1,4 @@
-﻿using MainScene;
+using MainScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,13 +41,16 @@ namespace GameScene
 
         private void Awake()
         {
-            if (StepsController != null)
+            WhoseTurn = "Human";
+            if (Instance != null)
             {
                 Debug.LogWarning("Error");
                 return;
             }
 
-            StepsController = this;
+            Instance = this;
+
+            EventAggregator.GameIsOver.Subscribe(IsVictory);
         }
 
         private void Start()

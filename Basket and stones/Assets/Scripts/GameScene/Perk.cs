@@ -26,22 +26,22 @@ namespace GameScene
 
         public void PerkActivation()
         {
-            if (GameplayStepsController.StepsController.WhoseTurn == "Computer") return;
+            if (GameplayStepsController.Instance.WhoseTurn == "Instance") return;
             switch (perkName)
             {
                 case "Frost":
 
-                    Ai.Computer.buttonsAi[Random.Range(0, 2)].interactable = false;
+                    Ai.Instance.buttonsAi[Random.Range(0, 2)].interactable = false;
                     break;
                 case "Shake":
 
                     var inti = Random.Range(1, 11);
-                    while (Basket.basket.CurrentAmountOfStones - inti <= 0)
+                    while (Basket.Instance.CurrentAmountOfStones - inti <= 0)
                     {
                         inti = Random.Range(1, 11);
                     }
 
-                    Basket.basket.Calculate('-', inti, "Basket");
+                    Basket.Instance.Calculate('-', inti, "Basket");
                     break;
                 case "Replacement":
                     var bank = FindObjectOfType<SafeDepositOfButtonActions>();
@@ -49,7 +49,7 @@ namespace GameScene
                     break;
                 case "Coffee":
 
-                    foreach (var perks in PerksOnBackPack.Instance.PerksOnBackPackArray)
+                    foreach (var perks in PerksOnBackPack.Instance.perksOnBackPackArray)
                     {
                         perks.cooldown = Convert.ToInt32(perks.cooldown * 0.66);
                     }
@@ -57,8 +57,7 @@ namespace GameScene
                     cooldown = Convert.ToInt32(cooldown / 0.66);
                     break;
                 case "Pipe":
-                    Debug.Log(perkName);
-                    Ai.Computer.DebuffName = "Stun";
+                    Ai.Instance.DebuffName = "Stun";
                     break;
                 default:
                     Debug.LogWarning("Something wrong!");
@@ -82,7 +81,7 @@ namespace GameScene
             switch (perkName)
             {
                 case "Frost":
-                    foreach (var VARIABLE in Ai.Computer.buttonsAi)
+                    foreach (var VARIABLE in Ai.Instance.buttonsAi)
                     {
                         VARIABLE.interactable = true;
                     }
@@ -90,7 +89,7 @@ namespace GameScene
                     break;
                 case "Coffee":
 
-                    foreach (var perks in PerksOnBackPack.Instance.PerksOnBackPackArray)
+                    foreach (var perks in PerksOnBackPack.Instance.perksOnBackPackArray)
                     {
                         perks.cooldown = Convert.ToInt32(perks.cooldown / 0.66);
                     }
@@ -98,7 +97,7 @@ namespace GameScene
                     cooldown = Convert.ToInt32(cooldown * 0.66);
                     break;
                 case "Pipe":
-                    Ai.Computer.DebuffName = null;
+                    Ai.Instance.DebuffName = null;
                     break;
             }
         }

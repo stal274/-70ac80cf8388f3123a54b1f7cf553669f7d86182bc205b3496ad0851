@@ -24,7 +24,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator BasketCalculateSumm()
+        public IEnumerator BasketCalculateSum()
         {
             const int value = 10;
             const char action = '+';

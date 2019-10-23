@@ -12,7 +12,7 @@ namespace GameScene
         private readonly byte _difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private Text currentAmountOfStonesPanel, stonesToWinPanel;
         [SerializeField] private int currentAmountOfStones, stonesToWin;
-        public static Basket basket;
+        public static Basket Instance;
 
         public int StonesToWin
         {
@@ -29,13 +29,13 @@ namespace GameScene
 
         private void Awake()
         {
-            if (basket != null)
+            if (Instance != null)
             {
                 Debug.LogWarning("Error");
                 return;
             }
 
-            basket = this;
+            Instance = this;
         }
 
         private void Start()

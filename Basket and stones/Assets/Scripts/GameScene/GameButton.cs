@@ -37,13 +37,11 @@ namespace GameScene
         public void OnClick()
         {
             GameObject.Find("SFX_Tern_button_" + Random.Range(1, 3)).GetComponent<AudioSource>().Play();
-            foreach (var VARIABLE in FindObjectsOfType<GameButton>())
-            {
-                VARIABLE.GetComponent<Button>().interactable = false;
-            }
+            foreach (var variable in FindObjectsOfType<GameButton>())
+                variable.GetComponent<Button>().interactable = false;
 
-            GameplayStepsController.StepsController.WhoseTurn = "Computer";
-            GameplayStepsController.StepsController.Tick += 1;
+            GameplayStepsController.Instance.WhoseTurn = "Computer";
+            GameplayStepsController.Instance.Tick += 1;
         }
 
 

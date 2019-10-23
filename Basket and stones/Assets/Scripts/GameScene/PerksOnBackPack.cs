@@ -7,7 +7,8 @@ namespace GameScene
     {
         public static PerksOnBackPack Instance;
 
-        public List<Perk> PerksOnBackPackArray;
+        [FormerlySerializedAs("PerksOnBackPackArray")]
+        public List<Perk> perksOnBackPackArray;
 
         private void Awake()
         {
@@ -24,13 +25,13 @@ namespace GameScene
             var perksOnBackpackArray = gameObject.GetComponentsInChildren<Perk>();
             foreach (var variable in perksOnBackpackArray)
             {
-                PerksOnBackPackArray.Add(variable);
+                perksOnBackPackArray.Add(variable);
             }
         }
 
         public void CooldownOfPerks()
         {
-            foreach (var variable in PerksOnBackPackArray)
+            foreach (var variable in perksOnBackPackArray)
             {
                 variable.Cooldown();
             }

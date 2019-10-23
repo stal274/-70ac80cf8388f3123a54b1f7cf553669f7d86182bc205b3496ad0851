@@ -40,8 +40,8 @@ namespace GameScene
 
         private IEnumerator AiChoice()
         {
-            yield return StartCoroutine(Basket.basket.StonesInBasketEditing());
-            if (Computer.DebuffName == "Stun")
+            yield return StartCoroutine(Basket.Instance.StonesInBasketEditing(1f, 1.2f));
+            if (Instance.DebuffName == "Stun")
             {
                 yield return new WaitForSeconds(0.8f);
                 RestorePlayerButtons();
@@ -49,7 +49,7 @@ namespace GameScene
             }
 
             var resultArray = gameButton
-                .Select(variable => Math.Abs(Basket.basket.Calculate(variable, "Ai") - Basket.basket.StonesToWin))
+                .Select(variable => Math.Abs(Basket.Instance.Calculate(variable, "Ai") - Basket.Instance.StonesToWin))
                 .ToList();
             _choice = resultArray.IndexOf(Math.Min(resultArray[0], resultArray[1]));
             if (!buttonsAi[_choice].interactable)
@@ -59,7 +59,7 @@ namespace GameScene
             }
 
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
-            Basket.basket.Calculate(gameButton[_choice]);
+            Basket.Instance.Calculate(gameButton[_choice]);
             RestorePlayerButtons();
         }
 
@@ -72,7 +72,7 @@ namespace GameScene
             }
 
             GameObject.Find("SFX_Tern_button_" + Random.Range(3, 5)).GetComponent<AudioSource>().Play();
-            GameplayStepsController.StepsController.WhoseTurn = "Human";
+            GameplayStepsController.Instance.WhoseTurn = "Human";
         }
     }
 }
