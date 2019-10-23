@@ -83,7 +83,6 @@ namespace GameScene
         {
             foreach (var variable in gameButton)
             {
-                // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                 variable.GetComponent<Button>().interactable = true;
             }
 
