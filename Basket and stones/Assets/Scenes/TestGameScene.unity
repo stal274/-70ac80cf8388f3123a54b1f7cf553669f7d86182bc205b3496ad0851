@@ -142,7 +142,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1833727839}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -364,7 +364,7 @@ RectTransform:
   - {fileID: 60266328}
   - {fileID: 1704333084}
   m_Father: {fileID: 1833727839}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -803,7 +803,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 878799a5af0aa9e40896c2dcbfadeda8,
+      objectReference: {fileID: 21300000, guid: 9fce52fd1aafb3147ab78f363a69f022,
         type: 3}
     - target: {fileID: 722142362721476791, guid: b3e6bf155a92d6647a542ed9c2f7b021,
         type: 3}
@@ -914,6 +914,46 @@ PrefabInstance:
         type: 3}
       propertyPath: stepsIsWork
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462170042511069802, guid: b3e6bf155a92d6647a542ed9c2f7b021,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e6bf155a92d6647a542ed9c2f7b021, type: 3}
@@ -1429,41 +1469,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457343228}
   m_CullTransparentMesh: 0
---- !u!1 &473504625
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 473504626}
-  m_Layer: 0
-  m_Name: Panel Right
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &473504626
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473504625}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1833727839}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735.48, y: -390}
-  m_SizeDelta: {x: 153, y: 234}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &607296545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,7 +2142,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 794173000}
         m_MethodName: CooldownOfPerks
         m_Mode: 1
         m_Arguments:
@@ -2262,7 +2267,7 @@ RectTransform:
   - {fileID: 914114352}
   - {fileID: 1087117286}
   m_Father: {fileID: 1833727839}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2317,7 +2322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a9f681d17e45178e8e694d69153322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PerksOnBackPackArray: []
+  perksOnBackPackArray: []
 --- !u!1 &803776204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,7 +2557,7 @@ RectTransform:
   - {fileID: 136955940}
   - {fileID: 806881310}
   m_Father: {fileID: 1833727839}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2903,7 +2908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1044903188}
   m_Layer: 0
-  m_Name: Panel Left
+  m_Name: Perks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3777,7 +3782,7 @@ RectTransform:
   - {fileID: 1057696168}
   - {fileID: 1614728287}
   m_Father: {fileID: 1833727839}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4093,10 +4098,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bb78e16d9462f4db0d902a5fb30369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _choice: 1
   gameButton:
   - {fileID: 1665989381}
   - {fileID: 709908721}
+  _perksList: []
   buttonsAi:
   - {fileID: 1057696171}
   - {fileID: 1614728290}
@@ -4115,9 +4120,11 @@ MonoBehaviour:
   objectsToHide:
   - {fileID: 1395634396}
   - {fileID: 794172996}
+  - {fileID: 21016794}
   objectsOfEndGame:
   - {fileID: 66249087}
   - {fileID: 1704333083}
+  whoseTurnInfo: {fileID: 21016796}
   whoseTurn: 
   tick: 0
   sTick: 0
@@ -4333,7 +4340,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 794173000}
         m_MethodName: CooldownOfPerks
         m_Mode: 1
         m_Arguments:
@@ -4624,7 +4631,6 @@ RectTransform:
   m_Children:
   - {fileID: 1980474437}
   - {fileID: 1044903188}
-  - {fileID: 473504626}
   - {fileID: 823471125}
   - {fileID: 1395634397}
   - {fileID: 1888480714}
@@ -4672,7 +4678,7 @@ RectTransform:
   - {fileID: 1892460131}
   - {fileID: 707347325}
   m_Father: {fileID: 1833727839}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
