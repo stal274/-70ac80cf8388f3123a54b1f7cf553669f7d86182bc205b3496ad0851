@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,26 +10,22 @@ namespace GameScene
 {
     public class Ai : MonoBehaviour
     {
-        [SerializeField] private int _choice;
+        private int _choice;
+
         [SerializeField] private GameButton[] gameButton;
 
         [SerializeField] private List<Perk> _perksList;
 
         public Button[] buttonsAi;
         public string DebuffName { private get; set; }
-        public static Ai Computer;
 
-        private void Awake()
+        public static Ai Instance;
+
+        private void Start()
         {
-            if (Computer != null)
-            {
-                Debug.LogWarning("Error");
-                return;
-            }
-
+            if (IsInitialiseInstance()) return;
+            _perksList = FindObjectsOfType<Perk>().Select(variable => variable).ToList();
             EventAggregator.GameIsOver.Subscribe(StopPlay);
-
-            Computer = this;
         }
 
         private bool IsInitialiseInstance()
