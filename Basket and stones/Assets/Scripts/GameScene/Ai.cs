@@ -31,6 +31,22 @@ namespace GameScene
             Computer = this;
         }
 
+        private bool IsInitialiseInstance()
+        {
+            if (Instance != null)
+            {
+                Debug.LogWarning("Error");
+                return true;
+            }
+
+            Instance = this;
+            return false;
+        }
+
+        private void ChoosePerks()
+        {
+        }
+
         public void AiStep()
         {
             StartCoroutine(AiChoice());
