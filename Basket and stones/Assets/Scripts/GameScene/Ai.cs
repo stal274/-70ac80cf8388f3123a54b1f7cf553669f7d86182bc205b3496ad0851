@@ -11,6 +11,9 @@ namespace GameScene
     {
         [SerializeField] private int _choice;
         [SerializeField] private GameButton[] gameButton;
+
+        [SerializeField] private List<Perk> _perksList;
+
         public Button[] buttonsAi;
         public string DebuffName { private get; set; }
         public static Ai Computer;
