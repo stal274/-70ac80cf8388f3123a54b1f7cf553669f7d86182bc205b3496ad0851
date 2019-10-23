@@ -61,14 +61,11 @@ namespace GameScene
         }
 
 
-        public void IsVictory(bool flag)
+        private void IsVictory(Basket basket)
         {
-            ButtonsActionCountingAndEdit();
-            if (!flag) return;
-            EventAggregator.GameIsOver.Publish(Basket.basket);
-            foreach (var i in objectsOfEndGame)
+            foreach (var i in objectsToHide)
             {
-                i.SetActive(true);
+                i.SetActive(false);
             }
 
             switch (WhoseTurn)
