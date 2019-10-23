@@ -80,7 +80,7 @@ namespace GameScene
             else if (action == '-') expectedAmount -= value;
             else if (action == '/') expectedAmount /= value;
 
-            if (name == "Ai") return expectedAmount;
+            if (name == "Ai" || name == "Test") return expectedAmount;
 
             CurrentAmountOfStones = expectedAmount;
             StartCoroutine(StonesInBasketEditing(1f, 1.2f));
