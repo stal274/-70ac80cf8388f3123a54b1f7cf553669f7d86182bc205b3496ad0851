@@ -1,79 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6613109822858369535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7462170042511069802}
-  - component: {fileID: 7323850403841976073}
-  - component: {fileID: 2135863667268100396}
-  m_Layer: 0
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7462170042511069802
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6613109822858369535}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5728087358414880677}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.5, y: 1}
-  m_SizeDelta: {x: -23, y: -16}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7323850403841976073
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6613109822858369535}
-  m_CullTransparentMesh: 0
---- !u!114 &2135863667268100396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6613109822858369535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.54901963, g: 0.6862745, b: 0.80392164, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4abbf235440a87e4c8dfad4a81252f2c, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
 --- !u!1001 &5395941041281998613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81,6 +7,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3298268308889944140, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u041A\u043E\u0444\u0435 - \u043D\u043E\u0432\u044B\u0439 \u0445\u0438\u043C\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+        \u044D\u043B\u0435\u043C\u0435\u043D\u0442!\n\u041A\u043E\u0444\u0435 - \u0432\u0430\u0436\u0435\u043D
+        \u043A\u0430\u043A \u043D\u0435\u0444\u0442\u044C!\n\u041A\u043E\u0444\u0435
+        - \u0438\u0441\u0442\u043E\u0447\u043D\u0438\u043A \u043A\u043E\u043C\u0444\u043E\u0440\u0442\u0430!\n\u041A\u043E\u0444\u0435!
+        \u0422\u044B \u0438\u0441\u043F\u043E\u0440\u0442\u0438\u043B \u043C\u043E\u0439
+        \u043A\u043E\u0441\u0442\u044E\u043C!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: objectsToVisible.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: descriptionText
+      value: 
+      objectReference: {fileID: 7433180484328283993}
+    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: actionText
+      value: 
+      objectReference: {fileID: 3630448601698512194}
+    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: objectsToVisible.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
+        type: 3}
+      propertyPath: objectsToVisible.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8083685864929975712, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
       propertyPath: m_Name
@@ -201,30 +162,10 @@ PrefabInstance:
       propertyPath: cooldown
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
+    - target: {fileID: 5197404353455222559, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
-      propertyPath: objectsToVisible.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: descriptionText
-      value: 
-      objectReference: {fileID: 7433180484328283993}
-    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: actionText
-      value: 
-      objectReference: {fileID: 3630448601698512194}
-    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: objectsToVisible.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867727717311420185, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: objectsToVisible.Array.data[1]
-      value: 
+      propertyPath: skillIsValidFor
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8684006665514463831, guid: 3077936a6d2d79b4990e84873aa75e56,
         type: 3}
@@ -232,24 +173,8 @@ PrefabInstance:
       value: "\u0422\u0432\u043E\u0438 \u043D\u0430\u0432\u044B\u043A\u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u044E\u0442\u0441\u044F
         \u043D\u0430 \u0442\u0440\u0435\u0442\u044C \u0431\u044B\u0441\u0442\u0440\u0435\u0435!"
       objectReference: {fileID: 0}
-    - target: {fileID: 3298268308889944140, guid: 3077936a6d2d79b4990e84873aa75e56,
-        type: 3}
-      propertyPath: m_Text
-      value: "\u041A\u043E\u0444\u0435 - \u043D\u043E\u0432\u044B\u0439 \u0445\u0438\u043C\u0438\u0447\u0435\u0441\u043A\u0438\u0439
-        \u044D\u043B\u0435\u043C\u0435\u043D\u0442!\n\u041A\u043E\u0444\u0435 - \u0432\u0430\u0436\u0435\u043D
-        \u043A\u0430\u043A \u043D\u0435\u0444\u0442\u044C!\n\u041A\u043E\u0444\u0435
-        - \u0438\u0441\u0442\u043E\u0447\u043D\u0438\u043A \u043A\u043E\u043C\u0444\u043E\u0440\u0442\u0430!\n\u041A\u043E\u0444\u0435!
-        \u0422\u044B \u0438\u0441\u043F\u043E\u0440\u0442\u0438\u043B \u043C\u043E\u0439
-        \u043A\u043E\u0441\u0442\u044E\u043C!"
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3077936a6d2d79b4990e84873aa75e56, type: 3}
---- !u!224 &5728087358414880677 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 404333114591666352, guid: 3077936a6d2d79b4990e84873aa75e56,
-    type: 3}
-  m_PrefabInstance: {fileID: 5395941041281998613}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7433180484328283993 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3298268308889944140, guid: 3077936a6d2d79b4990e84873aa75e56,
