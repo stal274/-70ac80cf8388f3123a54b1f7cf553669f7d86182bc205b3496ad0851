@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,25 +9,18 @@ namespace MainScene
     {
         private void OnEnable()
         {
-            for (var i = 0; i < GameObject.FindGameObjectsWithTag("BackpackSlot").Length; i++)
+            var backpack = GameObject.FindGameObjectsWithTag("BackpackSlot");
+            foreach (var variable in backpack)
             {
-                if (GameObject.FindGameObjectsWithTag("BackpackSlot")[i].GetComponentsInChildren<Image>().Length !=
-                    1) 
-                {
-                    continue;
-                }
+                if (variable.GetComponentsInChildren<Image>().Length != 1) continue;
 
-                if (!((IList)GameObject.FindGameObjectsWithTag("Perk"))
-                        .Contains(GameObject.Find(PlayerPrefs.GetString("BackpackSlot" + i))) ||
-                    PlayerPrefs.GetString("BackpackSlot" + i) == null)
-                {
-                    continue;
-                }
+                var arrayIndex = Array.IndexOf(backpack, variable);
+                var skillPrefs = PlayerPrefs.GetString("BackpackSlot" + arrayIndex);
+                if (!((IList) GameObject.FindGameObjectsWithTag("Perk")).Contains(GameObject.Find(skillPrefs)) ||
+                    skillPrefs == null) continue;
 
-                DragElement.itemBeingDragged = GameObject.Find(PlayerPrefs.GetString("BackpackSlot" + i));
-                DragElement.itemBeingDragged.transform.SetParent(
-                    GameObject.FindGameObjectsWithTag("BackpackSlot")[i]
-                        .transform, false);
+                DragElement.itemBeingDragged = GameObject.Find(skillPrefs);
+                DragElement.itemBeingDragged.transform.SetParent(variable.transform, false);
             }
         }
     }
