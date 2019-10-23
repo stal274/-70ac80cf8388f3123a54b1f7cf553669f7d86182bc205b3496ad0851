@@ -1,4 +1,4 @@
-using MainScene;
+﻿using MainScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -115,6 +115,7 @@ namespace GameScene
 
         private void ButtonsActionCountingAndEdit()
         {
+            if (WhoseTurn != "Human") return;
             if (Tick != STick) return;
             SafeDepositOfButtonActions.Bank.GenerateIndex();
             Tick = 0;
