@@ -43,11 +43,18 @@ namespace StudyGameScene
 
         private void WhoseTurnInfoText()
         {
-            if (whoseTurn == "Human")
+            switch (whoseTurn)
             {
-                whoseTurnInfo.text = "Ваш ход";
+                case "Human":
+                    whoseTurnInfo.text = "Ваш ход";
+                    break;
+                case "Computer":
+                    whoseTurnInfo.text = "Ход компьютера";
+                    break;
+                default:
+                    Debug.Log("Error!");
+                    break;
             }
-            else if (whoseTurn == "Computer") whoseTurnInfo.text = "Ход компьютера";
         }
 
         private void IsVictory()
