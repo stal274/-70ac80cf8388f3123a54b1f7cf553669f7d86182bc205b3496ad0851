@@ -8,12 +8,18 @@ namespace GameScene
     public class GameplayStepsController : MonoBehaviour, IPhoneButtons
     {
         [SerializeField] private GameObject[] objectsToHide, objectsOfEndGame;
+        [SerializeField] private Text whoseTurnInfo;
         private Animation _anim;
 
         public string WhoseTurn
         {
             get { return whoseTurn; }
-            set { whoseTurn = value; }
+            set
+            {
+                whoseTurn = value;
+                WhoseTurnInfoText();
+                ButtonsActionCountingAndEdit();
+            }
         }
 
 
