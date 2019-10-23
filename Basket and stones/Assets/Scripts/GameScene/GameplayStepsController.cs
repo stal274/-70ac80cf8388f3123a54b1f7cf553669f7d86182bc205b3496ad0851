@@ -88,9 +88,25 @@ namespace GameScene
                     break;
             }
 
-            foreach (var i in objectsToHide)
+            foreach (var variable in objectsOfEndGame)
             {
-                i.SetActive(false);
+                variable.SetActive(true);
+            }
+        }
+
+        private void WhoseTurnInfoText()
+        {
+            switch (whoseTurn)
+            {
+                case "Human":
+                    whoseTurnInfo.text = "Ваш ход";
+                    break;
+                case "Computer":
+                    whoseTurnInfo.text = "Ход компьютера";
+                    break;
+                default:
+                    Debug.Log("Error!");
+                    break;
             }
         }
 
