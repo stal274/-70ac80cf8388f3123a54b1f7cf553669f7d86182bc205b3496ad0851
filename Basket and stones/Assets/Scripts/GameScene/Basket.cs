@@ -97,7 +97,7 @@ namespace GameScene
             return Calculate(button.Action, button.Value, name);
         }
 
-        public IEnumerator StonesInBasketEditing()
+        public IEnumerator StonesInBasketEditing(float startFloat, float endFloat)
         {
             for (var j = int.Parse(currentAmountOfStonesPanel.text);;
             )
@@ -105,14 +105,15 @@ namespace GameScene
                 yield return new WaitForSeconds((float) 1 / (5 * Math.Abs(j - CurrentAmountOfStones)));
                 if (j > CurrentAmountOfStones) j--;
                 if (j < CurrentAmountOfStones) j++;
-                StartCoroutine(BasketAnimation(1f, 1.2f));
+                StartCoroutine(BasketAnimation(startFloat, endFloat));
                 currentAmountOfStonesPanel.text = Convert.ToString(j);
                 if (j != CurrentAmountOfStones) continue;
-                GameplayStepsController.StepsController.IsVictory(StonesToWin == CurrentAmountOfStones);
+                if (StonesToWin != CurrentAmountOfStones) break;
+                EventAggregator.GameIsOver.Publish(Instance);
                 break;
             }
 
-            StartCoroutine(BasketAnimation(1.2f, 1f));
+            StartCoroutine(BasketAnimation(endFloat, startFloat));
         }
 
         private IEnumerator BasketAnimation(float startFloat, float endFloat)
