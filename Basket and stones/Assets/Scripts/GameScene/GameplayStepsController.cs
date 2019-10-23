@@ -55,22 +55,8 @@ namespace GameScene
 
         private void Start()
         {
-            switch (_difficulty)
-            {
-                case 0:
-                    STick = 2;
-                    break;
-                case 1:
-                    STick = 3;
-                    break;
-                case 2:
-                    STick = 4;
-                    break;
-                default:
-                    STick = 4;
-                    break;
-            }
-
+            STick = 2 + _difficulty;
+            WhoseTurnInfoText();
             /*stones.GetComponent<Stones>();*/
         }
 
