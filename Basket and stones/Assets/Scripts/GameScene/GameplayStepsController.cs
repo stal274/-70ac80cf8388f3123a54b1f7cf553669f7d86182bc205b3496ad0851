@@ -35,7 +35,7 @@ namespace GameScene
         private readonly byte _difficulty = ChangeDifficultyLevel.Difficulty;
         [SerializeField] private int tick, sTick;
 
-        public static GameplayStepsController StepsController;
+        public static GameplayStepsController Instance;
 
         /*private Stones stones;*/
 
