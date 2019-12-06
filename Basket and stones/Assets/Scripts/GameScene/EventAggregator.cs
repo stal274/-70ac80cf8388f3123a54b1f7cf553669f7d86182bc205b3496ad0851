@@ -3,9 +3,15 @@ using System.Collections.Generic;
 
 namespace GameScene
 {
-    public static class EventAggregator
+    public class EventAggregator
     {
         public static readonly TheGameIsOverEvent GameIsOver = new TheGameIsOverEvent();
+        private static EventAggregator _instance = new EventAggregator();
+
+        public static EventAggregator Instance
+        {
+            get { return _instance ?? (_instance = new EventAggregator()); }
+        }
     }
 
     public class TheGameIsOverEvent
