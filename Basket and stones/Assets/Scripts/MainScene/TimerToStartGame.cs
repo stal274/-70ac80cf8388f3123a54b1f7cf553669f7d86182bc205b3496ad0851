@@ -8,8 +8,8 @@ namespace MainScene
 {
     public class TimerToStartGame : MonoBehaviour
     {
-
-        [FormerlySerializedAs("Text")] [SerializeField] private Text text;
+        [FormerlySerializedAs("Text")] [SerializeField]
+        private Text text;
 
         public bool StartTick { private get; set; }
 
@@ -21,14 +21,14 @@ namespace MainScene
                 if (i == 0)
                 {
                     new WaitForSeconds(0.5f);
-                    SceneManager.LoadScene("TestGameScene");
+                    SceneManager.LoadScene("SinglePlayScene");
                 }
 
                 yield return new WaitForSeconds(1f);
             }
         }
 
-    
+
         private void Start()
         {
             var timer = GameObject.Find("Timer");
