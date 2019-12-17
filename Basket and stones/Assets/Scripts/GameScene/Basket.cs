@@ -16,15 +16,15 @@ namespace GameScene
 
         public int StonesToWin
         {
-            get { return stonesToWin; }
-            private set { stonesToWin = value; }
+            get => stonesToWin;
+            private set => stonesToWin = value;
         }
 
 
         public int CurrentAmountOfStones
         {
-            get { return currentAmountOfStones; }
-            set { currentAmountOfStones = value; }
+            get => currentAmountOfStones;
+            set => currentAmountOfStones = value;
         }
 
         private void Awake()
@@ -72,30 +72,39 @@ namespace GameScene
         }
 
 
-        public int Calculate(char action, int value, string name)
+        public int Calculate(char action, int value)
         {
             var expectedAmount = CurrentAmountOfStones;
-            if (action == '*') expectedAmount *= value;
-            else if (action == '+') expectedAmount += value;
-            else if (action == '-') expectedAmount -= value;
-            else if (action == '/') expectedAmount /= value;
+            switch (action)
+            {
+                case '*':
+                    expectedAmount *= value;
+                    break;
+                case '+':
+                    expectedAmount += value;
+                    break;
+                case '-':
+                    expectedAmount -= value;
+                    break;
+                case '/':
+                    expectedAmount /= value;
+                    break;
+            }
 
-            if (name == "Ai" || name == "Test") return expectedAmount;
+            return expectedAmount;
+        }
 
-            CurrentAmountOfStones = expectedAmount;
+        public int Calculate(GameButton button)
+        {
+            return Calculate(button.Action, button.Value);
+        }
+
+        public void ApplyChangesToBasket(GameButton button)
+        {
+            CurrentAmountOfStones = Calculate(button.Action, button.Value);
             StartCoroutine(StonesInBasketEditing(1f, 1.2f));
-            return CurrentAmountOfStones;
         }
 
-        public void Calculate(GameButton button)
-        {
-            Calculate(button.Action, button.Value, "GameButtonOfPlayer");
-        }
-
-        public int Calculate(GameButton button, string name)
-        {
-            return Calculate(button.Action, button.Value, name);
-        }
 
         public IEnumerator StonesInBasketEditing(float startFloat, float endFloat)
         {
@@ -109,7 +118,7 @@ namespace GameScene
                 currentAmountOfStonesPanel.text = Convert.ToString(j);
                 if (j != CurrentAmountOfStones) continue;
                 if (StonesToWin != CurrentAmountOfStones) break;
-                EventAggregator.GameIsOver.Publish(Instance);
+                EventAggregator.EventAggregator.GameIsOver.Publish(this);
                 break;
             }
 

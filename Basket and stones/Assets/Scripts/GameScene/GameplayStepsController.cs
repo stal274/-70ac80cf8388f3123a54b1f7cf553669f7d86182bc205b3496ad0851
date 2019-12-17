@@ -1,4 +1,5 @@
-﻿using MainScene;
+﻿using System.Collections.Generic;
+using MainScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,32 +8,30 @@ namespace GameScene
 {
     public class GameplayStepsController : MonoBehaviour, IPhoneButtons
     {
-        [SerializeField] private GameObject[] objectsToHide, objectsOfEndGame;
+        public GameObject[] objectsToHide, objectsOfEndGame;
         [SerializeField] private Text whoseTurnInfo;
+        [SerializeField] private SafeDepositOfButtonActions bank;
         private Animation _anim;
+        [SerializeField] private List<Human> humans;
+        [SerializeField] private List<Ai> ais;
 
         public string WhoseTurn
         {
-            get { return whoseTurn; }
-            set
-            {
-                whoseTurn = value;
-                WhoseTurnInfoText();
-                ButtonsActionCountingAndEdit();
-            }
+            get => whoseTurn;
+            private set => whoseTurn = value;
         }
 
 
         public int Tick
         {
-            get { return tick; }
+            get => tick;
 
-            set { tick = value; }
+            set => tick = value;
         }
 
         public int STick
         {
-            private get { return sTick; }
+            private get => sTick;
 
             set { sTick = value; }
         }
@@ -47,27 +46,53 @@ namespace GameScene
 
         private void Awake()
         {
-            WhoseTurn = "Human";
-            if (Instance != null)
-            {
-                Debug.LogWarning("Error");
-                return;
-            }
-
-            Instance = this;
-
-            EventAggregator.GameIsOver.Subscribe(IsVictory);
+            SafeDepositOfButtonActions.Instance.GenerateIndex();
+            foreach (var human in FindObjectsOfType<Human>()) humans.Add(human);
+            foreach (var ai in FindObjectsOfType<Ai>()) ais.Add(ai);
+            EventAggregator.EventAggregator.GameIsOver.Subscribe(GameOver);
+            EventAggregator.EventAggregator.MoveComplete.Subscribe(ButtonActivitySwitching);
         }
 
         private void Start()
         {
-            STick = 2 + _difficulty;
+            Instance = GetComponent<GameplayStepsController>();
+            STick = 3 + _difficulty * 2;
             WhoseTurnInfoText();
             /*stones.GetComponent<Stones>();*/
         }
 
+        private void ButtonActivitySwitching(object obj)
+        {
+            var humanButtons = humans[0].Buttons;
 
-        private void IsVictory(Basket basket)
+            switch (obj.GetType().ToString())
+            {
+                case "GameScene.Ai":
+                    foreach (var variable in humanButtons)
+                    {
+                        variable.interactable = true;
+                    }
+
+                    WhoseTurn = "Human";
+                    GameObject.Find("SFX_Tern_button_" + Random.Range(3, 5)).GetComponent<AudioSource>().Play();
+                    break;
+                case "GameScene.Human":
+                    foreach (var variable in humanButtons)
+                    {
+                        variable.interactable = false;
+                    }
+
+                    Tick += 1;
+                    WhoseTurn = "Computer";
+                    Ai.Instance.AiStep();
+                    break;
+            }
+
+            WhoseTurnInfoText();
+            ButtonsActionCountingAndEdit();
+        }
+
+        private void GameOver(object obj)
         {
             foreach (var i in objectsToHide)
             {
@@ -99,7 +124,7 @@ namespace GameScene
 
         private void WhoseTurnInfoText()
         {
-            switch (whoseTurn)
+            switch (WhoseTurn)
             {
                 case "Human":
                     whoseTurnInfo.text = "Ваш ход";
@@ -117,7 +142,7 @@ namespace GameScene
         {
             if (WhoseTurn != "Human") return;
             if (Tick != STick) return;
-            SafeDepositOfButtonActions.Bank.GenerateIndex();
+            SafeDepositOfButtonActions.Instance.GenerateIndex();
             Tick = 0;
         }
 
@@ -129,7 +154,7 @@ namespace GameScene
 
         public void HardwareButtons(KeyCode escapeButton)
         {
-            if (Input.GetKey(escapeButton)) SceneManager.LoadScene("Main Menu");
+            if (Input.GetKey(escapeButton)) SceneManager.LoadScene("Main menu");
         }
     }
 }

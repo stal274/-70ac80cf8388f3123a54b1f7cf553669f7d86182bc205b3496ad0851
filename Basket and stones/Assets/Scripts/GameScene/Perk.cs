@@ -31,7 +31,7 @@ namespace GameScene
             {
                 case "Frost":
 
-                    Ai.Instance.buttonsAi[Random.Range(0, 2)].interactable = false;
+                    Ai.Instance.gameButton[Random.Range(0, 2)].intractable = false;
                     break;
                 case "Shake":
 
@@ -41,7 +41,7 @@ namespace GameScene
                         inti = Random.Range(1, 11);
                     }
 
-                    Basket.Instance.Calculate('-', inti, "Basket");
+                    Basket.Instance.Calculate('-', inti);
                     break;
                 case "Replacement":
                     var bank = FindObjectOfType<SafeDepositOfButtonActions>();
@@ -57,7 +57,6 @@ namespace GameScene
                     cooldown = Convert.ToInt32(cooldown / 0.66);
                     break;
                 case "Pipe":
-                    Ai.Instance.DebuffName = "Stun";
                     break;
                 default:
                     Debug.LogWarning("Something wrong!");
@@ -81,9 +80,9 @@ namespace GameScene
             switch (perkName)
             {
                 case "Frost":
-                    foreach (var VARIABLE in Ai.Instance.buttonsAi)
+                    foreach (var VARIABLE in Ai.Instance.gameButton)
                     {
-                        VARIABLE.interactable = true;
+                        VARIABLE.intractable = true;
                     }
 
                     break;
@@ -97,7 +96,6 @@ namespace GameScene
                     cooldown = Convert.ToInt32(cooldown * 0.66);
                     break;
                 case "Pipe":
-                    Ai.Instance.DebuffName = null;
                     break;
             }
         }

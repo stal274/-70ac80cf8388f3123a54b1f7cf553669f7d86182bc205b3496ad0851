@@ -11,7 +11,8 @@ namespace GameScene
             switch (obj.name)
             {
                 case "Retry_Button":
-                    SceneManager.LoadScene("TestGameScene");
+                    SceneManager.LoadScene("SinglePlayScene");
+                    EventAggregator.EventAggregator.ButtonsActionsHaveChanged.Clear();
                     break;
                 case "MainMenu_Button":
                     SceneManager.LoadScene("Main menu");
