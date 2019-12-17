@@ -1,20 +1,19 @@
 ﻿using System.Collections;
-using GameScene;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Tests
+namespace Tests.GameScene.Basket
 {
     public class BasketCalculating
     {
-        private Basket _basket;
+        private global::GameScene.Basket _basket;
 
         // A Test behaves as an ordinary method
         [SetUp]
         public void Setup()
         {
-            _basket = new Basket();
+            _basket = new global::GameScene.Basket();
         }
 
         [TearDown]
@@ -30,7 +29,7 @@ namespace Tests
             const char action = '+';
             const int stonesBeforeTest = 5;
             _basket.CurrentAmountOfStones = stonesBeforeTest;
-            var stonesAfterTest = _basket.Calculate(action, value, "Test");
+            var stonesAfterTest = _basket.Calculate(action, value);
             Assert.AreEqual(stonesBeforeTest + 10, stonesAfterTest);
             yield return null;
         }
@@ -42,7 +41,7 @@ namespace Tests
             const char action = '*';
             const int stonesBeforeTest = 5;
             _basket.CurrentAmountOfStones = stonesBeforeTest;
-            var stonesAfterTest = _basket.Calculate(action, value, "Test");
+            var stonesAfterTest = _basket.Calculate(action, value);
             Assert.AreEqual(stonesBeforeTest * 10, stonesAfterTest);
             yield return null;
         }
@@ -54,7 +53,7 @@ namespace Tests
             const char action = '-';
             const int stonesBeforeTest = 5;
             _basket.CurrentAmountOfStones = stonesBeforeTest;
-            var stonesAfterTest = _basket.Calculate(action, value, "Test");
+            var stonesAfterTest = _basket.Calculate(action, value);
             Assert.AreEqual(stonesBeforeTest - 10, stonesAfterTest);
             yield return null;
         }
@@ -66,7 +65,7 @@ namespace Tests
             const char action = '/';
             const int stonesBeforeTest = 5;
             _basket.CurrentAmountOfStones = stonesBeforeTest;
-            var stonesAfterTest = _basket.Calculate(action, value, "Test");
+            var stonesAfterTest = _basket.Calculate(action, value);
             Assert.AreEqual(stonesBeforeTest / 10, stonesAfterTest);
             yield return null;
         }
